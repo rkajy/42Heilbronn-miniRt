@@ -6,7 +6,7 @@
 #    By: asando <asando@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/03/24 19:16:48 by asando           ###   ########.fr        #
+#    Updated: 2026/03/24 20:43:48 by asando           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,6 @@ submodules:
 		[ ! -f "$(MLX42_DIR)/CMakeLists.txt" ]; then \
 		printf "$(ARROW) initializing submodules...\n"; \
 		printf "$(ARROW) cloning...\n"; \
-		git submodules update --init --recursive > /dev/null 2>&1; \
+		git submodule update --init --recursive > /dev/null 2>&1; \
 		printf "$(GREEN)$(OK) libft and MLX42 are ready\n$(RESET)"; \
 	fi
