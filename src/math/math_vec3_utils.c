@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/03/25 11:58:38 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/25 20:45:26 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,31 @@ t_vec3	ft_vnormalize(t_vec3 v)
 	else
 		res = ft_scalar_mul(v, 1.0/v_magnitude);
 	return (res);
+}
+
+t_vec3	ft_element_vmul(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3	res;
+
+	res.x = v1.x * v2.x;
+	res.y = v1.y * v2.y;
+	res.z = v1.z * v2.z;
+	return (res);
+}
+
+t_vec3	ft_vclamp(t_vec3 v, double min, double max)
+{
+	if (v.x < min)
+		v.x = min;
+	if (v.y < min)
+		v.y = min;
+	if (v.z < min)
+		v.z = min;
+	if (v.x > max)
+		v.x = max;
+	if (v.y > max)
+		v.y = max;
+	if (v.z > max)
+		v.z = max;
+	return (v);
 }
