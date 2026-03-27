@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 12:58:27 by asando            #+#    #+#             */
-/*   Updated: 2026/03/27 18:01:12 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/27 18:03:24 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ int	hit_plane(t_ray ray, t_plane *pl, t_hit *hit)
 	denom = ft_dot_mul(pl->normal, ray.direction);
 	if (fabs(denom) < 1e-06)
 		return (0);
-	t = ft_dot_mul(ft_vsub(pl->point, ray.origin), pl->normal) /denom;
+	t = ft_dot_mul(ft_vsub(pl->point, ray.origin), pl->normal) / denom;
 	if (t < 1e-06)
 		return (0);
 	hit->t = t;
 	hit->point = ft_ray_at(ray, t);
 	hit->normal = pl->normal;
 	hit->mat = pl->mat;
-
 	return (1);
 }
