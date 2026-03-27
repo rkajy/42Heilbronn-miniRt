@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/03/25 21:17:32 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/27 20:39:36 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	ft_vmagnitude(t_vec3 v)
 	double	res;
 	double	dot_product;
 
-	dot_product = ft_dot_mul(v, v);
+	dot_product = ft_vdot(v, v);
 	res = sqrt(dot_product;
 	return (res);
 }
@@ -31,11 +31,11 @@ t_vec3	ft_vnormalize(t_vec3 v)
 	if (v_magnitude == 0)
 		res = ft_vec3(0, 0, 0);
 	else
-		res = ft_scalar_mul(v, 1.0/v_magnitude);
+		res = ft_vscalar(v, 1.0/v_magnitude);
 	return (res);
 }
 
-t_vec3	ft_element_vmul(t_vec3 v1, t_vec3 v2)
+t_vec3	ft_velement_mul(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3	res;
 

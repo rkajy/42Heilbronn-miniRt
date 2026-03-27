@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 21:06:03 by asando            #+#    #+#             */
-/*   Updated: 2026/03/25 21:12:50 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/27 20:39:35 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_ray	ft_ray_at(t_ray ray, double t)
 {
 	t_ray	res;
 
-	res = ray.origin + ft_scalar_mul(ray.direction, t);
+	res = ray.origin + ft_vscalar(ray.direction, t);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:04:51 by asando            #+#    #+#             */
-/*   Updated: 2026/03/25 21:00:25 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/27 20:36:33 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec3	ft_vsub(t_vec3 v1, t_vec3 v2)
 	return (res);
 }
 
-t_vec3	ft_scalar_mul(t_vec3 v1, double s)
+t_vec3	ft_vscalar(t_vec3 v1, double s)
 {
 	t_vec3 res;
 
@@ -42,7 +42,7 @@ t_vec3	ft_scalar_mul(t_vec3 v1, double s)
 	return (res);
 }
 
-double	ft_dot_mul(t_vec3 v1, t_vec3 v2)
+double	ft_vdot(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3	res;
 
@@ -53,7 +53,7 @@ double	ft_dot_mul(t_vec3 v1, t_vec3 v2)
 
 }
 
-t_vec3	ft_cross_mul(t_vec3 v1, t_vec3 v2)
+t_vec3	ft_vcross(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3	res;
 
