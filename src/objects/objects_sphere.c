@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:21:41 by asando            #+#    #+#             */
-/*   Updated: 2026/03/26 21:43:14 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/26 22:11:01 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
 	double	c;
 	double	discriminant;
 
+	oc = ft_vsub(ray.origin, sp->center);
 	a = ft_dot_mul(ray.direction, ray.direction);
 	b = 2.0 * ft_dot_mul(oc, ray.direction);
 	c = ft_dot_mul(oc, oc) - sp->radius * sp->radius;
 	discriminant = b * b - 4 * a * c;
-	oc = ft_vsub(ray.origin, sp->center);
 	if (discriminant == 0)
 		return (0);
 	t = ft_calc_t(discriminant, a, b);
