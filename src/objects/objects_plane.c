@@ -6,21 +6,21 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 12:58:27 by asando            #+#    #+#             */
-/*   Updated: 2026/03/27 18:03:24 by asando           ###   ########.fr       */
+/*   Updated: 2026/03/29 16:18:13 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "objects.h"
 
-int	hit_plane(t_ray ray, t_plane *pl, t_hit *hit)
+int	ft_hit_plane(t_ray ray, t_plane *pl, t_hit *hit)
 {
 	double	denom;
 	double	t;
 
-	denom = ft_dot_mul(pl->normal, ray.direction);
+	denom = ft_vdot(pl->normal, ray.direction);
 	if (fabs(denom) < 1e-06)
 		return (0);
-	t = ft_dot_mul(ft_vsub(pl->point, ray.origin), pl->normal) / denom;
+	t = ft_vdot(ft_vsub(pl->point, ray.origin), pl->normal) / denom;
 	if (t < 1e-06)
 		return (0);
 	hit->t = t;
