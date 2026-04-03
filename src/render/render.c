@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/03/30 19:00:04 by asando           ###   ########.fr       */
+/*   Updated: 2026/04/03 14:24:35 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,39 @@ void	ft_render(t_scene *scene)
 		}
 		y++;
 	}
+}
+
+t_vec3	ft_trace(t_scene *scene, t_ray ray, t_hit *closest)
+{
+	bool	hit_anything;
+	int		i;
+
+	closest->t = 1e30;
+	hit_anything = false;
+	i = 0;
+	while (i < scene->sphere_count)
+	{
+		if (ft_hit_sphere(ray, &scene->spheres[i], closest))
+			hit_anything = true;
+		i++;
+	}
+	while (i < scene->plane_count)
+	{
+		if (ft_hit_plane(ray, &scene->planes[i], closest))
+			hit_anything = true;
+		i++;
+	}
+	while (i < scene->cylinder_count)
+	{
+		if (ft_hit_sphere(ray, &scene->cylinders[i], closest))
+			hit_anything = true;
+		i++;
+	}
+	if (hit_anything == false)
+		return (ft_vec3(0, 0, 0));
+	return (ft_shade(scene, closest, ray));
+}
+
+t_vec3	ft_shade(t_scene *scene, t_hit *hit, t_ray ray)
+{
 }
