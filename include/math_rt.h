@@ -3,10 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   math_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/03/23 21:09:44 by asando           ###   ########.fr       */
+/*   Updated: 2026/04/06 21:50:54 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MATH_RT_H
+# define MATH_RT_H
+
+int	add_demo_values(int left, int right);
+
+#endif

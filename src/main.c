@@ -10,3 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "math_rt.h"
+#include "parse.h"
+#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	int	result;
+
+	result = add_demo_values(20, 22);
+	printf("demo result: %d\n", result);
+	if (!is_input_valid(argc, argv))
+	{
+		fprintf(stderr, "usage: ./miniRT <scene.rt>\n");
+		return (1);
+	}
+	if (!is_input_parsed(argc, argv, NULL))
+	{
+		fprintf(stderr, "failed to parse input\n");
+		return (1);
+	}
+	return (0);
+}
