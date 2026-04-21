@@ -1,9 +1,7 @@
 .vscode
-subject.pdf
 subject.txt
 build
 .codex
-Makefile.tests
 lib/googletest
 tests
 tests_runner
