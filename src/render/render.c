@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/04/03 14:24:35 by asando           ###   ########.fr       */
+/*   Updated: 2026/04/03 15:11:45 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_vec3	ft_trace(t_scene *scene, t_ray ray, t_hit *closest)
 	}
 	while (i < scene->cylinder_count)
 	{
-		if (ft_hit_sphere(ray, &scene->cylinders[i], closest))
+		if (ft_hit_cylinder(ray, &scene->cylinders[i], closest))
 			hit_anything = true;
 		i++;
 	}
