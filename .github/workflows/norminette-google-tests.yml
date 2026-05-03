@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main,development-branch,development-parse ]
   pull_request:
-    branches: [ main,development-branch,development-parsing ]
+    branches: [ main,development-branch,development-parse ]
   workflow_dispatch:
 
 jobs:
