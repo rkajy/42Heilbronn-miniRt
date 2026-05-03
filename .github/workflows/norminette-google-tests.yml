@@ -2,7 +2,7 @@ name: CI - Norminette test
 
 on:
   push:
-    branches: [ main,development-branch,development-parsing ]
+    branches: [ main,development-branch,development-parse ]
   pull_request:
     branches: [ main,development-branch,development-parsing ]
   workflow_dispatch:
