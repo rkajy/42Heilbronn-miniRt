@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/04/08 20:25:54 by radandri         ###   ########.fr        #
+#    Updated: 2026/05/03 17:30:07 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN)$(OK) object files removed!$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR) clean > /dev/null 2>&1
+	@$(MAKE) -f .github/Makefile.tests clean
 	@printf "$(ARROW)  libft cleaned\n"
 
 	
@@ -92,7 +93,10 @@ fclean: clean
 
 re: fclean all
 
-# test:
-# 	make -f Makefile.tests test-cmake
+test:
+	make -f .github/Makefile.tests test
+
+test-cmake:
+	make -f .github/Makefile.tests test-cmake
 	
 .PHONY: all submodules clean fclean re

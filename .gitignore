@@ -5,4 +5,6 @@ build
 lib/googletest
 tests
 tests_runner
+tests_runner_cmake
 miniRT
+.idea
