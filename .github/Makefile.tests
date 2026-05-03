@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/04/08 17:45:35 by radandri         ###   ########.fr        #
+#    Updated: 2026/05/03 18:38:46 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,22 @@ CPPFLAGS := -Iinclude -Ilib/libft/includes
 CFLAGS := -Wall -Wextra -Werror $(CPPFLAGS)
 CXXFLAGS := -Wall -Wextra -Werror -std=c++17 $(CPPFLAGS)
 
-NAME := tests_runner
-NAME_CMAKE := tests_runner_cmake
+NAME := .github/tests_runner
+NAME_CMAKE := .github/tests_runner_cmake
 OBJ_DIR := build/tests
 CMAKE_BUILD_DIR := build/tests_cmake
 SRC_DIR := src
-TEST_DIR := tests
-GTEST_DIR ?= lib/googletest
+TEST_DIR := .github/tests
+GTEST_DIR ?= ./lib/googletest
 GTEST_HEADER := $(GTEST_DIR)/googletest/include/gtest/gtest.h
 GTEST_ROOT := $(GTEST_DIR)/googletest
 CMAKE_GTEST_DIR := $(GTEST_DIR)/cmake_build
+
+LIB_DIR := ./lib
+LIBFT_DIR := $(LIB_DIR)/libft
+LIBFT_NAME := $(LIBFT_DIR)/libft.a
+LIBFT_PRINTF_NAME := $(LIBFT_DIR)/libftprintf.a
+
 
 GREEN := \033[1;32m
 RED := \033[1;31m
@@ -44,17 +50,12 @@ C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_SRC := $(TEST_DIR)/test_demo.cpp
 TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-ifeq ($(wildcard $(GTEST_HEADER)),)
-GTEST_INC :=
-GTEST_LIBS := -lgtest -lgtest_main
-else
 GTEST_INC := -I$(GTEST_ROOT)/include -I$(GTEST_ROOT)
 GTEST_SRC := \
 	$(GTEST_ROOT)/src/gtest-all.cc \
 	$(GTEST_ROOT)/src/gtest_main.cc
 GTEST_OBJ := $(GTEST_SRC:$(GTEST_ROOT)/src/%.cc=$(OBJ_DIR)/gtest/%.o)
 GTEST_LIBS := $(GTEST_OBJ)
-endif
 
 CMAKE_GTEST_LIBS := \
 	$(CMAKE_GTEST_DIR)/lib/libgtest.a \
@@ -64,22 +65,30 @@ CMAKE_TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(CMAKE_BUILD_DIR)/%.o)
 
 all: test
 
-$(NAME): $(C_OBJ) $(TEST_OBJ) $(GTEST_OBJ)
-	$(CXX) $(CXXFLAGS) $(C_OBJ) $(TEST_OBJ) $(GTEST_LIBS) -o $(NAME)
+$(LIBFT_NAME):
+	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
+	@echo "$(GREEN)$(OK) libft built successfully!$(RESET)"
 
-$(NAME_CMAKE): $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS)
-	$(CXX) $(CXXFLAGS) $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS) \
+$(LIBFT_PRINTF_NAME):
+	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
+	@echo "$(GREEN)$(OK) libft printf built successfully!$(RESET)"
+
+$(NAME): $(C_OBJ) $(TEST_OBJ) $(GTEST_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
+	$(CXX) $(CXXFLAGS) $(C_OBJ) $(TEST_OBJ) $(GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) -o $(NAME)
+
+$(NAME_CMAKE): $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
+	$(CXX) $(CXXFLAGS) $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) \
 		-o $(NAME_CMAKE)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
+$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | $(GTEST_DIR)
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(GTEST_INC) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(GTEST_ROOT)/include -I$(GTEST_ROOT) -c $< -o $@
 
-$(OBJ_DIR)/gtest/%.o: $(GTEST_ROOT)/src/%.cc
+$(OBJ_DIR)/gtest/%.o: $(GTEST_ROOT)/src/%.cc | $(GTEST_DIR)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(GTEST_INC) -c $< -o $@
 
@@ -118,11 +127,12 @@ $(CMAKE_GTEST_LIBS): check-gtest check-cmake
 test: check-gtest $(NAME)
 	./$(NAME)
 
-test-cmake: $(NAME_CMAKE)
+test-cmake: check-gtest $(NAME_CMAKE)
 	./$(NAME_CMAKE)
 
 clean:
 	rm -rf $(OBJ_DIR)
+	rm -rf $(GTEST_DIR)
 	rm -rf $(CMAKE_BUILD_DIR)
 	rm -rf $(CMAKE_GTEST_DIR)
 	rm -f $(NAME)

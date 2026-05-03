@@ -6,21 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:43:35 by radandri          #+#    #+#             */
-/*   Updated: 2026/04/03 22:54:25 by radandri         ###   ########.fr       */
+/*   Updated: 2026/05/03 17:00:41 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../lib/libft/includes/libft.h"
 #include "parse.h"
-
-static int	ft_strlen_local(const char *str)
-{
-	int	index;
-
-	index = 0;
-	while (str[index] != '\0')
-		index++;
-	return (index);
-}
 
 int	is_file_extension_valid(const char *filename, const char *extension)
 {
@@ -30,8 +21,8 @@ int	is_file_extension_valid(const char *filename, const char *extension)
 
 	if (!filename || !extension)
 		return (0);
-	filename_len = ft_strlen_local(filename);
-	extension_len = ft_strlen_local(extension);
+	filename_len = ft_strlen(filename);
+	extension_len = ft_strlen(extension);
 	if (filename_len <= extension_len)
 		return (0);
 	index = 0;

@@ -6,12 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:51:02 by radandri          #+#    #+#             */
-/*   Updated: 2026/04/08 20:30:55 by radandri         ###   ########.fr       */
+/*   Updated: 2026/05/03 16:59:56 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float ft_atof(const char *str)
+float	ft_atof(const char *str)
 {
-    float result = 0.0f;
-    return (result);
+	float	result;
+
+	result = 0.0f;
+	return (result);
 }
