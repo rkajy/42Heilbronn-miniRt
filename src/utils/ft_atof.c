@@ -14,6 +14,7 @@ float	ft_atof(const char *str)
 {
 	float	result;
 
+	(void) str;
 	result = 0.0f;
 	return (result);
 }
