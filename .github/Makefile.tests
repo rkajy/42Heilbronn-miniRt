@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/05/03 19:10:27 by radandri         ###   ########.fr        #
+#    Updated: 2026/06/17 02:09:48 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ ARROW := ➜
 
 C_SRC := \
 	$(SRC_DIR)/math/math_first.c \
-	$(SRC_DIR)/parse/parse_first.c
+	$(SRC_DIR)/parsing/parse_first.c
 
 C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_SRC := $(TEST_DIR)/test_demo.cpp

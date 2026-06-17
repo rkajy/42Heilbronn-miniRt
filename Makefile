@@ -27,7 +27,19 @@ CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast $(CPPFLAGS)
 C_SRC := \
 	src/main.c \
 	src/math/math_first.c \
-	src/parse/parse_first.c \
+	src/parsing/parse_first.c \
+	src/parsing/parse_ambient.c \
+	src/parsing/parse_color.c \
+	src/parsing/parse_double.c \
+	src/parsing/parse_light.c \
+	src/parsing/parse_plane.c \
+	src/parsing/parse_vec3.c \
+    src/parsing/parse_camera.c \
+    src/parsing/parse_cylinder.c \
+    src/parsing/parse_file.c \
+    src/parsing/parse_int.c \
+    src/parsing/parse_line.c \
+    src/parsing/parse_sphere.c \
 	src/utils/ft_atof.c \
 
 OBJ_DIR := build/obj

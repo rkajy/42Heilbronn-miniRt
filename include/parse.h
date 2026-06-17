@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   parsing.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 19:48:50 by radandri          #+#    #+#             */
-/*   Updated: 2026/05/03 17:01:12 by radandri         ###   ########.fr       */
+/*   Updated: 2026/06/16 13:32:21 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_ambient
 {
 	double	ratio;
 	t_color	color;
-} t_ambiant;
+} t_ambient;
 
 typedef struct s_vector
 {
@@ -39,7 +39,7 @@ typedef struct s_vector
 
 typedef struct s_camera
 {
-	t_vec3	pos;
+	t_vec3	positon;
 	t_vec3	orientation;
 	double	fov;
 } t_camera;
@@ -60,7 +60,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec3	center;
+	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
 } t_plane;
@@ -76,7 +76,7 @@ typedef struct s_cylinder
 
 typedef struct s_scene
 {
-	t_ambiant	ambient;
+	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
 	t_list		*spheres;
