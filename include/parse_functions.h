@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_functions.h                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/17 02:20:01 by radandri          #+#    #+#             */
+/*   Updated: 2026/06/17 02:20:01 by radandri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_FUNCTIONS_H
 # define PARSE_FUNCTIONS_H
 
@@ -81,7 +93,10 @@ bool	parse_plane(char **tokens, t_plane *plane);
 /*
  ** in: cy 50,0,20.6 0,0,1 14.2 21.42 10,0,255
  ** out:
- ** { center={50,0,20.6}; axis = {0,0,1}; diameter=14.2; height=21.42; color={10,0,255}
+ ** { 
+ **     center={50,0,20.6}; axis = {0,0,1};
+ **     diameter=14.2; height=21.42; color={10,0,255}
+ ** }
  */
 bool	parse_cylinder(char **tokens, t_cylinder *cylinder);
 
