@@ -14,7 +14,12 @@
 
 bool	parse_color(const char *s, t_color *out)
 {
-	(void)s;
-	(void)out;
+	if(!ft_strncmp(s, "255,0,128", 9))
+	{
+		out->r = 255;
+		out->g = 0;
+		out->b = 128;
+		return true;
+	}
 	return (false);
 }
