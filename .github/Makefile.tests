@@ -44,7 +44,20 @@ ARROW := ➜
 
 C_SRC := \
 	$(SRC_DIR)/math/math_first.c \
-	$(SRC_DIR)/parsing/parse_first.c
+	$(SRC_DIR)/parsing/parse_first.c \
+	$(SRC_DIR)/parsing/parse_ambient.c \
+	$(SRC_DIR)/parsing/parse_color.c \
+	$(SRC_DIR)/parsing/parse_double.c \
+	$(SRC_DIR)/parsing/parse_light.c \
+	$(SRC_DIR)/parsing/parse_plane.c \
+	$(SRC_DIR)/parsing/parse_vec3.c \
+    $(SRC_DIR)/parsing/parse_camera.c \
+    $(SRC_DIR)/parsing/parse_cylinder.c \
+    $(SRC_DIR)/parsing/parse_file.c \
+    $(SRC_DIR)/parsing/parse_int.c \
+    $(SRC_DIR)/parsing/parse_line.c \
+    $(SRC_DIR)/parsing/parse_sphere.c \
+	$(SRC_DIR)/utils/ft_atof.c \
 
 C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_SRC := $(TEST_DIR)/test_demo.cpp
