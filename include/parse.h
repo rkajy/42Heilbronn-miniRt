@@ -17,6 +17,11 @@
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
 
+/*
+** r: red
+** g: green
+** b: blue
+*/
 typedef struct s_color
 {
 	double		r;

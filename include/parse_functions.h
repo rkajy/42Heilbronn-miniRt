@@ -28,7 +28,7 @@ bool	parse_double(char *s, double *result);
  ** out: {r=255, g=0, b=128}
  ** errors: 256,0,0 ; -1,0,0 ; 255,255 ; 255,255,255,255
  */
-bool	parse_color(char *s, t_color *out);
+bool	parse_color(const char *s, t_color *out);
 
 /*
  ** in: "1.5,-2.3,42"

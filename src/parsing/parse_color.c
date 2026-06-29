@@ -12,7 +12,7 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_color(char *s, t_color *out)
+bool	parse_color(const char *s, t_color *out)
 {
 	(void)s;
 	(void)out;
