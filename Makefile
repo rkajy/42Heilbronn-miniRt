@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/05/03 17:30:07 by radandri         ###   ########.fr        #
+#    Updated: 2026/06/30 22:22:02 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ C_SRC := \
     src/parsing/parse_int.c \
     src/parsing/parse_line.c \
     src/parsing/parse_sphere.c \
+	src/parsing/error.c \
+	src/parsing/error_message.c \
 	src/utils/ft_atof.c \
 	src/utils/ft_free_split.c \
 

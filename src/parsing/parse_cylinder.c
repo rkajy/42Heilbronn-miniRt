@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_cylinder(char **tokens, t_cylinder *cylinder)
+int	parse_cylinder(char **tokens, t_cylinder *cylinder, t_rt_error *error)
 {
 	(void)tokens;
 	(void)cylinder;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

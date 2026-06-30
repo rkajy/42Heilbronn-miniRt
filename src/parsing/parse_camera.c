@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_camera(char **tokens, t_camera *camera)
+int	parse_camera(char **tokens, t_camera *camera, t_rt_error *error)
 {
 	(void)tokens;
 	(void)camera;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

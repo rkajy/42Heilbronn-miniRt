@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/06/16 19:01:12 by radandri         ###   ########.fr       */
+/*   Updated: 2026/06/30 23:44:17 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	*line;
 
-	fd = open(argv[1], O_RDONLY);
-	line = NULL;
 	if (!is_input_valid(argc, argv))
-	{
-		fprintf(stderr, "usage: ./miniRT <scene.rt>\n");
-		return (1);
-	}
+		return (printf("Error\n%s\n", RT_ERRMSG_USAGE), RT_ERR_USAGE);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (printf("Error\n%s\n", RT_ERRMSG_FILE_OPEN), RT_ERR_FILE_OPEN);
+	line = NULL;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_sphere(char **tokens, t_sphere *sphere)
+int	parse_sphere(char **tokens, t_sphere *sphere, t_rt_error *error)
 {
 	(void)tokens;
 	(void)sphere;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

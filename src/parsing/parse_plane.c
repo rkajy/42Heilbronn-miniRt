@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_plane(char **tokens, t_plane *plane)
+int	parse_plane(char **tokens, t_plane *plane, t_rt_error *error)
 {
 	(void)tokens;
 	(void)plane;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

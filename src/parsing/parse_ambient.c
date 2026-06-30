@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_ambient(char *s, t_ambient *ambient)
+int	parse_ambient(char *s, t_ambient *ambient, t_rt_error *error)
 {
 	(void)s;
 	(void)ambient;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

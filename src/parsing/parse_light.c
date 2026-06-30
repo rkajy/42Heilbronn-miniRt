@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_light(char **tokens, t_light *light)
+int	parse_light(char **tokens, t_light *light, t_rt_error *error)
 {
 	(void)tokens;
 	(void)light;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

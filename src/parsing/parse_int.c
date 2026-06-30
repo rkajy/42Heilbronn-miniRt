@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_int(char *s, int *out)
+int	parse_int(char *s, int *out, t_rt_error *error)
 {
 	(void)s;
 	(void)out;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

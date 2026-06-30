@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_vec3(char *s, t_vec3 *out)
+int	parse_vec3(char *s, t_vec3 *out, t_rt_error *error)
 {
 	(void)s;
 	(void)out;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }

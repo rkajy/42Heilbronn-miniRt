@@ -12,9 +12,10 @@
 
 #include "../../include/parse_functions.h"
 
-bool	parse_file(const char *filename, t_scene *scene)
+int	parse_file(const char *filename, t_scene *scene, t_rt_error *error)
 {
 	(void)filename;
 	(void)scene;
-	return (false);
+	rt_error_set(error, RT_ERR_INVALID_FORMAT);
+	return (RT_ERR_INVALID_FORMAT);
 }
