@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/06/17 02:19:28 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/01 01:20:49 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/libft/includes/ft_printf.h"
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
+# include "error.h"
 
 /*
 ** r: red
@@ -44,7 +45,7 @@ typedef struct s_vector
 
 typedef struct s_camera
 {
-	t_vec3		positon;
+	t_vec3		position;
 	t_vec3		orientation;
 	double		fov;
 }				t_camera;
