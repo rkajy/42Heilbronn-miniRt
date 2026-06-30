@@ -41,6 +41,7 @@ C_SRC := \
     src/parsing/parse_line.c \
     src/parsing/parse_sphere.c \
 	src/utils/ft_atof.c \
+	src/utils/ft_free_split.c \
 
 OBJ_DIR := build/obj
 
