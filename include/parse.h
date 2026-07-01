@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/01 01:20:49 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/01 05:15:05 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct s_scene
 	t_list		*planes;
 	t_list		*cylinders;
 }				t_scene;
-
-float			ft_atof(const char *str);
 
 int				is_file_extension_valid(const char *filename,
 					const char *extension);
