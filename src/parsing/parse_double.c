@@ -11,11 +11,27 @@
 /* ************************************************************************** */
 
 #include "../../include/parse_functions.h"
+#include "../../include/utils.h"
 
 int	parse_double(char *s, double *result, t_rt_error *error)
 {
-	(void)s;
-	(void)result;
-	rt_error_set(error, RT_ERR_INVALID_FORMAT);
-	return (RT_ERR_INVALID_FORMAT);
+	int nb_comma;
+	int nb_alphabet;
+	int i;
+
+	nb_comma = 0;
+	nb_alphabet = 0;
+	i = -1;
+	while (s[++i])
+	{
+		if (s[i] == '.')
+			nb_comma++;
+		if (ft_isalpha(s[i]))
+			nb_alphabet++;
+	}
+	if (nb_comma > 1 || nb_alphabet > 0)
+		return (rt_error_set(error, RT_ERR_TRAILING_DATA),
+			RT_ERR_TRAILING_DATA);
+	*result = ft_atof(s);
+	return (RT_ERR_OK);
 }
