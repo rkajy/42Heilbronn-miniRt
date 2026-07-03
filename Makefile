@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/06/30 22:22:02 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/03 01:27:05 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ C_SRC := \
 	src/parsing/error.c \
 	src/parsing/error_message.c \
 	src/utils/ft_atof.c \
+	src/utils/clean_line.c \
+	src/utils/ft_isspace.c \
+	src/utils/is_comment_or_empty.c \
 	src/utils/ft_free_split.c \
 
 OBJ_DIR := build/obj

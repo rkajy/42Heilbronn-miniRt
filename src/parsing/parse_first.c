@@ -6,12 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:43:35 by radandri          #+#    #+#             */
-/*   Updated: 2026/05/03 17:00:41 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/02 02:39:51 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../lib/libft/includes/libft.h"
 #include "parse.h"
+#include "../../include/error.h"
 
 int	is_file_extension_valid(const char *filename, const char *extension)
 {
@@ -37,8 +38,9 @@ int	is_file_extension_valid(const char *filename, const char *extension)
 
 int	is_input_valid(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 2) // -> ERREUR
 		return (0);
+	//TODO: argv[1] == NULL -> Error
 	return (is_file_extension_valid(argv[1], ".rt"));
 }
 

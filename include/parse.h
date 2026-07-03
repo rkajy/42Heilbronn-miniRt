@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/01 05:15:05 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/03 00:58:36 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
 # include "error.h"
+# include <stdbool.h>
 
 /*
 ** r: red
@@ -41,7 +42,7 @@ typedef struct s_vector
 	double		x;
 	double		y;
 	double		z;
-} t_vector,	t_vec3;
+} t_vector, t_vec3;
 
 typedef struct s_camera
 {
@@ -88,6 +89,9 @@ typedef struct s_scene
 	t_list		*spheres;
 	t_list		*planes;
 	t_list		*cylinders;
+	bool		has_ambient;
+	bool		has_camera;
+	bool		has_light;
 }				t_scene;
 
 int				is_file_extension_valid(const char *filename,
