@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/03 01:27:05 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/05 20:39:48 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast $(CPPFLAGS)
 C_SRC := \
 	src/main.c \
 	src/math/math_first.c \
-	src/parsing/parse_first.c \
 	src/parsing/parse_ambient.c \
 	src/parsing/parse_color.c \
 	src/parsing/parse_double.c \
@@ -47,7 +46,9 @@ C_SRC := \
 	src/utils/ft_isspace.c \
 	src/utils/is_comment_or_empty.c \
 	src/utils/ft_free_split.c \
-
+	src/utils/is_file_extension_valid.c \
+	src/utils/is_input_valid.c \
+	
 OBJ_DIR := build/obj
 
 SRC_OBJ := $(C_SRC:src/%.c=$(OBJ_DIR)/%.o)

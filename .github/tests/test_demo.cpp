@@ -3,6 +3,7 @@
 extern "C" {
 #include "math_rt.h"
 #include "parse.h"
+#include "utils.h"
 }
 
 TEST(MathAddDemo, AddDemoValues)
