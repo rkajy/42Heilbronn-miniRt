@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 01:17:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/03 05:06:16 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/05 02:36:55 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 
 static char	*skip_space_at_start(char *line)
 {
-	while (ft_isspace(*line))
-		line++;
+	size_t	start;
+
+	start = 0;
+	while (ft_isspace(line[start]))
+		start++;
+	if (start > 0)
+		ft_memmove(line, line + start, ft_strlen(line + start) + 1);
 	return (line);
 }
 
 static void	remove_new_line(char *line)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (line[i] != '\n')
+	while (line[i] != '\0' && line[i] != '\n')
 		i++;
 	line[i] = '\0';
 }

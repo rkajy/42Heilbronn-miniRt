@@ -10,6 +10,7 @@ TEST(CleanLine, RemoveLeadingSpacesAndNewLine)
     char line[] = "      sp 0,0,20 20 255,0,0\n";
     char *clean = clean_line(line);
 
+	ASSERT_EQ(clean, line);
     ASSERT_STREQ(clean, "sp 0,0,20 20 255,0,0");
 }
 
