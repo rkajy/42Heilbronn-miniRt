@@ -19,9 +19,9 @@
 int	parse_int(char *s, int *out, t_rt_error *error);
 
 /*
- ** eg: double d; parse_double("45.2", &d);
+ ** eg: double d; parse_double("45.2", &d, &error);
  */
-int	parse_double(char *s, double *result, t_rt_error *error);
+int	parse_double(const char *s, double *result, t_rt_error *error);
 
 /*
  ** in: "255,0,128"
@@ -39,10 +39,14 @@ int	parse_vec3(char *s, t_vec3 *out, t_rt_error *error);
 
 /*
  ** in: "A 0.2 255,255,255"
+ ** tokens[0] = "A";
+ ** tokens[1] = "0.2";
+ ** tokens[2] = "255,255,255";
+ ** tokens[3] = NULL;
  ** out: {ratio= 0.2, {r=255, g=255, b=255}}
  ** errors: A; A 0.2; A 1.5 255,255,255(ratio > 1) ; A -0.1 255,255,255
  */
-int	parse_ambient(char *s, t_ambient *ambient, t_rt_error *error);
+int     parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: "C -50,0,20 0,0,1 70"

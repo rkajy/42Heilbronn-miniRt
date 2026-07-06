@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/05 20:39:48 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/06 02:48:30 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ C_SRC := \
 	src/utils/ft_free_split.c \
 	src/utils/is_file_extension_valid.c \
 	src/utils/is_input_valid.c \
+	src/parsing/validate_scene.c \
+	src/parsing/validate_tokens.c \
+	src/parsing/validate_values.c \
 	
 OBJ_DIR := build/obj
 
