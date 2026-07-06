@@ -46,7 +46,7 @@ int	parse_vec3(char *s, t_vec3 *out, t_rt_error *error);
  ** out: {ratio= 0.2, {r=255, g=255, b=255}}
  ** errors: A; A 0.2; A 1.5 255,255,255(ratio > 1) ; A -0.1 255,255,255
  */
-int     parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error);
+int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: "C -50,0,20 0,0,1 70"
@@ -57,14 +57,14 @@ int     parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error);
  ** C -50,0,20 0,0,2 70 (orientation vector not normalized [-1;1]) ;
  ** C -50,0,20 0,0,1 (missing fov)
  */
-int	parse_camera(char **tokens, t_camera *camera, t_rt_error *error);
+int	parse_camera(char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: "L -40,0,30 0.7 255,255,255"
  ** out: {position = {-40,0,30}; brightness= 0.7; color={255,255,255}}
  *** errors: L 0,0,0 1.5 255,255,255 (brightness > 1)
  */
-int	parse_light(char **tokens, t_light *light, t_rt_error *error);
+int	parse_light(char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: "sp 0,0,20 20 255,0,0"
@@ -81,7 +81,7 @@ int	parse_light(char **tokens, t_light *light, t_rt_error *error);
  ** sp 0,0,20 20 256,0,0 (color > 255);
  ** diameter null
  */
-int	parse_sphere(char **tokens, t_sphere *sphere, t_rt_error *error);
+int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: "pl 0,0,0 0,1,0 255,255,255"
@@ -92,7 +92,7 @@ int	parse_sphere(char **tokens, t_sphere *sphere, t_rt_error *error);
  ** pl 0,0,0 0,1,0 (missing color)
  ** pl 0,0,0 0,0,0 255,255,255 (normal vector null)
  */
-int	parse_plane(char **tokens, t_plane *plane, t_rt_error *error);
+int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** in: cy 50,0,20.6 0,0,1 14.2 21.42 10,0,255
@@ -102,12 +102,12 @@ int	parse_plane(char **tokens, t_plane *plane, t_rt_error *error);
  **     diameter=14.2; height=21.42; color={10,0,255}
  ** }
  */
-int	parse_cylinder(char **tokens, t_cylinder *cylinder, t_rt_error *error);
+int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error);
 
 /*
  ** eg: parse_line("sp 0,0,20 20 255,0,0", &scene)
  */
-int	parse_line(const char *line, t_scene *scene, t_rt_error *error);
+int	parse_line(char *line, t_scene *scene, t_rt_error *error);
 
 /*
  ** eg: parse_file("scene.rt", &scene);
