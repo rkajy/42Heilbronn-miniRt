@@ -13,7 +13,7 @@
 #include "../../include/parse_functions.h"
 #include "../../include/utils.h"
 
-int	parse_double(char *s, double *result, t_rt_error *error)
+int	parse_double(const char *s, double *result, t_rt_error *error)
 {
 	int nb_comma;
 	int nb_alphabet;

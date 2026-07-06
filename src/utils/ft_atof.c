@@ -6,36 +6,28 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:51:02 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/03 00:14:06 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/06 12:15:53 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib/libft/includes/libft.h"
-
 double	ft_atof(const char *str)
 {
-	int		l = 0, r;
-	int		a;
-	double	b;
+	double	sign;
+	double	value;
+	double	factor;
 
-	l = 0, r = ft_strlen(str) - 1;
-	a = 0;
-	b = 0;
-	while ('0' <= str[l] && str[l] <= '9')
-	{
-		a = (a * 10) + str[l] - '0';
-		l++;
-	}
-	while (('0' <= str[r] && str[r] <= '9') || str[r] == '.')
-	{
-		if (str[r] != '.')
-			b = b * 0.1 + str[r] - '0';
-		else
+	sign = 1.0;
+	value = 0.0;
+	factor = 0.1;
+	if (*str == '-' || *str == '+')
+		sign = -1.0 + (*str++ == '+') * 2.0;
+	while (*str >= '0' && *str <= '9')
+		value = value * 10.0 + (*str++ - '0');
+	if (*str == '.')
+		while (*++str >= '0' && *str <= '9')
 		{
-			b *= 0.1;
-			break ;
+			value += (*str - '0') * factor;
+			factor *= 0.1;
 		}
-		r--;
-	}
-	return (a + b);
+	return (sign * value);
 }
