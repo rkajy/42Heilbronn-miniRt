@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/07/07 03:29:43 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/07 04:34:31 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ TEST_SRC := \
 	$(TEST_DIR)/parsing/test_parse_double.cpp \
 	$(TEST_DIR)/parsing/test_validate_values.cpp \
 	$(TEST_DIR)/parsing/test_parse_camera.cpp \
+	$(TEST_DIR)/parsing/test_parse_light.cpp \
 	$(TEST_DIR)/utils/test_clean_line.cpp \
 
 TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)

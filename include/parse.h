@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/07 02:46:41 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 04:25:32 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_vec3	pos;
+	t_vec3	position;
 	double	brightness;
 	t_color	color;
 }			t_light;
