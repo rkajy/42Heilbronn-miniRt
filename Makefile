@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/06 02:48:30 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/07 03:29:54 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ C_SRC := \
     src/parsing/parse_camera.c \
     src/parsing/parse_cylinder.c \
     src/parsing/parse_file.c \
-    src/parsing/parse_int.c \
     src/parsing/parse_line.c \
     src/parsing/parse_sphere.c \
 	src/parsing/error.c \

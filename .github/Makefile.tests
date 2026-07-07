@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/07/07 02:23:46 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/07 03:29:43 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ C_SRC := \
     $(SRC_DIR)/parsing/parse_camera.c \
     $(SRC_DIR)/parsing/parse_cylinder.c \
     $(SRC_DIR)/parsing/parse_file.c \
-    $(SRC_DIR)/parsing/parse_int.c \
     $(SRC_DIR)/parsing/parse_line.c \
     $(SRC_DIR)/parsing/parse_sphere.c \
 	$(SRC_DIR)/parsing/error.c \

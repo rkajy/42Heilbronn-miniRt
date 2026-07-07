@@ -16,8 +16,6 @@
 # include "parse.h"
 # include <stdbool.h>
 
-int	parse_int(char *s, int *out, t_rt_error *error);
-
 /*
  ** eg: double d; parse_double("45.2", &d, &error);
  */
