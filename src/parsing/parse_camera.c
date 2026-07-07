@@ -15,8 +15,8 @@
 
 int	parse_camera(char **tokens, t_scene *scene, t_rt_error *error)
 {
-	t_camera *camera;
-	t_list *node;
+	t_camera	*camera;
+	t_list		*node;
 
 	if (validate_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);

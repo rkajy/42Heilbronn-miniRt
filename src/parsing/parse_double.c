@@ -15,9 +15,9 @@
 
 int	parse_double(const char *s, double *result, t_rt_error *error)
 {
-	int nb_comma;
-	int nb_alphabet;
-	int i;
+	int	nb_comma;
+	int	nb_alphabet;
+	int	i;
 
 	nb_comma = 0;
 	nb_alphabet = 0;

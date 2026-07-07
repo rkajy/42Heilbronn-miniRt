@@ -15,10 +15,9 @@
 #include "../../include/utils.h"
 #include "../../lib/libft/includes/libft.h"
 
-
 int	parse_vec3(const char *s, t_vec3 *out, t_rt_error *error)
 {
-	char **tokens;
+	char	**tokens;
 
 	tokens = ft_split(s, ',');
 	if (!tokens)

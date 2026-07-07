@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:43:35 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/04 19:55:42 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:41:47 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 int	is_input_valid(int argc, char **argv)
 {
-	if (argc != 2) // -> ERREUR
+	if (argc != 2)
 		return (0);
-	// TODO: argv[1] == NULL -> Error
 	return (is_file_extension_valid(argv[1], ".rt"));
 }

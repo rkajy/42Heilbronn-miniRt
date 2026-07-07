@@ -6,14 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 03:06:47 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/06 23:21:17 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:38:57 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "../../include/error.h"
+#include <stddef.h>
 
-int validate_tokens(char **tokens, int expected, t_rt_error *error)
+int	validate_tokens(char **tokens, int expected, t_rt_error *error)
 {
 	int	i;
 
@@ -22,9 +22,9 @@ int validate_tokens(char **tokens, int expected, t_rt_error *error)
 	{
 		i++;
 	}
-	if(i != expected)
+	if (i != expected)
 	{
-		return(rt_error_set(error, RT_ERR_TRAILING_DATA));
+		return (rt_error_set(error, RT_ERR_TRAILING_DATA));
 	}
 	return (RT_ERR_OK);
 }

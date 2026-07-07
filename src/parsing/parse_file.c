@@ -17,8 +17,8 @@
 
 int	parse_file(const char *filename, t_scene *scene, t_rt_error *error)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)

@@ -14,10 +14,9 @@
 #include "../../include/utils.h"
 #include "parse_functions.h"
 
-
 static bool	is_digits_only(const char *s)
 {
-	int index;
+	int	index;
 
 	if (s == NULL || *s == '\0')
 		return (false);
@@ -51,8 +50,8 @@ static int	set_color_from_values(t_color *out, int values[3])
 
 int	parse_color(const char *s, t_color *out, t_rt_error *e)
 {
-	char **parts;
-	int values[3];
+	char	**parts;
+	int		values[3];
 
 	if (s == NULL || out == NULL)
 		return (rt_error_set(e, RT_ERR_INVALID_FORMAT));
