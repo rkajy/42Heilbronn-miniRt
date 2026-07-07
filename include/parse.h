@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/07 04:25:32 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:49:55 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_vector
 	double	x;
 	double	y;
 	double	z;
-} t_vector, t_vec3;
+} t_vector,	t_vec3;
 
 /*
  ** orientation is a normalized vector 

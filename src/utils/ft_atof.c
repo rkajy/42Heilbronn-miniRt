@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:51:02 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/06 12:15:53 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 22:53:23 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ double	ft_atof(const char *str)
 	while (*str >= '0' && *str <= '9')
 		value = value * 10.0 + (*str++ - '0');
 	if (*str == '.')
+	{
 		while (*++str >= '0' && *str <= '9')
 		{
 			value += (*str - '0') * factor;
 			factor *= 0.1;
 		}
+	}
 	return (sign * value);
 }
