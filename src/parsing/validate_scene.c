@@ -6,16 +6,23 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 04:04:22 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/05 20:02:53 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 23:45:28 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/error.h"
 #include "../../include/parse.h"
 
-int validate_scene(t_scene *scene, t_rt_error *error)
+int	validate_scene(t_scene *scene, t_rt_error *error)
 {
-    (void) scene;
-    (void) error;
-    return RT_ERR_OK;
+	if (scene->ambients == NULL)
+		return (rt_error_set(error, RT_ERR_MISSING_AMBIENT));
+	if (scene->cameras == NULL)
+		return (rt_error_set(error, RT_ERR_MISSING_CAMERA));
+	if (scene->lights == NULL)
+		return (rt_error_set(error, RT_ERR_MISSING_LIGHT));
+	if (scene->spheres == NULL && scene->planes == NULL
+		&& scene->cylinders == NULL)
+		return (rt_error_set(error, RT_ERR_INVALID_FORMAT));
+	return (RT_ERR_OK);
 }

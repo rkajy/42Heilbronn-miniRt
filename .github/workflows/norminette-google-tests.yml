@@ -1,4 +1,4 @@
-name: CI - Norminette test
+name: CI - Norminette test and gtest
 
 on:
   push:
