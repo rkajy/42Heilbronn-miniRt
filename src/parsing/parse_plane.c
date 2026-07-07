@@ -10,12 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/error.h"
+#include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
 int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 {
-	(void)tokens;
-	(void)scene;
-	rt_error_set(error, RT_ERR_INVALID_FORMAT);
-	return (RT_ERR_INVALID_FORMAT);
+	t_plane	*plane;
+	t_list	*node;
+
+	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
+		return (error->code);
+	plane = malloc(sizeof(t_plane));
+	if (!plane)
+		return (rt_error_set(error, RT_ERR_ALLOC));
+	if (parse_vec3(tokens[1], &plane->point, error) != RT_ERR_OK)
+		return (free(plane), error->code);
+	if (parse_vec3(tokens[2], &plane->normal, error) != RT_ERR_OK)
+		return (free(plane), error->code);
+	if (validate_normalized_vector(plane->normal, error) != RT_ERR_OK)
+		return (free(plane), error->code);
+	if (parse_color(tokens[3], &plane->color, error) != RT_ERR_OK)
+		return (free(plane), error->code);
+	node = ft_lstnew(plane);
+	if (!node)
+		return (free(plane), rt_error_set(error, RT_ERR_ALLOC));
+	ft_lstadd_back(&scene->planes, node);
+	return (RT_ERR_OK);
 }
