@@ -47,7 +47,6 @@ TEST_F(ParseCameraFixture, ValidCamera)
 
 TEST_F(ParseCameraFixture, RejectSecondCamera)
 {
-	t_scene	scene = {};
     t_rt_error error;
 
 	char *camera1[] = {
@@ -66,16 +65,15 @@ TEST_F(ParseCameraFixture, RejectSecondCamera)
 		NULL
 	};
 
-	EXPECT_EQ(parse_camera(camera1, &scene, &error), RT_ERR_OK);
+	EXPECT_EQ(parse_camera(camera1, &this->scene, &error), RT_ERR_OK);
 
-	EXPECT_EQ(parse_camera(camera2, &scene, &error), RT_ERR_DUPLICATE_AMBIENT);
+	EXPECT_EQ(parse_camera(camera2, &this->scene, &error), RT_ERR_DUPLICATE_CAMERA);
 
-	EXPECT_EQ(ft_lstsize(scene.cameras), 1);
+	EXPECT_EQ(ft_lstsize(this->scene.cameras), 1);
 }
 
 TEST_F(ParseCameraFixture, RejectWrongTokenCount)
 {
-	t_scene	scene = {};
     t_rt_error error;
 
 	char *tokens[] = {
@@ -84,7 +82,7 @@ TEST_F(ParseCameraFixture, RejectWrongTokenCount)
 		NULL
 	};
 
-	EXPECT_EQ(parse_camera(tokens, &scene, &error), RT_ERR_TRAILING_DATA);
+	EXPECT_EQ(parse_camera(tokens, &this->scene, &error), RT_ERR_TRAILING_DATA);
 
-	EXPECT_EQ(scene.cameras, nullptr);
+	EXPECT_EQ(this->scene.cameras, nullptr);
 }

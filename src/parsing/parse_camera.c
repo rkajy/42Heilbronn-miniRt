@@ -21,7 +21,7 @@ int	parse_camera(char **tokens, t_scene *scene, t_rt_error *error)
 	if (validate_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
 	if (ft_lstsize(scene->cameras) != 0)
-		return (rt_error_set(error, RT_ERR_DUPLICATE_AMBIENT));
+		return (rt_error_set(error, RT_ERR_DUPLICATE_CAMERA));
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
 		return (rt_error_set(error, RT_ERR_ALLOC));
@@ -34,7 +34,7 @@ int	parse_camera(char **tokens, t_scene *scene, t_rt_error *error)
 	if (parse_double(tokens[3], &camera->fov, error) != RT_ERR_OK)
 		return (free(camera), error->code);
 	if (validate_fov(camera->fov, error) != RT_ERR_OK)
-		return (error->code);
+		return (free(camera), error->code);
 	node = ft_lstnew(camera);
 	if (!node)
 		return (free(camera), rt_error_set(error, RT_ERR_ALLOC));
