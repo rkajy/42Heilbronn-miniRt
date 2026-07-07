@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 04:04:32 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/06 17:11:43 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 02:57:36 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	validate_normalized_vector(t_vec3 vec, t_rt_error *error)
 }
 
 /*
- ** There's no restriction, it's always true
+ ** There's no restriction for position, it's always true expect alpha
  */
 int	validate_coordinates(t_vec3 point, t_rt_error *error)
 {

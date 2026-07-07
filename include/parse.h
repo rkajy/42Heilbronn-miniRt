@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/06 05:29:12 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/07 02:46:41 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ typedef struct s_vector
 	double	z;
 } t_vector, t_vec3;
 
+/*
+ ** orientation is a normalized vector 
+ */
 typedef struct s_camera
 {
-	t_vec3	position;
 	t_vec3	orientation;
+	t_vec3	position;
 	double	fov;
 }			t_camera;
 
@@ -90,10 +93,11 @@ typedef struct s_scene
 	t_list	*cylinders;
 }			t_scene;
 
-int			validate_tokens(const char **tokens, int expected, t_rt_error *error);
+int			validate_tokens(char **tokens, int expected, t_rt_error *error);
 int			validate_ratio(double ratio, t_rt_error *error);
 int			validate_positive(double value, t_rt_error *error);
 int			validate_fov(double fov, t_rt_error *error);
 int			validate_normalized_vector(t_vec3 vec, t_rt_error *error);
 int			validate_coordinates(t_vec3 point, t_rt_error *error);
+void		destroy_scene(t_scene *scene);
 #endif

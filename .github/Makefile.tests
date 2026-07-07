@@ -6,15 +6,19 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/07/06 17:26:19 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/07 02:23:46 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 CXX := c++
 CPPFLAGS := -Iinclude -Ilib/libft/includes
-CFLAGS := -Wall -Wextra -Werror $(CPPFLAGS)
-CXXFLAGS := -Wall -Wextra -Werror -std=c++17 $(CPPFLAGS)
+SANITIZE ?= none
+comma := ,
+
+SANITIZER_FLAGS = $(if $(filter address,$(SANITIZE)),-g -fsanitize=address$(comma)leak -fno-omit-frame-pointer,$(if $(filter undefined,$(SANITIZE)),-g -fsanitize=undefined -fno-omit-frame-pointer,))
+CFLAGS := -Wall -Wextra -Werror $(CPPFLAGS) $(SANITIZER_FLAGS)
+CXXFLAGS := -Wall -Wextra -Werror -std=c++17 $(CPPFLAGS) $(SANITIZER_FLAGS)
 
 NAME := .github/tests_runner
 NAME_CMAKE := .github/tests_runner_cmake
@@ -68,6 +72,7 @@ C_SRC := \
 	$(SRC_DIR)/parsing/validate_scene.c \
 	$(SRC_DIR)/parsing/validate_tokens.c \
 	$(SRC_DIR)/parsing/validate_values.c \
+	$(SRC_DIR)/utils/destroy_scene.c \
 
 C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_SRC := \
@@ -76,6 +81,7 @@ TEST_SRC := \
 	$(TEST_DIR)/parsing/test_parse_color.cpp \
 	$(TEST_DIR)/parsing/test_parse_double.cpp \
 	$(TEST_DIR)/parsing/test_validate_values.cpp \
+	$(TEST_DIR)/parsing/test_parse_camera.cpp \
 	$(TEST_DIR)/utils/test_clean_line.cpp \
 
 TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -94,6 +100,12 @@ CMAKE_C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(CMAKE_BUILD_DIR)/%.o)
 CMAKE_TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(CMAKE_BUILD_DIR)/%.o)
 
 all: test
+
+asan:
+	$(MAKE) SANITIZE=address test
+
+ubsan:
+	$(MAKE) SANITIZE=undefined test
 
 $(LIBFT_NAME):
 	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
@@ -151,10 +163,10 @@ $(CMAKE_GTEST_LIBS): check-gtest check-cmake
 	@cmake --build $(CMAKE_GTEST_DIR) > /dev/null
 
 test: check-gtest $(NAME)
-	./$(NAME)
+	ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./$(NAME)
 
 test-cmake: check-gtest $(NAME_CMAKE)
-	./$(NAME_CMAKE)
+	ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./$(NAME_CMAKE)
 
 clean:
 	rm -rf $(OBJ_DIR)

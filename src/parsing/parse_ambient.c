@@ -21,7 +21,7 @@ int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error)
 	t_ambient *ambient;
 	t_list *node;
 
-	if (validate_tokens(tokens, 3, error) != RT_ERR_OK)
+	if (validate_tokens((char**)tokens, 3, error) != RT_ERR_OK)
 		return (error->code);
 	if (ft_lstsize(scene->ambients) != 0)
 		return (rt_error_set(error, RT_ERR_DUPLICATE_AMBIENT));

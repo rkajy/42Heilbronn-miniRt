@@ -35,7 +35,7 @@ int	parse_color(const char *s, t_color *out, t_rt_error *error);
  ** out: {x=1.5, y=-2.3, z=42}
  ** errors: 1,2 ; 1,2,3,4 ; 1,,3 ; a,b,c
  */
-int	parse_vec3(char *s, t_vec3 *out, t_rt_error *error);
+int	parse_vec3(const char *s, t_vec3 *out, t_rt_error *error);
 
 /*
  ** in: "A 0.2 255,255,255"

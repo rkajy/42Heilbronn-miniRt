@@ -7,15 +7,24 @@ extern "C" {
 #include "libft.h"
 }
 
-TEST(ParseAmbient, ValidAmbient)
+class ParseAmbientFixture : public ::testing::Test
+{
+protected:
+    t_scene scene{};
+
+    void TearDown() override
+    {
+         destroy_scene(&scene);
+    }
+};
+
+TEST_F(ParseAmbientFixture, ValidAmbient)
 {
     t_color color_expected;
     t_rt_error error;
-    t_scene scene;
     t_ambient *result;
     double ratio_expected;
 
-    scene.ambients = NULL;
     const char *tokens[] = {
         "A",
         "0.2",
@@ -39,15 +48,13 @@ TEST(ParseAmbient, ValidAmbient)
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 }
 
-TEST(ParseAmbient, OutOfRangePositiveRatioAmbient)
+TEST_F(ParseAmbientFixture, OutOfRangePositiveRatioAmbient)
 {
     t_color color_expected;
     t_rt_error error;
-    t_scene scene;
     t_ambient *result;
     double ratio_expected;
 
-    scene.ambients = NULL;
     const char *tokens[] = {
         "A",
         "9",
@@ -71,15 +78,13 @@ TEST(ParseAmbient, OutOfRangePositiveRatioAmbient)
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 }
 
-TEST(ParseAmbient, OutOfRangeNegativeRatioAmbient)
+TEST_F(ParseAmbientFixture, OutOfRangeNegativeRatioAmbient)
 {
     t_color color_expected;
     t_rt_error error;
-    t_scene scene;
     t_ambient *result;
     double ratio_expected;
 
-    scene.ambients = NULL;
     const char *tokens[] = {
         "A",
         "-19",
@@ -104,13 +109,11 @@ TEST(ParseAmbient, OutOfRangeNegativeRatioAmbient)
 }
 
 // test for 2 ambients
-TEST(ParseAmbient, DuplicateAmbient)
+TEST_F(ParseAmbientFixture, DuplicateAmbient)
 {
     t_rt_error error;
-    t_scene scene;
     t_ambient *result;
 
-    scene.ambients = NULL;
     const char *tokens[] = {
         "A",
         "0.2",
