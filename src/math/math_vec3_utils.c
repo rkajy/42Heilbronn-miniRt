@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/03/25 21:17:32 by asando           ###   ########.fr       */
+/*   Updated: 2026/05/01 15:25:48 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	ft_vmagnitude(t_vec3 v)
 	double	dot_product;
 
 	dot_product = ft_dot_mul(v, v);
-	res = sqrt(dot_product;
+	res = sqrt(dot_product);
 	return (res);
 }
 
