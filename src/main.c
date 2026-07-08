@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
 	if (validate_scene(&scene, &error) != RT_ERR_OK)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
+	if (DEBUG)
+		debug_dump_scene(&scene);
 	destroy_scene(&scene);
-	
 	return (0);
 }

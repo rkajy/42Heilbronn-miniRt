@@ -22,6 +22,11 @@ LIBFT_PRINTF_NAME := $(LIBFT_DIR)/libftprintf.a
 MLX42_DIR := $(LIB_DIR)/MLX42
 
 CPPFLAGS := -Iinclude -I$(LIBFT_DIR)/includes -I$(MLX42_DIR)/include
+ifeq ($(DEBUG),1)
+CPPFLAGS += -DDEBUG=1
+else
+CPPFLAGS += -DDEBUG=0
+endif
 CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast $(CPPFLAGS)
 
 C_SRC := \
@@ -48,6 +53,8 @@ C_SRC := \
 	src/utils/is_file_extension_valid.c \
 	src/utils/is_input_valid.c \
 	src/utils/destroy_scene.c \
+	src/utils/debug_dump_scene.c \
+	src/utils/debug_dump_shapes.c \
 	src/parsing/validate_scene.c \
 	src/parsing/validate_tokens.c \
 	src/parsing/validate_values.c \

@@ -7,3 +7,4 @@ tests_runner
 tests_runner_cmake
 miniRT
 .idea
+reports
