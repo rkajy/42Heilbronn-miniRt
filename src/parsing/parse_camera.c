@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 01:58:51 by radandri          #+#    #+#             */
+/*   Created: 2026/07/09 00:39:02 by radandri          #+#    #+#             */
 /*   Updated: 2026/06/17 01:58:51 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ int	parse_camera(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(camera), error->code);
 	if (parse_vec3(tokens[2], &camera->orientation, error) != RT_ERR_OK)
 		return (free(camera), error->code);
-	if (validate_normalized_vector(camera->orientation, error) != RT_ERR_OK)
+	if (normalize_vector(&camera->orientation, error) != RT_ERR_OK)
 		return (free(camera), error->code);
 	if (parse_double(tokens[3], &camera->fov, error) != RT_ERR_OK)
 		return (free(camera), error->code);

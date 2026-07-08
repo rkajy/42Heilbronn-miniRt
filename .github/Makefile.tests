@@ -68,6 +68,7 @@ C_SRC := \
 	$(SRC_DIR)/utils/ft_free_split.c \
 	$(SRC_DIR)/utils/is_file_extension_valid.c \
 	$(SRC_DIR)/utils/is_input_valid.c \
+	$(SRC_DIR)/utils/normalize_vector.c \
 	$(SRC_DIR)/parsing/validate_scene.c \
 	$(SRC_DIR)/parsing/validate_tokens.c \
 	$(SRC_DIR)/parsing/validate_values.c \

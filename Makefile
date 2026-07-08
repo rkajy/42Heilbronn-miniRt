@@ -55,6 +55,7 @@ C_SRC := \
 	src/utils/destroy_scene.c \
 	src/utils/debug_dump_scene.c \
 	src/utils/debug_dump_shapes.c \
+	src/utils/normalize_vector.c \
 	src/parsing/validate_scene.c \
 	src/parsing/validate_tokens.c \
 	src/parsing/validate_values.c \

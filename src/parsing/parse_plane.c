@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 02:01:33 by radandri          #+#    #+#             */
+/*   Created: 2026/07/09 00:45:50 by radandri          #+#    #+#             */
 /*   Updated: 2026/06/17 02:01:33 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(plane), error->code);
 	if (parse_vec3(tokens[2], &plane->normal, error) != RT_ERR_OK)
 		return (free(plane), error->code);
-	if (validate_normalized_vector(plane->normal, error) != RT_ERR_OK)
+	if (normalize_vector(&plane->normal, error) != RT_ERR_OK)
 		return (free(plane), error->code);
 	if (parse_color(tokens[3], &plane->color, error) != RT_ERR_OK)
 		return (free(plane), error->code);

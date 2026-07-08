@@ -99,6 +99,7 @@ int			validate_positive(double value, t_rt_error *error);
 int			validate_fov(double fov, t_rt_error *error);
 int			validate_normalized_vector(t_vec3 vec, t_rt_error *error);
 int			validate_coordinates(t_vec3 point, t_rt_error *error);
+int			normalize_vector(t_vec3 *vec, t_rt_error *error);
 void		debug_dump_scene(const t_scene *scene);
 void		debug_dump_spheres(t_list *node);
 void		debug_dump_planes(t_list *node);

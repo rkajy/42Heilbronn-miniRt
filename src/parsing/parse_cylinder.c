@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 01:59:50 by radandri          #+#    #+#             */
+/*   Created: 2026/07/09 00:39:56 by radandri          #+#    #+#             */
 /*   Updated: 2026/06/17 01:59:50 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static int	parse_cylinder_data(char **tokens, t_cylinder *cylinder,
 		return (error->code);
 	if (parse_vec3(tokens[2], &cylinder->axis, error) != RT_ERR_OK)
 		return (error->code);
-	if (validate_normalized_vector(cylinder->axis, error) != RT_ERR_OK)
+	if (normalize_vector(&cylinder->axis, error) != RT_ERR_OK)
 		return (error->code);
 	if (parse_double(tokens[3], &cylinder->diameter, error) != RT_ERR_OK)
 		return (error->code);
