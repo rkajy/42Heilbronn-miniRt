@@ -86,7 +86,7 @@ submodules:
 	fi
 
 $(LIBFT_NAME):
-	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFT_DIR) bonus > /dev/null 2>&1
 	@echo "$(GREEN)$(OK) libft built successfully!$(RESET)"
 
 $(LIBFT_PRINTF_NAME):
