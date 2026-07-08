@@ -112,7 +112,6 @@ TEST_F(ParseAmbientFixture, OutOfRangeNegativeRatioAmbient)
 TEST_F(ParseAmbientFixture, DuplicateAmbient)
 {
     t_rt_error error;
-    t_ambient *result;
 
     const char *tokens[] = {
         "A",
@@ -126,7 +125,6 @@ TEST_F(ParseAmbientFixture, DuplicateAmbient)
         RT_ERR_OK
     );
 
-    result = (t_ambient*)scene.ambients->content;
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 
     // add a second scene should return an error

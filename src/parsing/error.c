@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 17:05:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/06/30 23:53:10 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/08 13:05:10 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	rt_error_set_at(t_rt_error *error, t_rt_error_code code, int line)
 
 int	rt_error_set(t_rt_error *error, t_rt_error_code code)
 {
-	return (rt_error_set_at(error, code, -1));
+	return (rt_error_set_at(error, code, error->line));
 }
 
 void	rt_error_print(const t_rt_error *error)

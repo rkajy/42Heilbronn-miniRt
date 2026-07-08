@@ -39,7 +39,7 @@ int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 	t_cylinder	*cylinder;
 	t_list		*node;
 
-	if (validate_tokens(tokens, 5, error) != RT_ERR_OK)
+	if (validate_tokens(tokens, 6, error) != RT_ERR_OK)
 		return (error->code);
 	cylinder = malloc(sizeof(t_cylinder));
 	if (!cylinder)

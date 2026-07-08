@@ -51,7 +51,7 @@ static int	set_color_from_values(t_color *out, int values[3])
 int	parse_color(const char *s, t_color *out, t_rt_error *e)
 {
 	char	**parts;
-	int		values[3];
+	int		values[3] = {0};
 
 	if (s == NULL || out == NULL)
 		return (rt_error_set(e, RT_ERR_INVALID_FORMAT));

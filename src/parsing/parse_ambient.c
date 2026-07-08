@@ -14,7 +14,6 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 #include "../../include/utils.h"
-#include "../../lib/libft/includes/libft.h"
 
 int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error)
 {

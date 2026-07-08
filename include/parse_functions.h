@@ -114,4 +114,5 @@ int	parse_line(char *line, t_scene *scene, t_rt_error *error);
  */
 int	parse_file(const char *filename, t_scene *scene, t_rt_error *error);
 
+int	validate_scene(t_scene *scene, t_rt_error *error);
 #endif

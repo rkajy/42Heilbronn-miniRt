@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/07 03:29:54 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/08 03:28:45 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ C_SRC := \
 	src/utils/ft_free_split.c \
 	src/utils/is_file_extension_valid.c \
 	src/utils/is_input_valid.c \
+	src/utils/destroy_scene.c \
 	src/parsing/validate_scene.c \
 	src/parsing/validate_tokens.c \
 	src/parsing/validate_values.c \
