@@ -6,12 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 01:17:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/05 02:36:55 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:19:48 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/utils.h"
-#include "../../lib/libft/includes/libft.h"
+#include "../../../include/utils.h"
+#include "../../../lib/libft/includes/libft.h"
+#include <stdlib.h>
 
 static char	*skip_space_at_start(char *line)
 {

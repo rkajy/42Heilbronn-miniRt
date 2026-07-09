@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/08 03:28:45 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/09 13:17:00 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,17 +45,17 @@ C_SRC := \
     src/parsing/parse_sphere.c \
 	src/parsing/error.c \
 	src/parsing/error_message.c \
-	src/utils/ft_atof.c \
-	src/utils/clean_line.c \
-	src/utils/ft_isspace.c \
-	src/utils/is_comment_or_empty.c \
-	src/utils/ft_free_split.c \
-	src/utils/is_file_extension_valid.c \
-	src/utils/is_input_valid.c \
-	src/utils/destroy_scene.c \
-	src/utils/debug_dump_scene.c \
-	src/utils/debug_dump_shapes.c \
-	src/utils/normalize_vector.c \
+	src/parsing/parsing-utils/ft_atof.c \
+	src/parsing/parsing-utils/clean_line.c \
+	src/parsing/parsing-utils/ft_isspace.c \
+	src/parsing/parsing-utils/is_comment_or_empty.c \
+	src/parsing/parsing-utils/ft_free_split.c \
+	src/parsing/parsing-utils/is_file_extension_valid.c \
+	src/parsing/parsing-utils/is_input_valid.c \
+	src/parsing/parsing-utils/destroy_scene.c \
+	src/parsing/parsing-utils/debug_dump_scene.c \
+	src/parsing/parsing-utils/debug_dump_shapes.c \
+	src/parsing/parsing-utils/normalize_vector.c \
 	src/parsing/validate_scene.c \
 	src/parsing/validate_tokens.c \
 	src/parsing/validate_values.c \

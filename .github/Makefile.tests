@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
-#    Updated: 2026/07/07 04:34:31 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/09 13:25:29 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,18 +61,18 @@ C_SRC := \
     $(SRC_DIR)/parsing/parse_sphere.c \
 	$(SRC_DIR)/parsing/error.c \
 	$(SRC_DIR)/parsing/error_message.c \
-	$(SRC_DIR)/utils/ft_atof.c \
-	$(SRC_DIR)/utils/clean_line.c \
-	$(SRC_DIR)/utils/ft_isspace.c \
-	$(SRC_DIR)/utils/is_comment_or_empty.c \
-	$(SRC_DIR)/utils/ft_free_split.c \
-	$(SRC_DIR)/utils/is_file_extension_valid.c \
-	$(SRC_DIR)/utils/is_input_valid.c \
-	$(SRC_DIR)/utils/normalize_vector.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_atof.c \
+	$(SRC_DIR)/parsing/parsing-utils/clean_line.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_isspace.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_comment_or_empty.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_free_split.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_file_extension_valid.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_input_valid.c \
+	$(SRC_DIR)/parsing/parsing-utils/normalize_vector.c \
 	$(SRC_DIR)/parsing/validate_scene.c \
 	$(SRC_DIR)/parsing/validate_tokens.c \
 	$(SRC_DIR)/parsing/validate_values.c \
-	$(SRC_DIR)/utils/destroy_scene.c \
+	$(SRC_DIR)/parsing/parsing-utils/destroy_scene.c \
 
 C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_SRC := \

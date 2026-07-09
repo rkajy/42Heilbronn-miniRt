@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 00:55:51 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/07 22:41:15 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:21:50 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
-#include "../../lib/libft/includes/libft.h"
+#include "../../../include/parse.h"
+#include "../../../lib/libft/includes/libft.h"
 #include <stdlib.h>
 
 void	destroy_scene(t_scene *scene)

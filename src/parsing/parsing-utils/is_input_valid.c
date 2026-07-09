@@ -6,14 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:43:35 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:32:56 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:21:26 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib/libft/includes/libft.h"
-#include "../../include/error.h"
-#include "../../include/parse.h"
-#include "../../include/utils.h"
+#include "../../../lib/libft/includes/libft.h"
+#include "../../../include/error.h"
+#include "../../../include/parse.h"
+#include "../../../include/utils.h"
 
 int	is_input_valid(int argc, char **argv)
 {

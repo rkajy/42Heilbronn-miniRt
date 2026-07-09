@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:48:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:32:10 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/09 13:22:22 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "../../../include/parse.h"
 #include <stdio.h>
 
 void	debug_dump_spheres(t_list *node)
