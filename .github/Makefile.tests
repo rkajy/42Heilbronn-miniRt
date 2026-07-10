@@ -1,0 +1,180 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile.tests                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/04/06 19:49:23 by radandri          #+#    #+#              #
+#    Updated: 2026/07/09 13:25:29 by radandri         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC := cc
+CXX := c++
+CPPFLAGS := -Iinclude -Ilib/libft/includes
+SANITIZE ?= none
+comma := ,
+
+SANITIZER_FLAGS = $(if $(filter address,$(SANITIZE)),-g -fsanitize=address$(comma)leak -fno-omit-frame-pointer,$(if $(filter undefined,$(SANITIZE)),-g -fsanitize=undefined -fno-omit-frame-pointer,))
+CFLAGS := -Wall -Wextra -Werror $(CPPFLAGS) $(SANITIZER_FLAGS)
+CXXFLAGS := -Wall -Wextra -Werror -std=c++17 $(CPPFLAGS) $(SANITIZER_FLAGS)
+
+NAME := .github/tests_runner
+NAME_CMAKE := .github/tests_runner_cmake
+OBJ_DIR := build/tests
+CMAKE_BUILD_DIR := build/tests_cmake
+SRC_DIR := src
+TEST_DIR := .github/tests
+GTEST_DIR ?= ./lib/googletest
+GTEST_HEADER := $(GTEST_DIR)/googletest/include/gtest/gtest.h
+GTEST_ROOT := $(GTEST_DIR)/googletest
+CMAKE_GTEST_DIR := $(GTEST_DIR)/cmake_build
+
+LIB_DIR := ./lib
+LIBFT_DIR := $(LIB_DIR)/libft
+LIBFT_NAME := $(LIBFT_DIR)/libft.a
+LIBFT_PRINTF_NAME := $(LIBFT_DIR)/libftprintf.a
+
+
+GREEN := \033[1;32m
+RED := \033[1;31m
+BLUE := \033[1;34m
+RESET := \033[0m
+
+OK := ✔
+FAIL := ✖
+ARROW := ➜
+
+C_SRC := \
+	$(SRC_DIR)/math/math_first.c \
+	$(SRC_DIR)/parsing/parse_ambient.c \
+	$(SRC_DIR)/parsing/parse_color.c \
+	$(SRC_DIR)/parsing/parse_double.c \
+	$(SRC_DIR)/parsing/parse_light.c \
+	$(SRC_DIR)/parsing/parse_plane.c \
+	$(SRC_DIR)/parsing/parse_vec3.c \
+    $(SRC_DIR)/parsing/parse_camera.c \
+    $(SRC_DIR)/parsing/parse_cylinder.c \
+    $(SRC_DIR)/parsing/parse_file.c \
+    $(SRC_DIR)/parsing/parse_line.c \
+    $(SRC_DIR)/parsing/parse_sphere.c \
+	$(SRC_DIR)/parsing/error.c \
+	$(SRC_DIR)/parsing/error_message.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_atof.c \
+	$(SRC_DIR)/parsing/parsing-utils/clean_line.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_isspace.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_comment_or_empty.c \
+	$(SRC_DIR)/parsing/parsing-utils/ft_free_split.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_file_extension_valid.c \
+	$(SRC_DIR)/parsing/parsing-utils/is_input_valid.c \
+	$(SRC_DIR)/parsing/parsing-utils/normalize_vector.c \
+	$(SRC_DIR)/parsing/validate_scene.c \
+	$(SRC_DIR)/parsing/validate_tokens.c \
+	$(SRC_DIR)/parsing/validate_values.c \
+	$(SRC_DIR)/parsing/parsing-utils/destroy_scene.c \
+
+C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+TEST_SRC := \
+	$(TEST_DIR)/test_demo.cpp \
+	$(TEST_DIR)/parsing/test_parse_ambient.cpp \
+	$(TEST_DIR)/parsing/test_parse_color.cpp \
+	$(TEST_DIR)/parsing/test_parse_double.cpp \
+	$(TEST_DIR)/parsing/test_validate_values.cpp \
+	$(TEST_DIR)/parsing/test_parse_camera.cpp \
+	$(TEST_DIR)/parsing/test_parse_light.cpp \
+	$(TEST_DIR)/utils/test_clean_line.cpp \
+
+TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
+GTEST_INC := -I$(GTEST_ROOT)/include -I$(GTEST_ROOT)
+GTEST_SRC := \
+	$(GTEST_ROOT)/src/gtest-all.cc \
+	$(GTEST_ROOT)/src/gtest_main.cc
+GTEST_OBJ := $(GTEST_SRC:$(GTEST_ROOT)/src/%.cc=$(OBJ_DIR)/gtest/%.o)
+GTEST_LIBS := $(GTEST_OBJ)
+
+CMAKE_GTEST_LIBS := \
+	$(CMAKE_GTEST_DIR)/lib/libgtest.a \
+	$(CMAKE_GTEST_DIR)/lib/libgtest_main.a
+CMAKE_C_OBJ := $(C_SRC:$(SRC_DIR)/%.c=$(CMAKE_BUILD_DIR)/%.o)
+CMAKE_TEST_OBJ := $(TEST_SRC:$(TEST_DIR)/%.cpp=$(CMAKE_BUILD_DIR)/%.o)
+
+all: test
+
+asan:
+	$(MAKE) SANITIZE=address test
+
+ubsan:
+	$(MAKE) SANITIZE=undefined test
+
+$(LIBFT_NAME):
+	@$(MAKE) -C $(LIBFT_DIR) bonus > /dev/null 2>&1
+	@echo "$(GREEN)$(OK) libft built successfully!$(RESET)"
+
+$(LIBFT_PRINTF_NAME):
+	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
+	@echo "$(GREEN)$(OK) libft printf built successfully!$(RESET)"
+
+$(NAME): $(C_OBJ) $(TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
+	$(CXX) $(CXXFLAGS) $(C_OBJ) $(TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) -o $(NAME)
+
+$(NAME_CMAKE): $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
+	$(CXX) $(CXXFLAGS) $(CMAKE_C_OBJ) $(CMAKE_TEST_OBJ) $(CMAKE_GTEST_LIBS) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) \
+		-o $(NAME_CMAKE)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | $(GTEST_DIR)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -I$(GTEST_ROOT)/include -I$(GTEST_ROOT) -c $< -o $@
+
+$(CMAKE_BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(CMAKE_BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(GTEST_INC) -c $< -o $@
+
+$(GTEST_DIR):
+	@git clone https://github.com/google/googletest.git $(GTEST_DIR)
+
+check-gtest: $(GTEST_DIR)
+	@if [ -f "$(GTEST_HEADER)" ] || [ -f "/usr/include/gtest/gtest.h" ] || \
+		[ -f "/usr/local/include/gtest/gtest.h" ]; then \
+		exit 0; \
+	else \
+		printf "GoogleTest introuvable apres le clone.\n"; \
+		exit 1; \
+	fi
+
+check-cmake:
+	@if command -v cmake >/dev/null 2>&1; then \
+		exit 0; \
+	else \
+		printf "cmake introuvable.\n"; \
+		exit 1; \
+	fi
+
+$(CMAKE_GTEST_LIBS): check-gtest check-cmake
+	@cmake -S $(GTEST_DIR) -B $(CMAKE_GTEST_DIR) > /dev/null
+	@cmake --build $(CMAKE_GTEST_DIR) > /dev/null
+
+test: check-gtest $(NAME)
+	ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./$(NAME)
+
+test-cmake: check-gtest $(NAME_CMAKE)
+	ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./$(NAME_CMAKE)
+
+clean:
+	rm -rf $(OBJ_DIR)
+	rm -rf $(GTEST_DIR)
+	rm -rf $(CMAKE_BUILD_DIR)
+	rm -rf $(CMAKE_GTEST_DIR)
+	rm -f $(NAME)
+	rm -f $(NAME_CMAKE)
+
+.PHONY: all test test-cmake clean check-gtest check-cmake

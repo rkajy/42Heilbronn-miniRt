@@ -1,0 +1,110 @@
+name: CI - Norminette test and gtest
+
+on:
+  push:
+    branches: [ main,development-branch,development-parse ]
+  pull_request:
+    branches: [ main,development-branch,development-parse ]
+  workflow_dispatch:
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+      - name: Install Norminette
+        run: |
+          if ! command -v norminette &> /dev/null; then
+            python3 -m pip install --upgrade pip
+            python3 -m pip install norminette
+          fi
+      - name: Run norminette
+        run: |
+          echo "Current dir: $(pwd)"
+          find src include -type f \( -name "*.c" -o -name "*.h" \) -print0 \
+            | xargs -0 norminette
+
+  gtest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake git
+
+      - name: Run GTest
+        run: |
+          make test
+
+  rt-debug-dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential git
+
+      - name: Build miniRT in debug mode
+        run: |
+          make re DEBUG=1
+
+      - name: Run all assets/tests rt files
+        shell: bash
+        run: |
+          mkdir -p reports
+          report="reports/minirt-debug-assets-report.txt"
+          failed=0
+
+          {
+            echo "miniRT DEBUG=1 assets/tests execution report"
+            echo "Generated at: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+            echo
+          } > "$report"
+
+          while IFS= read -r scene; do
+            {
+              echo "================================================================"
+              echo "FILE: $scene"
+              echo "COMMAND: ./miniRT $scene"
+              echo "----------------------------------------------------------------"
+            } >> "$report"
+
+            if ./miniRT "$scene" >> "$report" 2>&1; then
+              echo "STATUS: OK" >> "$report"
+            else
+              exit_code=$?
+              failed=1
+              echo "STATUS: FAIL (exit code $exit_code)" >> "$report"
+            fi
+            echo >> "$report"
+          done < <(find assets/tests -type f -name "*.rt" | sort)
+
+          cat "$report"
+          exit "$failed"
+
+      - name: Upload debug dump report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minirt-debug-assets-report
+          path: reports/minirt-debug-assets-report.txt

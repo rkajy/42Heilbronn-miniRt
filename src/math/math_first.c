@@ -10,3 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "math_rt.h"
+
+int	add_demo_values(int left, int right)
+{
+	return (left + right);
+}
