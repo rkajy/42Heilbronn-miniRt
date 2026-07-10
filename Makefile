@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/09 13:17:00 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/10 20:18:30 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast $(CPPFLAGS)
 
 C_SRC := \
 	src/main.c \
-	src/math/math_first.c \
 	src/parsing/parse_ambient.c \
 	src/parsing/parse_color.c \
 	src/parsing/parse_double.c \

@@ -6,12 +6,6 @@ extern "C" {
 #include "utils.h"
 }
 
-TEST(MathAddDemo, AddDemoValues)
-{
-	EXPECT_EQ(add_demo_values(20, 22), 42);
-	EXPECT_EQ(add_demo_values(-4, 7), 3);
-}
-
 TEST(ParseDemo, CheckRtExtensionFile)
 {
 	EXPECT_EQ(is_file_extension_valid("scene.rt", ".rt"), 1);

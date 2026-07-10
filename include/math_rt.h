@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/07/10 13:17:14 by asando           ###   ########.fr       */
+/*   Updated: 2026/07/10 20:17:04 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 # define MATHRT_H
 
 # include <math.h>
-
-typedef struct	s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
+#include "parse.h"
 
 typedef struct	s_ray
 {
