@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 14:40:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:25:40 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:29:59 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	debug_dump_lights(t_list *node)
 		printf("  light[%d]: position=(%.6f, %.6f, %.6f) ", i,
 			light->position.x, light->position.y, light->position.z);
 		printf("brightness=%.6f color=(%.0f, %.0f, %.0f)\n", light->brightness,
-			light->color.r, light->color.g, light->color.b);
+			light->material.color.r, light->material.color.g, light->material.color.b);
 		node = node->next;
 		i++;
 	}

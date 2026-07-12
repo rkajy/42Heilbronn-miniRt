@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:25:19 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:28:58 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_light
 {
 	t_vec3		position;
 	double		brightness;
-	t_color		color;
+	t_material	material;
 }				t_light;
 
 typedef struct s_sphere

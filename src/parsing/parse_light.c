@@ -14,10 +14,11 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
+
 int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 {
-	t_light	*light;
-	t_list	*node;
+	t_light *light;
+	t_list *node;
 
 	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
@@ -30,7 +31,7 @@ int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(light), error->code);
 	if (parse_double(tokens[2], &light->brightness, error) != RT_ERR_OK)
 		return (free(light), error->code);
-	if (parse_color(tokens[3], &light->color, error) != RT_ERR_OK)
+	if (parse_color(tokens[3], &light->material.color, error) != RT_ERR_OK)
 		return (free(light), error->code);
 	if (validate_ratio(light->brightness, error) != RT_ERR_OK)
 		return (free(light), error->code);
