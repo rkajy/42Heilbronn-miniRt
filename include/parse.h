@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:32:53 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:35:12 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_plane
 {
 	t_vec3		point;
 	t_vec3		normal;
-	t_color		color;
+	t_material	material;
 }				t_plane;
 
 typedef struct s_cylinder

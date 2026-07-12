@@ -14,10 +14,11 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
+
 int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 {
-	t_plane	*plane;
-	t_list	*node;
+	t_plane *plane;
+	t_list *node;
 
 	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
@@ -30,7 +31,7 @@ int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(plane), error->code);
 	if (normalize_vector(&plane->normal, error) != RT_ERR_OK)
 		return (free(plane), error->code);
-	if (parse_color(tokens[3], &plane->color, error) != RT_ERR_OK)
+	if (parse_color(tokens[3], &plane->material.color, error) != RT_ERR_OK)
 		return (free(plane), error->code);
 	node = ft_lstnew(plane);
 	if (!node)
