@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/10 20:18:30 by radandri         ###   ########.fr        #
+#    Updated: 2026/07/12 20:18:06 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ C_SRC := \
     src/parsing/parse_sphere.c \
 	src/parsing/error.c \
 	src/parsing/error_message.c \
+	src/parsing/scene_rt_factory.c \
 	src/parsing/parsing-utils/ft_atof.c \
 	src/parsing/parsing-utils/clean_line.c \
 	src/parsing/parsing-utils/ft_isspace.c \

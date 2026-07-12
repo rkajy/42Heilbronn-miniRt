@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:37:51 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 21:12:15 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
 # include "error.h"
+# include <stdbool.h>
 
 /*
 ** r: red
@@ -98,6 +99,23 @@ typedef struct s_scene
 	t_list		*cylinders;
 }				t_scene;
 
+# define MAX_SPHERES 1024
+# define MAX_PLANES 1024
+# define MAX_CYLINDERS 1024
+
+typedef struct s_scene_rt
+{
+	t_ambient	ambient;
+	t_camera	camera;
+	t_light		light;
+	t_sphere	spheres[MAX_SPHERES];
+	size_t		nb_spheres;
+	t_plane		planes[MAX_PLANES];
+	size_t		nb_planes;
+	t_cylinder	cylinders[MAX_CYLINDERS];
+	size_t		nb_cylinders;
+}				t_scene_rt;
+
 int				validate_tokens(char **tokens, int expected, t_rt_error *error);
 int				validate_ratio(double ratio, t_rt_error *error);
 int				validate_positive(double value, t_rt_error *error);
@@ -110,4 +128,5 @@ void			debug_dump_spheres(t_list *node);
 void			debug_dump_planes(t_list *node);
 void			debug_dump_cylinders(t_list *node);
 void			destroy_scene(t_scene *scene);
+bool			scene_rt_factory(const t_scene *src, t_scene_rt *dst);
 #endif
