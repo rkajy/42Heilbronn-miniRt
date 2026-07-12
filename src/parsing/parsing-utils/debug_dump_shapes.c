@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:48:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:22:22 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:33:44 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	debug_dump_spheres(t_list *node)
 	while (node)
 	{
 		sphere = (t_sphere *)node->content;
-		printf("  sphere[%d]: center=(%.6f, %.6f, %.6f) ", i,
-			sphere->center.x, sphere->center.y, sphere->center.z);
-		printf("diameter=%.6f color=(%.0f, %.0f, %.0f)\n",
-			sphere->diameter, sphere->color.r, sphere->color.g,
-			sphere->color.b);
+		printf("  sphere[%d]: center=(%.6f, %.6f, %.6f) ", i, sphere->center.x,
+			sphere->center.y, sphere->center.z);
+		printf("diameter=%.6f color=(%.0f, %.0f, %.0f)\n", sphere->diameter,
+			sphere->material.color.r, sphere->material.color.g,
+			sphere->material.color.b);
 		node = node->next;
 		i++;
 	}
@@ -41,11 +41,11 @@ void	debug_dump_planes(t_list *node)
 	while (node)
 	{
 		plane = (t_plane *)node->content;
-		printf("  plane[%d]: point=(%.6f, %.6f, %.6f) ", i,
-			plane->point.x, plane->point.y, plane->point.z);
+		printf("  plane[%d]: point=(%.6f, %.6f, %.6f) ", i, plane->point.x,
+			plane->point.y, plane->point.z);
 		printf("normal=(%.6f, %.6f, %.6f) color=(%.0f, %.0f, %.0f)\n",
-			plane->normal.x, plane->normal.y, plane->normal.z,
-			plane->color.r, plane->color.g, plane->color.b);
+			plane->normal.x, plane->normal.y, plane->normal.z, plane->color.r,
+			plane->color.g, plane->color.b);
 		node = node->next;
 		i++;
 	}
