@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:48:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:35:53 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:38:39 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	debug_dump_cylinders(t_list *node)
 		printf("axis=(%.6f, %.6f, %.6f) diameter=%.6f height=%.6f ",
 			cylinder->axis.x, cylinder->axis.y, cylinder->axis.z,
 			cylinder->diameter, cylinder->height);
-		printf("color=(%.0f, %.0f, %.0f)\n", cylinder->color.r,
-			cylinder->color.g, cylinder->color.b);
+		printf("color=(%.0f, %.0f, %.0f)\n", cylinder->material.color.r,
+			cylinder->material.color.g, cylinder->material.color.b);
 		node = node->next;
 		i++;
 	}

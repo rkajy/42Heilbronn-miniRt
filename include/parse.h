@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 19:35:12 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:37:51 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_cylinder
 	t_vec3		axis;
 	double		diameter;
 	double		height;
-	t_color		color;
+	t_material	material;
 }				t_cylinder;
 
 typedef struct s_scene
