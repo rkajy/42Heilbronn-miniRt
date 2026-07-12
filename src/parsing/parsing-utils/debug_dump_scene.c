@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 14:40:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:19:56 by radandri         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:25:40 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	debug_dump_ambients(t_list *node)
 	{
 		ambient = (t_ambient *)node->content;
 		printf("  ambient[%d]: ratio=%.6f ", i, ambient->ratio);
-		printf("color=(%.0f, %.0f, %.0f)\n", ambient->color.r,
-			ambient->color.g, ambient->color.b);
+		printf("color=(%.0f, %.0f, %.0f)\n", ambient->material.color.r,
+			ambient->material.color.g, ambient->material.color.b);
 		node = node->next;
 		i++;
 	}
@@ -42,8 +42,8 @@ static void	debug_dump_cameras(t_list *node)
 		printf("  camera[%d]: position=(%.6f, %.6f, %.6f) ", i,
 			camera->position.x, camera->position.y, camera->position.z);
 		printf("orientation=(%.6f, %.6f, %.6f) fov=%.6f\n",
-			camera->orientation.x, camera->orientation.y,
-			camera->orientation.z, camera->fov);
+			camera->orientation.x, camera->orientation.y, camera->orientation.z,
+			camera->fov);
 		node = node->next;
 		i++;
 	}
@@ -60,9 +60,8 @@ static void	debug_dump_lights(t_list *node)
 		light = (t_light *)node->content;
 		printf("  light[%d]: position=(%.6f, %.6f, %.6f) ", i,
 			light->position.x, light->position.y, light->position.z);
-		printf("brightness=%.6f color=(%.0f, %.0f, %.0f)\n",
-			light->brightness, light->color.r, light->color.g,
-			light->color.b);
+		printf("brightness=%.6f color=(%.0f, %.0f, %.0f)\n", light->brightness,
+			light->color.r, light->color.g, light->color.b);
 		node = node->next;
 		i++;
 	}
