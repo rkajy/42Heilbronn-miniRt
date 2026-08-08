@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 12:58:27 by asando            #+#    #+#             */
-/*   Updated: 2026/03/29 16:18:13 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/07 22:11:19 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	ft_hit_plane(t_ray ray, t_plane *pl, t_hit *hit)
 	hit->t = t;
 	hit->point = ft_ray_at(ray, t);
 	hit->normal = pl->normal;
-	hit->mat = pl->mat;
+	hit->mat = pl->material;
 	return (1);
 }

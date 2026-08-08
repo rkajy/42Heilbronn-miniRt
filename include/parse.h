@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 21:12:15 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/08 18:58:56 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_color
 typedef struct s_material
 {
 	t_color		color;
+	//TODO: double	specular; default = 0.0
 }				t_material;
 
 typedef struct s_ambient
@@ -56,6 +57,10 @@ typedef struct s_camera
 {
 	t_vec3		orientation;
 	t_vec3		position;
+	//TODO: t_vec3		right;
+	//TODO: t_vec3		up;
+	//TODO: double		vp_width;
+	//TODO: double		vp_height;
 	double		fov;
 }				t_camera;
 
@@ -63,6 +68,7 @@ typedef struct s_light
 {
 	t_vec3		position;
 	double		brightness;
+	//TODO: double intensity; default 1.0
 	t_material	material;
 }				t_light;
 
@@ -103,11 +109,15 @@ typedef struct s_scene
 # define MAX_PLANES 1024
 # define MAX_CYLINDERS 1024
 
+//TODO: try to support multiple light source
+//TODO: do len lights
 typedef struct s_scene_rt
 {
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
+	//TODO: t_light		lights[MAX_LIGHTS];
+	//TODO: size_t		nb_lights; default = 1
 	t_sphere	spheres[MAX_SPHERES];
 	size_t		nb_spheres;
 	t_plane		planes[MAX_PLANES];

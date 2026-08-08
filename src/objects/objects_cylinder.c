@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:04:02 by asando            #+#    #+#             */
-/*   Updated: 2026/03/29 16:50:54 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/07 21:39:12 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_to_hit(t_constanta con, t_ray ray, t_hit *hit, t_cylinder *cy)
 	hit->point = p;
 	proj = ft_vadd(cy->center, ft_vmul(con.a, h));
 	hit->normal = ft_vnomalize(ft_vsub(p, proj));
-	hit->mat = cy->mat;
+	hit->mat = cy->material;
 	return (1);
 }
 

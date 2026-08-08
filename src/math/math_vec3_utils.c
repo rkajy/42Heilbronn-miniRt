@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/07/10 20:24:49 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/07 12:58:34 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	ft_vmagnitude(t_vec3 v)
 	double	dot_product;
 
 	dot_product = ft_vdot(v, v);
-	res = sqrt(dot_product;
+	res = sqrt(dot_product);
 	return (res);
 }
 
