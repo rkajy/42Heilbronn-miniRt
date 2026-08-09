@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/08/07 12:58:34 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/09 14:36:56 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,9 @@ t_vec3	ft_vclamp(t_vec3 v, double min, double max)
 	if (v.z > max)
 		v.z = max;
 	return (v);
+}
+
+t_vec3	ft_vneg(t_vec3 v)
+{
+	return (ft_vec3(-v.x, -v.y, -v.z));
 }
