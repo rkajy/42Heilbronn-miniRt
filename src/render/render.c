@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/08 18:53:29 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/09 13:14:50 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_setup_viewport(t_scene_rt *scene, double aspect)
 	scene->camera.vp_width = scene->camera.vp_height * aspect;
 }
 
-t_ray	ft_generate_ray(t_scene_rt *scene, int x, int y)
+t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 {
 	double	u;
 	double	v;
@@ -47,11 +47,43 @@ t_ray	ft_generate_ray(t_scene_rt *scene, int x, int y)
 	return (res);
 }
 
+void	ft_putpixel(mlx_image_t *img, uint32_t x, uint32_t y,
+						uint32_t color)
+{
+	uint32_t	pixel_index;
+
+	pixel_index = 0;
+	if (x >= img->width || y >= img->height)
+		return ;
+	pixel_index = (y * img->width + x) * 4;
+	img->pixels[pixel_index + 0] = (color >> 24) & 0xFF;
+	img->pixels[pixel_index + 1] = (color >> 16) & 0XFF;
+	img->pixels[pixel_index + 2] = (color >> 8) & 0XFF;
+	img->pixels[pixel_index + 3] = (color >> 0) & 0XFF;
+	return ;
+}
+
+uint32_t ft_to_rgb(t_vec3 color)
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+
+	r = (uint32_t)(color.x * 255.0);
+	g = (uint32_t)(color.y * 255.0);
+	b = (uint32_t)(color.z * 255.0);
+
+	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
+}
+
 void	ft_render(t_scene_rt *scene)
 {
-	int		x;
-	int		y;
-	t_ray	ray;
+	uint32_t	x;
+	uint32_t	y;
+	t_ray		ray;
+	t_hit		hit;
+	t_vec3		color;
+
 	x = 0;
 	y = 0;
 	while (y < HEIGHT)
@@ -59,7 +91,8 @@ void	ft_render(t_scene_rt *scene)
 		while (x < WIDTH)
 		{
 			ray = ft_generate_ray(scene, x, y);
-			//TODO: Put pixel and color here
+			color = ft_trace(scene, ray, &hit);
+			ft_put_pixel(scene->img, x, y, ft_to_rgb(color));
 			x++;
 		}
 		y++;
