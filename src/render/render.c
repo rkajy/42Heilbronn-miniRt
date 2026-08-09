@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 13:14:50 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/09 14:00:44 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ uint32_t ft_to_rgb(t_vec3 color)
 	b = (uint32_t)(color.z * 255.0);
 
 	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
+}
+
+void	ft_img_init(t_scene_rt *scene)
+{
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	scene->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
+	scene->img = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(scene->mlx, scene->img, 0, 0);
 }
 
 void	ft_render(t_scene_rt *scene)
