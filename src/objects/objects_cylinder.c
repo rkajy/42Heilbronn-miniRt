@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:04:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/07 21:39:12 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/09 14:42:05 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_to_hit(t_constanta con, t_ray ray, t_hit *hit, t_cylinder *cy)
 		return (0);
 	hit->t = con.t;
 	hit->point = p;
-	proj = ft_vadd(cy->center, ft_vmul(con.a, h));
+	proj = ft_vadd(cy->center, ft_vscalar(con.a, h));
 	hit->normal = ft_vnomalize(ft_vsub(p, proj));
 	hit->mat = cy->material;
 	return (1);
@@ -58,8 +58,8 @@ static double	ft_calc_disc(t_ray ray, t_cylinder *cy, t_constanta con)
 	oc = ft_vsub(ray.origin, cy->center);
 	dv = ft_vdot(ray.direction, cy->axis);
 	ov = ft_vdot(oc, cy->axis);
-	d_perp = ft_vsub(ray.direction, ft_vmul(cy->axis, dv));
-	oc_perp = ft_vsub(oc, ft_vmul(cy->axis, ov));
+	d_perp = ft_vsub(ray.direction, ft_vscalar(cy->axis, dv));
+	oc_perp = ft_vsub(oc, ft_vscalar(cy->axis, ov));
 	con.a = ft_vdot(d_perp, d_perp);
 	con.b = 2 * ft_vdot(d_perp, oc_perp);
 	con.c = ft_vdot(oc_perp, oc_perp) - cy->radius * cy->radius;
