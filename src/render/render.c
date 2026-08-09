@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 14:00:44 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/09 15:18:25 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,70 +41,10 @@ t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 
 	u = (2 * ((x + 0.5) / WIDTH) - 1) * scene->camera.vp_width / 2;
 	v = (1 - 2 * ((y + 0.5) / HEIGHT)) * scene->camera.vp_height / 2;
-	dir = ft_vadd(ft_vadd(ft_vmul(scene->camera.right, u), 
-					   ft_vmul(scene->camera.up, v)), scene->camera.orientation);
+	dir = ft_vadd(ft_vadd(ft_vscalar(scene->camera.right, u), 
+					   ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
 	res = ft_ray(scene->camera.position, dir);
 	return (res);
-}
-
-void	ft_putpixel(mlx_image_t *img, uint32_t x, uint32_t y,
-						uint32_t color)
-{
-	uint32_t	pixel_index;
-
-	pixel_index = 0;
-	if (x >= img->width || y >= img->height)
-		return ;
-	pixel_index = (y * img->width + x) * 4;
-	img->pixels[pixel_index + 0] = (color >> 24) & 0xFF;
-	img->pixels[pixel_index + 1] = (color >> 16) & 0XFF;
-	img->pixels[pixel_index + 2] = (color >> 8) & 0XFF;
-	img->pixels[pixel_index + 3] = (color >> 0) & 0XFF;
-	return ;
-}
-
-uint32_t ft_to_rgb(t_vec3 color)
-{
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-
-	r = (uint32_t)(color.x * 255.0);
-	g = (uint32_t)(color.y * 255.0);
-	b = (uint32_t)(color.z * 255.0);
-
-	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
-}
-
-void	ft_img_init(t_scene_rt *scene)
-{
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	scene->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
-	scene->img = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(scene->mlx, scene->img, 0, 0);
-}
-
-void	ft_render(t_scene_rt *scene)
-{
-	uint32_t	x;
-	uint32_t	y;
-	t_ray		ray;
-	t_hit		hit;
-	t_vec3		color;
-
-	x = 0;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		while (x < WIDTH)
-		{
-			ray = ft_generate_ray(scene, x, y);
-			color = ft_trace(scene, ray, &hit);
-			ft_put_pixel(scene->img, x, y, ft_to_rgb(color));
-			x++;
-		}
-		y++;
-	}
 }
 
 t_vec3	ft_trace(t_scene_rt_rt *scene, t_ray ray, t_hit *closest)
@@ -142,12 +82,7 @@ t_vec3	ft_trace(t_scene_rt_rt *scene, t_ray ray, t_hit *closest)
 
 t_vec3	ft_reflection(t_vec3 dir, t_vec3 normal)
 {
-	return ft_vsub(dir, ft_vmul(normal, 2.0 * ft_vdot(dir, normal)));
-}
-
-t_vec3	ft_vneg(t_vec3 v)
-{
-	return (ft_vec3(-v.x, -v.y, -v.z));
+	return ft_vsub(dir, ft_vscalar(normal, 2.0 * ft_vdot(dir, normal)));
 }
 
 t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
@@ -161,7 +96,7 @@ t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
 	double	spec;
 
 	i = 0;
-	color = ft_vmul(hit->mat.color, scene->ambient);
+	color = ft_vscalar(hit->mat.color, scene->ambient);
 	while (i < scene->nb_lights)
 	{
 		light = &scene->light[i];
@@ -171,8 +106,8 @@ t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
 		spec = pow(fmax(0, ft_vdot(reflect_dir, ft_vneg(ray.direction))), hit->mat.specular);
 		color = ft_vadd(color,
 				  ft_vadd(
-					ft_vmul(hit->mat.color, diff * light->intensity),
-					ft_vmul(ft_vec3(1,1,1), spec * light->intensity)
+					ft_vscalar(hit->mat.color, diff * light->intensity),
+					ft_vscalar(ft_vec3(1,1,1), spec * light->intensity)
 				  )
 				);
 		i++;
