@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/07/10 20:17:04 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/09 14:37:47 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MATHRT_H
 
 # include <math.h>
-#include "parse.h"
+# include "parse.h"
 
 typedef struct	s_ray
 {
@@ -33,6 +33,7 @@ double	ft_vmagnitude(t_vec3 v);
 t_vec3	ft_vnormalize(t_vec3 v);
 t_vec3	ft_velement_mul(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vclamp(t_vec3 v, double min, double max);
+t_vec3	ft_vneg(t_vec3 v);
 t_ray	ft_ray(t_vec3 origin, t_vec3 direction);
 t_ray	ft_ray_at(t_ray ray, double t);
 #endif
