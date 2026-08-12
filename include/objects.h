@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:17:07 by asando            #+#    #+#             */
-/*   Updated: 2026/03/29 16:50:50 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/12 19:52:41 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_hit
 	double		t;
 	t_vec3		point;
 	t_vec3		normal;
-	t_material	mat; //NOTE: Might not use it
+	t_material	mat;
 }	t_hit;
 
 typedef struct	s_constanta

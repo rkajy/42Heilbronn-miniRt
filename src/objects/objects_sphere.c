@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:21:41 by asando            #+#    #+#             */
-/*   Updated: 2026/03/29 16:16:59 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/12 19:52:22 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_to_hit(t_constanta con, t_ray ray, t_hit *hit, t_speher *sp)
 	hit->t = con.t;
 	hit->point = ft_ray_at(ray, con.t);
 	hit->normal = ft_vnormalize(ft_vsub(hit->point, sp->center));
-	hit->mat = sp->mat;
+	hit->mat = sp->material;
 	return ;
 }
 
