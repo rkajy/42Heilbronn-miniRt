@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/13 21:34:37 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/13 21:40:08 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,49 +136,4 @@ t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
 		i++;
 	}
 	return (ft_vclamp(color, 0, 1.0));
-}
-
-bool	ft_in_shadow(t_scene_rt *scene, t_vec3 point, t_light *light)
-{
-	t_vec3	light_dir;
-	double	max_dist;
-	t_ray	shadow_ray;
-	t_hit	hit;
-	size_t	i;
-
-	light_dir = ft_vnormalize(ft_vsub(light->position, point));
-	max_dist = ft_vmagnitude(ft_vsub(light->position, point));
-	shadow_ray.origin = ft_vadd(point, ft_vscalar(light_dir, 1e-4));
-	shadow_ray.direction = light_dir;
-	i = 0;
-	while (i < scene->nb_spheres)
-	{
-		if (ft_hit_sphere(shadow_ray, &scene->spheres[i], &hit))
-		{
-			if (hit.t > 0.0 && hit.t < max_dist)
-				return (true);
-		}
-		i++;
-	}
-	i = 0;
-	while (i < scene->nb_planes)
-	{
-		if (ft_hit_plane(shadow_ray, &scene->planes[i], &hit))
-		{
-			if (hit.t > 0.0 && hit.t < max_dist)
-				return (true);
-		}
-		i++;
-	}
-	i = 0;
-	while (i < scene->nb_cylinders)
-	{
-		if (ft_hit_cylinder(shadow_ray, &scene->cylinders[i], &hit))
-		{
-			if (hit.t > 0.0 && hit.t < max_dist)
-				return (true);
-		}
-		i++;
-	}
-	return (false);
 }
