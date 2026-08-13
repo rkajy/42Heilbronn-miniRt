@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 15:03:02 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/13 21:22:45 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define WIDTH 800
 # define HEIGHT 600
+# define REFLECT_DEPTH 3
 
 int	ft_init_mlx(t_scene_rt *scene);
 #endif
