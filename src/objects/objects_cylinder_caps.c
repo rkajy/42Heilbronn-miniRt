@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:59:48 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 14:51:42 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 16:43:25 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static double	ft_calc_t(t_ray ray, t_vec3 normal, t_vec3 center, t_hit *hit)
 	return (t);
 }
 
-int	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap)
+bool	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap)
 {
 	t_vec3	center;
 	t_vec3	normal;
@@ -52,14 +52,17 @@ int	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap)
 	ft_calc_center_normal(cy, &center, &normal, cap);
 	t = ft_calc_t(ray, normal, center, hit);
 	if (t == 0)
-		return (0);
+		return (false);
 	point = ft_ray_at(ray, t);
 	vector = ft_vsub(point, center);
 	if (ft_vdot(vector, vector) > cy->radius * cy->radius)
-		return (0);
-	hit->t = t;
-	hit->point = point;
-	hit->normal = normal;
-	hit->mat = cy->material;
-	return (1);
+		return (false);
+	if (t < hit->t)
+	{
+		hit->t = t;
+		hit->point = point;
+		hit->normal = normal;
+		hit->mat = cy->material;
+	}
+	return (true);
 }

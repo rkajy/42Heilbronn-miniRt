@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 15:43:54 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 16:58:02 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,27 +67,4 @@ uint32_t ft_to_rgb(t_vec3 color)
 	b = (uint32_t)(color.z * 255.0);
 
 	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
-}
-
-void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
-{
-	uint32_t	x;
-	uint32_t	y;
-	t_ray		ray;
-	t_hit		hit;
-	t_vec3		color;
-
-	x = 0;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		while (x < WIDTH)
-		{
-			ray = ft_generate_ray(scene, x, y);
-			color = ft_trace(scene, ray, &hit);
-			ft_put_pixel(mlx_interface->img, x, y, ft_to_rgb(color));
-			x++;
-		}
-		y++;
-	}
 }

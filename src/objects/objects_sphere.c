@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:21:41 by asando            #+#    #+#             */
-/*   Updated: 2026/08/12 19:52:22 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 16:44:17 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static double	ft_calc_disc(t_ray ray, t_sphere *sp, t_constanta con)
 	return (con.b * con.b - 4 * con.a * con.c);
 }
 
-int	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
+bool	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
 {
 	double		t;
 	double		discriminant;
@@ -57,11 +57,12 @@ int	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
 
 	discriminant = ft_calc_disc(ray, sp, con);
 	if (discriminant == 0)
-		return (0);
+		return (false);
 	t = ft_calc_t(discriminant, con.a, con.b);
 	if (t < 1e-06)
-		return (0);
+		return (false);
 	con.t = t;
-	ft_to_hit(con, ray, hit, sp);
-	return (1);
+	if (con.t < hit->t)
+		ft_to_hit(con, ray, hit, sp);
+	return (true);
 }

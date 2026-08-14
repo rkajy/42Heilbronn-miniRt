@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:17:07 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 14:07:25 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 16:01:49 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mathrt.h"
 # include "parse.h"
 # include <math.h>
+# include <stdbool.h>
 
 typedef struct	s_hit
 {
@@ -39,6 +40,9 @@ typedef enum	e_caps
 	C_BOTTOM,
 }	t_caps;
 
-//TODO: in parsing make sure the structure for primitive shape compatible
+bool	ft_hit_plane(t_ray ray, t_plane *pl, t_hit *hit);
+bool	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit);
+bool	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap);
+bool	ft_hit_cylinder(t_ray ray, t_cylinder *cy, t_hit *hit);
 
 #endif

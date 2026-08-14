@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:04:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 14:21:34 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 16:41:49 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,28 @@ static double	ft_calc_disc(t_ray ray, t_cylinder *cy, t_constanta con)
 	return (con.b * con.b - 4 * con.a * con.c);
 }
 
-int	ft_hit_cylinder(t_ray ray, t_cylinder *cy, t_hit *hit)
+bool	ft_hit_cylinder(t_ray ray, t_cylinder *cy, t_hit *hit)
 {
 	double		discriminant;
 	double		t;
 	t_constanta	con;
-	int			hit_any;
+	bool		hit_any;
 
-	hit_any = 0;
+	hit_any = false;
 	discriminant = ft_calc_disc(ray, cy, con);
 	if (discriminant >= 0)
 	{
 		t = ft_calc_t(discriminant, con.a, con.b);
-		if (t > 1e-06)
+		con.t = t;
+		if (t > 1e-06 && con.t < hit->t)
 		{
-			con.t = t;
 			if (ft_to_hit(con, ray, hit, cy) == 0)
-				hit_any = 1;
+				hit_any = true;
 		}
 	}
 	if (ft_hit_cap(ray, cy, hit, C_BOTTOM))
-		hit_any = 1;
+		hit_any = true;
 	if (ft_hit_cap(ray, cy, hit, C_TOP))
-		hit_any = 1;
+		hit_any = true;
 	return (hit_any);
 }
