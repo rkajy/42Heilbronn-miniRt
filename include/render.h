@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/13 21:37:59 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 15:21:10 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,17 @@
 # define HEIGHT 600
 # define REFLECT_DEPTH 3
 
-int	ft_init_mlx(t_scene_rt *scene);
+typedef struct	s_mlx_interface
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+}	t_mlx_interface;
+
+typedef enum	e_mlx_stat
+{
+	MLX_OK,
+	MLX_ERR,
+} t_mlx_stat;
+
+t_mlx_stat	ft_init_mlx(t_mlx_interface *mi);
 #endif

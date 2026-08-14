@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 22:16:56 by asando            #+#    #+#             */
-/*   Updated: 2026/08/13 22:26:48 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 15:07:55 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static bool	ft_hit_object(t_scene_rt *scene, t_ray ray, t_hit *closest)
 	return (hit_anything);
 }
 
-t_vec3	ft_trace(t_scene_rt_rt *scene, t_ray ray, , int depth)
+t_vec3	ft_trace(t_scene_rt *scene, t_ray ray, int depth)
 {
 	size_t		i;
 	t_vec3		color;

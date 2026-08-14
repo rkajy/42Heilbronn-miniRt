@@ -6,38 +6,38 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 15:18:27 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 15:43:54 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+//TODO: error handling togather with error from parsing
 static void	ft_error_mlx(const char *msg)
 {
-	//TODO: printing error here and make clean all the memory allocation
+	printf("Error");
 }
 
-int	ft_init_mlx(t_scene_rt *scene)
+//NOTE: idk when to clean scene if mlx throw some error
+//NOTE: option 1 : on the main
+//NOTE: option 2 on ft_init_mlx
+t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
-	scene->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
-	if (!scene->mlx)
+	mlx_interface->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
+	if (!mlx_interface->mlx)
 	{
 		ft_error_mlx("mlx_init failed");
-		return (1);
+		return (MLX_ERR);
 	}
-	scene->img = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
-	if (!scene->img)
+	mlx_interface->img = mlx_new_image(mlx_interface->mlx, WIDTH, HEIGHT);
+	if (!mlx_interface->img)
 	{
 		ft_error_mlx("mlx_new_image failed");
-		return (1);
+		mlx_terminate(mlx_interface->mlx);
+		return (MLX_ERR);
 	}
-	if (mlx_image_to_window(scene->mlx, scene->img, 0, 0) < 0)
-	{
-		ft_error_mlx("mlx_image_to_window failed");
-		return (1);
-	}
-	return (0);
+	return (MLX_OK);
 }
 
 void	ft_putpixel(mlx_image_t *img, uint32_t x, uint32_t y,
@@ -69,7 +69,7 @@ uint32_t ft_to_rgb(t_vec3 color)
 	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
 }
 
-void	ft_render(t_scene_rt *scene)
+void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -85,7 +85,7 @@ void	ft_render(t_scene_rt *scene)
 		{
 			ray = ft_generate_ray(scene, x, y);
 			color = ft_trace(scene, ray, &hit);
-			ft_put_pixel(scene->img, x, y, ft_to_rgb(color));
+			ft_put_pixel(mlx_interface->img, x, y, ft_to_rgb(color));
 			x++;
 		}
 		y++;

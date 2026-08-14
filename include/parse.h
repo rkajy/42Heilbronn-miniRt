@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/12 19:48:39 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 15:12:20 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ typedef struct s_scene
 //TODO: do len lights
 typedef struct s_scene_rt
 {
-	//TODO: mlx_t		*mlx; default = NULL;
-	//TODO: mlx_image_t	*img; default = NULL;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
