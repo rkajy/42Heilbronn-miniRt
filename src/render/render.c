@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/13 22:17:24 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 13:29:57 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	ft_setup_viewport(t_scene_rt *scene, double aspect)
 	scene->camera.vp_width = scene->camera.vp_height * aspect;
 }
 
+t_vec3	ft_reflection(t_vec3 dir, t_vec3 normal)
+{
+	return ft_vsub(dir, ft_vscalar(normal, 2.0 * ft_vdot(dir, normal)));
+}
+
 t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 {
 	double	u;
@@ -45,9 +50,4 @@ t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 					   ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
 	res = ft_ray(scene->camera.position, dir);
 	return (res);
-}
-
-t_vec3	ft_reflection(t_vec3 dir, t_vec3 normal)
-{
-	return ft_vsub(dir, ft_vscalar(normal, 2.0 * ft_vdot(dir, normal)));
 }

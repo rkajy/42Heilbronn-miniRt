@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:17:07 by asando            #+#    #+#             */
-/*   Updated: 2026/08/12 19:52:41 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 14:07:25 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct	s_constanta
 	double	c;
 	double	t;
 }	t_constanta;
+
+typedef enum	e_caps
+{
+	C_TOP,
+	C_BOTTOM,
+}	t_caps;
 
 //TODO: in parsing make sure the structure for primitive shape compatible
 
