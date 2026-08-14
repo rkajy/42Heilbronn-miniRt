@@ -6,13 +6,13 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:58:26 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 17:03:23 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	ft_build_camera_basis(t_camera *cam)
+static void	ft_build_camera_basis(t_camera *cam)
 {
 	t_vec3	global_up;
 
@@ -23,16 +23,17 @@ void	ft_build_camera_basis(t_camera *cam)
 	return ;
 }
 
-void	ft_setup_viewport(t_scene_rt *scene, double aspect)
+static void	ft_setup_viewport(t_scene_rt *scene, double aspect)
 {
 	double	fov_rad;
 
 	fov_rad = scene->camera * M_PI / 180.0;
 	scene->camera.vp_height = 2 * tan(fov_rad / 2);
 	scene->camera.vp_width = scene->camera.vp_height * aspect;
+	return ;
 }
 
-t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
+static t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 {
 	double	u;
 	double	v;
@@ -45,6 +46,19 @@ t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 					   ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
 	res = ft_ray(scene->camera.position, dir);
 	return (res);
+}
+
+static uint32_t ft_to_rgb(t_vec3 color)
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+
+	r = (uint32_t)(color.x * 255.0);
+	g = (uint32_t)(color.y * 255.0);
+	b = (uint32_t)(color.z * 255.0);
+
+	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
 }
 
 void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
@@ -63,7 +77,7 @@ void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
 		{
 			ray = ft_generate_ray(scene, x, y);
 			color = ft_trace(scene, ray, &hit);
-			ft_put_pixel(mlx_interface->img, x, y, ft_to_rgb(color));
+			ft_putpixel(mlx_interface->img, x, y, ft_to_rgb(color));
 			x++;
 		}
 		y++;

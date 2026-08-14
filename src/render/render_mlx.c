@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic.c                                          :+:      :+:    :+:   */
+/*   render_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:58:02 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 17:02:53 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,4 @@ void	ft_putpixel(mlx_image_t *img, uint32_t x, uint32_t y,
 	img->pixels[pixel_index + 2] = (color >> 8) & 0XFF;
 	img->pixels[pixel_index + 3] = (color >> 0) & 0XFF;
 	return ;
-}
-
-uint32_t ft_to_rgb(t_vec3 color)
-{
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-
-	r = (uint32_t)(color.x * 255.0);
-	g = (uint32_t)(color.y * 255.0);
-	b = (uint32_t)(color.z * 255.0);
-
-	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
 }

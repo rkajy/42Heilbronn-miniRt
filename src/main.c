@@ -6,16 +6,18 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 15:43:55 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/14 17:05:38 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include "MLX42/MLX42.h"
 #include "../include/error.h"
 #include "../include/parse_functions.h"
 #include "../include/utils.h"
-#include "math_rt.h"
+#include "mathrt.h"
 #include "parse.h"
-#include <stdio.h>
+#include "render.h"
 
 int	main(int argc, char **argv)
 {
