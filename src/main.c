@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/15 21:52:05 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/15 22:03:04 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "parse.h"
 #include "render.h"
 
+//TODO: main should be more tidy, all parsing should be groupped
 int	main(int argc, char **argv)
 {
 	t_rt_error		error;
@@ -38,13 +39,14 @@ int	main(int argc, char **argv)
 	scene_rt_factory(&scene, &scene_rt);
 	if (ft_init_mlx(&mlx_interface) != MLX_OK)
 	{
-		//NOTE: Not sure
+		//TODO: I want to print error and CLEAN ALLOCATION
+		//TODO: return (1)
 		printf("Error");
 	}
 	ft_render(&mlx_interface, &scene_rt);
 	if (mlx_image_to_window(mlx_interface.mlx, mlx_interface.img, 0, 0) < 0)
 	{
-		ft_error_mlx("mlx_image_to_window failed");
+		//TODO: ft_error_mlx("mlx_image_to_window failed");
 		mlx_delete_image(mlx_interface.mlx, mlx_interface.img);
 		mlx_terminate(mlx_interface.mlx);
 		return (1);
@@ -52,7 +54,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
 	mlx_loop(mlx_interface.mlx);
 	mlx_terminate(mlx_interface.mlx);
-	//TODO: should we scene_rt also destroy?
+	//TODO: should we also clean allocation of scene_rt?
 	destroy_scene(&scene);
 	return (0);
 }

@@ -1,0 +1,93 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile2                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: asando <asando@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/08/15 22:09:55 by asando            #+#    #+#              #
+#    Updated: 2026/08/15 22:45:28 by asando           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#==============================================================================
+# MAIN
+#==============================================================================
+CC ?= cc
+DEBUG ?= 0
+BONUS ?= 0
+HEADER := include
+LIBFT_DIR := ./lib/libft
+LIBFT_HEADER := $(LIBFT_DIR)/includes
+LIBFT := $(LIBFT_DIR)/libft.a
+CFLAGS := -Wall -Wextra -Werror -I$(HEADER) -I$(LIBFT_HEADER)
+
+#==============================================================================
+# SOURCES
+#==============================================================================
+SRC_DIR := ./src
+SRC_PARSE_DIR := $(SRC_DIR)/parsing
+SRC_PARSE_UTILS_DIR := $(SRC_DIR)/parsing/parsing-utils
+SRC_MATH_DIR := $(SRC_DIR)/math
+SRC_OBJECTS_DIR := $(SRC_DIR)/objects
+SRC_RENDER_DIR := $(SRC_DIR)/render
+
+FILES_PARSE := parse_ambient.c parse_color.c parse_double.c parse_light.c \
+			   parse_plane.c parse_vec3.c parse_camera.c parse_cylinder.c \
+			   parse_file.c parse_line.c parse_sphere.c error.c \
+			   error_message.c scene_rt_factory.c validate_scene.c \
+			   validate_tokens.c validate_values.c
+
+FILES_PARSE_UTILS := ft_atof.c clean_line.c ft_isspace.c \
+					 is_comment_or_empty.c ft_free_split.c \
+					 is_file_extension_valid.c is_input_valid.c \
+					 destroy_scene.c debug_dump_scene.c \
+					 debug_dump_shapes.c normalize_vector.c \
+
+FILES_MATH := math_ray.c math_vec3_init.c math_vec3_adv_ops.c math_vec3_ops.c \
+			  math_vec3_utils.c
+
+FILES_OBJECTS := objects_cylinder.c objects_cylinder_caps.c objects_plane.c \
+				 objects_sphere.c
+
+FILES_RENDER := render.c render_mlx.c render_trace.c render_shadow.c \
+				render_shade.c
+
+FILES_MAIN := main.c
+
+SRC_FILE_PARSE := $(addprefix $(SRC_PARSE_DIR)/, $(FILES_PARSE))
+SRC_FILE_PARSE_UTILS := $(addprefix $(SRC_PARSE_UTILS_DIR)/, $(FILES_PARSE_UTILS))
+SRC_FILE_MATH := $(addprefix $(SRC_MATH_DIR)/, $(FILES_MATH))
+SRC_FILE_OBJECTS := $(addprefix $(SRC_OBJECTS_DIR)/, $(FILES_OBJECTS))
+SRC_FILE_RENDER := $(addprefix $(SRC_RENDER_DIR)/, $(FILES_RENDER))
+SRC_FILE_MAIN := $(addprefix $(SRC_DIR)/, $(FILES_MAIN))
+
+SRCS := $(SRC_FILE_PARSE) $(SRC_FILE_PARSE_UTILS) $(SRC_FILE_MATH) \
+		$(SRC_FILE_OBJECTS) $(SRC_FILE_RENDER) $(SRC_FILES_MAIN)
+
+#==============================================================================
+# OBJECTS
+#==============================================================================
+OBJ_DIR := ./obj
+
+OBJ_PARSE_DIR := $(OBJ_DIR)/parse_obj
+OBJ_PARSE_UTILS_DIR := $(OBJ_DIR)/parse_utils_obj
+OBJ_MATH_DIR := $(OBJ_DIR)/math_obj
+OBJ_OBJECTS_DIR := $(OBJ_DIR)/objects_obj
+OBJ_RENDER_DIR := $(OBJ_DIR)/render_obj
+OBJ_MAIN_DIR := $(OBJ_DIR)/main_obj
+
+OBJ_SUBDIR := $(OBJ_PARSE_DIR) $(OBJ_PARSE_UTILS_DIR) $(OBJ_MATH_DIR) \
+			  $(OBJ_OBJECTS_DIR) $(OBJ_RENDER_DIR) $(OBJ_MAIN_DIR)
+
+OBJ_FILE_PARSE := $(SRC_FILE_PARSE:$(SRC_PARSE_DIR)/%.c=$(OBJ_PARSE_DIR)/%.o)
+OBJ_FILE_PARSE_UTILS := \
+	$(SRC_FILE_PARSE_UTILS:$(SRC_PARSE_UTILS_DIR)/%.c=$(OBJ_PARSE_UTILS_DIR)/%.o)
+OBJ_FILE_MATH := $(SRC_FILE_MATH:$(SRC_MATH_DIR)/%.c=$(OBJ_MATH_DIR)/%.o)
+OBJ_FILE_OBJECTS := \
+	$(SRC_FILE_OBJECTS:$(SRC_OBJECTS_DIR)/%.c=$(OBJ_OBJECTS_DIR)/%.o)
+OBJ_FILE_RENDER := $(SRC_FILE_RENDER:$(SRC_RENDER_DIR)/%.c=$(OBJ_RENDER_DIR)/%.o)
+OBJ_MAIN := $(OBJ_MAIN_DIR)/main.o
+
+OBJS := $(OBJ_FILE_PARSE) $(OBJ_FILE_PARSE_UTILS) $(OBJ_FILE_MATH) \
+		$(OBJ_FILE_OBJECTS) $(OBJ_FILE_RENDER) $(OBJ_MAIN)

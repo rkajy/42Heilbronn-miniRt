@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 17:03:37 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/15 22:00:17 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum	e_mlx_stat
 } t_mlx_stat;
 
 t_mlx_stat	ft_init_mlx(t_mlx_interface *mi);
+void		ft_key_hook(mlx_key_data_t key, void *param);
 t_vec3		ft_trace(t_scene_rt *scene, t_ray ray, int depth);
 t_vec3		ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray);
 bool		ft_in_shadow(t_scene_rt *scene, t_vec3 point, t_light *light);
