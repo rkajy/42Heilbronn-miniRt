@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 17:05:38 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/15 21:52:05 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int	main(int argc, char **argv)
 		mlx_terminate(mlx_interface.mlx);
 		return (1);
 	}
+	mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
+	mlx_loop(mlx_interface.mlx);
+	mlx_terminate(mlx_interface.mlx);
 	//TODO: should we scene_rt also destroy?
 	destroy_scene(&scene);
 	return (0);

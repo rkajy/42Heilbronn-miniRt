@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 17:02:53 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/15 21:44:45 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 		return (MLX_ERR);
 	}
 	return (MLX_OK);
+}
+
+void	ft_key_hook(mlx_key_data_t key, void *param)
+{
+	t_mlx_interface *mi;
+
+	mi = param;
+	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
+		mlx_close_window(mi->mlx);
+	return ;
 }
 
 void	ft_putpixel(mlx_image_t *img, uint32_t x, uint32_t y,
