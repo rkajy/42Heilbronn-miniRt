@@ -6,11 +6,11 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 21:06:03 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 14:33:52 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:48:42 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathrt.h"
+#include "math_rt.h"
 
 t_ray	ft_ray(t_vec3 origin, t_vec3 direction)
 {

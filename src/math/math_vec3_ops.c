@@ -6,11 +6,11 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:04:51 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:28:14 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:49:23 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathrt.h"
+#include "math_rt.h"
 
 t_vec3	ft_vadd(t_vec3 v1, t_vec3 v2)
 {

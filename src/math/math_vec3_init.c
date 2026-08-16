@@ -6,11 +6,11 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:29:16 by asando            #+#    #+#             */
-/*   Updated: 2026/08/09 14:35:16 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:49:10 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathrt.h"
+#include "math_rt.h"
 
 t_vec3	ft_vec3(double x, double y, double z)
 {

@@ -6,11 +6,11 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 16:54:47 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:28:49 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:48:58 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathrt.h"
+#include "math_rt.h"
 
 t_vec3	ft_reflection(t_vec3 ray_dir, t_vec3 v_normal)
 {

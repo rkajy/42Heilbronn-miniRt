@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:34:04 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:27:43 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:49:33 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathrt.h"
+#include "math_rt.h"
 
 double	ft_vmagnitude(t_vec3 v)
 {

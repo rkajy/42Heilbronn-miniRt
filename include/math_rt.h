@@ -6,17 +6,18 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:56:38 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 15:50:50 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATHRT_H
-# define MATHRT_H
+#ifndef MATH_RT_H
+# define MATH_RT_H
 
 # include <math.h>
+
 # include "parse.h"
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	direction;

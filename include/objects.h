@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:17:07 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:29:48 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 14:00:11 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <math.h>
 # include <stdbool.h>
 
-# include "mathrt.h"
+# include "math_rt.h"
 # include "parse.h"
 
-typedef struct	s_hit
+typedef struct s_hit
 {
 	double		t;
 	t_vec3		point;
@@ -27,7 +27,7 @@ typedef struct	s_hit
 	t_material	mat;
 }	t_hit;
 
-typedef struct	s_constanta
+typedef struct s_constanta
 {
 	double	a;
 	double	b;
@@ -35,7 +35,7 @@ typedef struct	s_constanta
 	double	t;
 }	t_constanta;
 
-typedef enum	e_caps
+typedef enum e_caps
 {
 	C_TOP,
 	C_BOTTOM,
