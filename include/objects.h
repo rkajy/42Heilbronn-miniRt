@@ -6,17 +6,18 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:17:07 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:01:49 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:29:48 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
-# include "mathrt.h"
-# include "parse.h"
 # include <math.h>
 # include <stdbool.h>
+
+# include "mathrt.h"
+# include "parse.h"
 
 typedef struct	s_hit
 {

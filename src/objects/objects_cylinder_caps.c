@@ -6,14 +6,14 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:59:48 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:43:25 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:31:29 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
 static void	ft_calc_center_normal(t_cylinder *cy, t_vec3 *center,
-								  t_vec3 *normal, t_caps cap)
+							t_vec3 *normal, t_caps cap)
 {
 	if (cap == C_TOP)
 	{

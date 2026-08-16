@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:04:51 by asando            #+#    #+#             */
-/*   Updated: 2026/07/10 13:12:26 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:28:14 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vec3	ft_vsub(t_vec3 v1, t_vec3 v2)
 
 t_vec3	ft_vscalar(t_vec3 v1, double s)
 {
-	t_vec3 res;
+	t_vec3	res;
 
 	res.x = v1.x * s;
 	res.y = v1.y * s;
@@ -50,7 +50,6 @@ double	ft_vdot(t_vec3 v1, t_vec3 v2)
 	res.y = v1.y * v2.y;
 	res.z = v1.z * v2.z;
 	return (res.x + res.y + res.z);
-
 }
 
 t_vec3	ft_vcross(t_vec3 v1, t_vec3 v2)

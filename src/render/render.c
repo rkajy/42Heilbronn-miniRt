@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 17:03:23 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:38:23 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ static t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 
 	u = (2 * ((x + 0.5) / WIDTH) - 1) * scene->camera.vp_width / 2;
 	v = (1 - 2 * ((y + 0.5) / HEIGHT)) * scene->camera.vp_height / 2;
-	dir = ft_vadd(ft_vadd(ft_vscalar(scene->camera.right, u), 
-					   ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
+	dir = ft_vadd(ft_vadd(ft_vscalar(scene->camera.right, u),
+				ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
 	res = ft_ray(scene->camera.position, dir);
 	return (res);
 }
 
-static uint32_t ft_to_rgb(t_vec3 color)
+static uint32_t	ft_to_rgb(t_vec3 color)
 {
 	uint32_t	r;
 	uint32_t	g;
@@ -57,8 +57,7 @@ static uint32_t ft_to_rgb(t_vec3 color)
 	r = (uint32_t)(color.x * 255.0);
 	g = (uint32_t)(color.y * 255.0);
 	b = (uint32_t)(color.z * 255.0);
-
-	return (r << 24) | (g << 16) | (b << 8) | 0xFF;
+	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
 }
 
 void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)

@@ -6,11 +6,11 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/13 22:14:25 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:40:24 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.c"
+#include "render.h"
 
 static double	ft_specular_calc(t_hit *hit, t_ray ray, t_light *light)
 {
@@ -37,12 +37,12 @@ static double	ft_diffuse_calc(t_hit *hit, t_light *light)
 }
 
 static t_vec3	ft_add_diff_specular(t_hit *hit, double diff,
-								   double spec, t_light *light)
+						double spec, t_light *light)
 {
 	t_vec3	final_vec;
 
 	final_vec = ft_vadd(ft_vscalar(hit->mat.color, diff * light->brightness),
-		 ft_vscalar(ft_vec3(1,1,1), spec * light->brightness));
+			ft_vscalar(ft_vec3(1, 1, 1), spec * light->brightness));
 	return (final_vec);
 }
 

@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/15 21:44:45 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:45:20 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 
 void	ft_key_hook(mlx_key_data_t key, void *param)
 {
-	t_mlx_interface *mi;
+	t_mlx_interface	*mi;
 
 	mi = param;
 	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)

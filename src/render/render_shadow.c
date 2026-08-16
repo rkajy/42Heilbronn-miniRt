@@ -6,13 +6,13 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:39:27 by asando            #+#    #+#             */
-/*   Updated: 2026/08/14 16:46:10 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 12:33:00 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static bool	ft_hit_sphere_true(t_scene_rt *scene, t_ray shadow_ray, 
+static bool	ft_hit_sphere_true(t_scene_rt *scene, t_ray shadow_ray,
 						t_hit *hit, double max_dist)
 {
 	size_t	i;
@@ -28,10 +28,9 @@ static bool	ft_hit_sphere_true(t_scene_rt *scene, t_ray shadow_ray,
 		i++;
 	}
 	return (false);
-
 }
 
-static bool	ft_hit_plane_true(t_scene_rt *scene, t_ray shadow_ray, 
+static bool	ft_hit_plane_true(t_scene_rt *scene, t_ray shadow_ray,
 						t_hit *hit, double max_dist)
 {
 	size_t	i;
@@ -49,7 +48,7 @@ static bool	ft_hit_plane_true(t_scene_rt *scene, t_ray shadow_ray,
 	return (false);
 }
 
-static bool	ft_hit_cylinder_true(t_scene_rt *scene, t_ray shadow_ray, 
+static bool	ft_hit_cylinder_true(t_scene_rt *scene, t_ray shadow_ray,
 						t_hit *hit, double max_dist)
 {
 	size_t	i;
