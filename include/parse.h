@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/16 16:00:45 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/17 00:19:30 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ typedef struct s_light
 	t_vec3		position;
 	double		brightness;
 	//TODO: double intensity; default 1.0 value range = 0.0 - 1.0
-	//TODO: delete t_material from this struct we dont need material characteristic on light
+	//TODO: delete t_material from this struct 
+	// we dont need material characteristic on light
 	//TODO: t_color	light_color;
 	t_material	material;
 }				t_light;
@@ -135,7 +136,6 @@ int				validate_tokens(char **tokens, int expected, t_rt_error *error);
 int				validate_ratio(double ratio, t_rt_error *error);
 int				validate_positive(double value, t_rt_error *error);
 int				validate_fov(double fov, t_rt_error *error);
-int				validate_normalized_vector(t_vec3 vec, t_rt_error *error);
 int				validate_coordinates(t_vec3 point, t_rt_error *error);
 int				normalize_vector(t_vec3 *vec, t_rt_error *error);
 void			debug_dump_scene(const t_scene *scene);

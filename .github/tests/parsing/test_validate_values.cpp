@@ -10,6 +10,11 @@ extern "C"
 
 }
 
+static int	test_normalize_vector(t_vec3 vec, t_rt_error *error)
+{
+	return (normalize_vector(&vec, error));
+}
+
 TEST(validateRatio, validateRatioCheck)
 {
 	t_rt_error	error;
@@ -65,25 +70,25 @@ TEST(validate_normalized_vector, validate_normalized_vector_check)
 	t_rt_error error;
 
 	// cas passant
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({1, 0, 0}, &error));
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({0, 1, 0}, &error));
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({0, 0, 1}, &error));
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({0, -1, 0}, &error));
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({0.707106, 0.707106, 0},
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({1, 0, 0}, &error));
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0, 1, 0}, &error));
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0, 0, 1}, &error));
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0, -1, 0}, &error));
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0.707106, 0.707106, 0},
 			&error));
-	EXPECT_EQ(RT_ERR_OK, validate_normalized_vector({0.577350269, 0.577350269,
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0.577350269, 0.577350269,
 			0.577350269}, &error));
 	// invlid case
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({2, 0, 0},
+	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, test_normalize_vector({2, 0, 0},
 			&error));
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({0, -2, 0},
+	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, test_normalize_vector({0, -2, 0},
 			&error));
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({0, 0, 5},
+	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, test_normalize_vector({0, 0, 5},
 			&error));
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({0,0,0},
+	EXPECT_EQ(RT_ERR_INVALID_VECTOR, test_normalize_vector({0,0,0},
 			&error));
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({1,1,1},
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({1,1,1},
 			&error));
-	EXPECT_EQ(RT_ERR_OUT_OF_RANGE, validate_normalized_vector({0.5,0.5,0.5},
+	EXPECT_EQ(RT_ERR_OK, test_normalize_vector({0.5,0.5,0.5},
 			&error));
 }

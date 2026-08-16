@@ -14,11 +14,10 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
-
 int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 {
-	t_light *light;
-	t_list *node;
+	t_light	*light;
+	t_list	*node;
 
 	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
