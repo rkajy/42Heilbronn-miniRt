@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:45:20 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/16 13:44:45 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 //TODO: error handling togather with error from parsing
 static void	ft_error_mlx(const char *msg)
 {
-	printf("Error");
+	printf("Error: %s", msg);
 }
 
-//NOTE: idk when to clean scene if mlx throw some error
-//NOTE: option 1 : on the main
-//NOTE: option 2 on ft_init_mlx
 t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
@@ -38,6 +35,18 @@ t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 		return (MLX_ERR);
 	}
 	return (MLX_OK);
+}
+
+t_mlx_stat	ft_mlx_image_window(t_mlx_interface *mi)
+{
+	if (mlx_image_to_window(mi->mlx, mi->img, 0, 0) < 0)
+	{
+		ft_error_mlx("mlx_image_to_window failed")
+		mlx_delete_image(mi->mlx, mi->img);
+		mlx_terminate(mi->mlx);
+		return (MLX_ERR);
+	}
+	return (MLX_OK)
 }
 
 void	ft_key_hook(mlx_key_data_t key, void *param)
