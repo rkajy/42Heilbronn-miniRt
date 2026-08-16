@@ -6,7 +6,7 @@
 #    By: asando <asando@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 22:09:55 by asando            #+#    #+#              #
-#    Updated: 2026/08/15 22:45:28 by asando           ###   ########.fr        #
+#    Updated: 2026/08/16 12:16:05 by asando           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,24 @@
 CC ?= cc
 DEBUG ?= 0
 BONUS ?= 0
+CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast
+
+#==============================================================================
+# HEADER
+#==============================================================================
 HEADER := include
 LIBFT_DIR := ./lib/libft
 LIBFT_HEADER := $(LIBFT_DIR)/includes
+MLX42_DIR := ./lib/MLX42
+MLX42_HEADER := $(MLX42_DIR)/include
+ALL_HEADER := -I$(HEADER) -I$(LIBFT_HEADER) -I$(MLX42_HEADER)
+
+#==============================================================================
+# LIB
+#==============================================================================
 LIBFT := $(LIBFT_DIR)/libft.a
-CFLAGS := -Wall -Wextra -Werror -I$(HEADER) -I$(LIBFT_HEADER)
+MLX42_LIB := $(MLX42_DIR)/build/libmlx42.a
+MLX42_LIBS := -ldl -lglfw -pthread -lm
 
 #==============================================================================
 # SOURCES
@@ -91,3 +104,100 @@ OBJ_MAIN := $(OBJ_MAIN_DIR)/main.o
 
 OBJS := $(OBJ_FILE_PARSE) $(OBJ_FILE_PARSE_UTILS) $(OBJ_FILE_MATH) \
 		$(OBJ_FILE_OBJECTS) $(OBJ_FILE_RENDER) $(OBJ_MAIN)
+
+#==============================================================================
+# COLOR AND SYMBOL
+#==============================================================================
+
+GREEN := \033[1;32m
+RED := \033[1;31m
+BLUE := \033[1;34m
+RESET := \033[0m
+
+OK := ✔
+FAIL := ✖
+ARROW := ➜
+
+#==============================================================================
+# RULES
+#==============================================================================
+
+all: submodules $(NAME)
+	@echo "$(GREEN)$(OK) $(NAME) Built successfully!$(RESET)"
+
+$(NAME): libmlx $(LIBFT) $(OBJS)
+	@$(CC) -o $@ $(OBJS) $(LIBFT) $(MLX42_LIB) $(MLX42_LIBS)
+	@echo "$(GREEN)$(OK) Executable created!$(RESET)"
+
+submodules:
+	@if [ ! -f "$(LIBFT_DIR)/Makefile" ] || \
+		[ ! -f "$(MLX42_DIR)/CMakeLists.txt" ]; then \
+		printf "$(ARROW) Initializing submodules...\n"; \
+		printf "$(ARROW) Cloning...\n"; \
+		git submodule update --init --recursive > /dev/null 2>&1; \
+		printf "$(GREEN)$(OK) Libft and MLX42 are ready\n$(RESET)"; \
+	fi
+
+libmlx: $(MLX42_LIB)
+
+$(MLX42_LIB):
+	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
+	@cmake --build $(MLX42_DIR)/build -j4
+	@echo "$(GREEN)$(OK)Libmlx42.a is compiled$(RESET)"
+
+$(LIBFT):
+	@$(MAKE) --no-print-directory bonus -C $(LIBFT_DIR)
+	@echo "$(GREEN)$(OK)Libft.a is compiled$(RESET)"
+
+#TODO: do we use custom printf? if not delete this
+$(LIBFT_PRINTF_NAME):
+	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
+	@echo "$(GREEN)$(OK) libft printf built successfully!$(RESET)"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "$(GREEN)$(OK) Object directory created!$(RESET)"
+
+$(OBJ_SUBDIR): | $(OBJ_DIR)
+	@mkdir -p $@
+	@echo "$(GREEN)$(OK) Object subdirectory created!$(RESET)"
+
+$(OBJ_FILE_MAIN): $(SRC_FILE_MAIN) | $(OBJ_MAIN_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PARSE_DIR)/%.o: $(SRC_PARSE_DIR)/%.c | $(OBJ_PARSE_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PARSE_UTILS_DIR)/%.o: $(SRC_PARSE_UTILS_DIR)/%.c | $(OBJ_PARSE_UTILS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_MATH_DIR)/%.o: $(SRC_MATH_DIR)/%.c | $(OBJ_MATH_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_RENDER_DIR)/%.o: $(SRC_RENDER_DIR)/%.c | $(OBJ_RENDER_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	
+clean:
+	@rm -rf $(OBJ_DIR)
+	@echo "$(GREEN)$(OK) object files removed!$(RESET)"
+	@$(MAKE) clean -C $(LIBFT_DIR) > /dev/null 2>&1
+	@printf "$(ARROW)  libft cleaned\n"
+	@$(MAKE) -f .github/Makefile.tests clean
+	
+fclean: clean
+	@printf "$(ARROW) deleting program...\n"
+	@rm -rf $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_DIR) > /dev/null 2>&1
+	@printf "$(GREEN)$(OK)success\n$(RESET)"
+
+re:
+	@$(MAKE) --no-print-directory fclean
+	@$(MAKE) --no-print-directory all
+
+test:
+	make -f .github/Makefile.tests test
+
+test-cmake:
+	make -f .github/Makefile.tests test-cmake
+	
+.PHONY: all submodules libmlx clean fclean re
