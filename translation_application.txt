@@ -1,0 +1,37 @@
+
+THE FUNCTION from math_rt.h file in math_vec3_adv_ops.c 
+
+t_vec3	ft_translation(t_vec3 point, t_vec3 translate)
+t_vec3	ft_rotate(t_vec3 v, t_vec3 rotation)
+
+HOW TO USE IT
+
+TRANSLATION IN SPHERE (Change the center point)
+sphere->center = ft_translation(sphere->center, translate)
+
+TRANSLATION IN CAMERA (Change the position point)
+camera->position = ft_translation(camera->position, translate)
+
+TRANSLATION IN LIGHT (Change the position point)
+light->position = ft_translation(light->position, translate)
+
+TRANSLATION IN plane (Change the point point)
+plane->point = ft_translation(plane->point, translate)
+
+TRANSLATION IN cylinder (Change the center point)
+plane->center = ft_translation(plane->center, translate)
+
+ROTATION IN PLANE (Change the normal point) but we have to normalize at the end
+plane->normal = ft_rotate(plane->normal, rot)
+plane->normal = ft_vnormalize(plane->normal) -> this function is comming from math_rt
+
+ROTATION IN cylinder (Change the axis point) but we have to normalize at the end
+cylinder->axis = ft_rotate(cylinder->axis, rot)
+cylinder->axis = ft_vnormalize(cylinder->axis) -> this function is comming from math_rt
+
+ROTATION IN camera (Change the orientation point) but we have to normalize at the end
+camera->orientation = ft_rotate(camera->orientation, rot)
+camera->orientation = ft_vnormalize(camera->orientation) -> this function is comming from math_rt
+
+ROTATION IN SPHERE (IGNORE ROTAION) it should not throw error just ignore it
+ROTATION IN LIGHT (IGNORE ROTATION) it should not throw error just ignore it 

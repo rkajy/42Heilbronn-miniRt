@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/08/17 16:26:09 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/17 16:47:09 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct s_ray
 	t_vec3	direction;
 }	t_ray;
 
+typedef enum e_axis
+{
+	X_AXIS,
+	Y_AXIS,
+	Z_AXIS,
+}	t_axis;
 t_vec3	ft_vec3(double x, double y, double z);
 t_vec3	ft_vadd(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vsub(t_vec3 v1, t_vec3 v2);
@@ -40,6 +46,8 @@ t_vec3	ft_velement_mul(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vclamp(t_vec3 v, double min, double max);
 t_vec3	ft_vneg(t_vec3 v);
 t_vec3	ft_reflection(t_vec3 dir, t_vec3 normal);
+t_vec3	ft_translation(t_vec3 point, t_vec3 translate);
+t_vec3	ft_rotate(t_vec3 v, t_vec3 rotation);
 t_ray	ft_ray(t_vec3 origin, t_vec3 direction);
 t_ray	ft_ray_at(t_ray ray, double t);
 #endif
