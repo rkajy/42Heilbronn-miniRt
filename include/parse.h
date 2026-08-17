@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 15:19:55 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:43:07 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ typedef struct s_color
 typedef struct s_material
 {
 	t_color		color;
-	double	specular; //TODO: default = 0.5 value range = 0.0 - 1.0
-	double	diffuse; //TODO: default = 1.0 value range = 0.0 - 1.0
-	 double	shininess; //TODO: default = 32 value range = 8 - 128
-	double	reflective; //TODO: default = 0.0 value range = 0.0 - 1.0
+	// TODO: default = 0.5 value range = 0.0 - 1.0
+	double		specular;
+	// TODO: default = 1.0 value range = 0.0 - 1.0
+	double		diffuse;
+	// TODO: default = 32 value range = 8 - 128
+	double		shininess;
+	// TODO: default = 0.0 value range = 0.0 - 1.0
+	double		reflective;
 }				t_material;
 
 typedef struct s_ambient
@@ -108,7 +112,7 @@ typedef struct s_scene
 	t_list		*cylinders;
 }				t_scene;
 
-# define MAX_LIGHTS	1024
+# define MAX_LIGHTS 1024
 # define MAX_SPHERES 1024
 # define MAX_PLANES 1024
 # define MAX_CYLINDERS 1024

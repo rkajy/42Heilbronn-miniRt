@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 17:05:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:47:16 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:31:46 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rt_error_print(const t_rt_error *error)
 	if (error == NULL || error->message == NULL)
 		return ;
 	if (error->line > 0)
-		fprintf(stderr, "Error\n%s (line %d)\n", error->message, error->line);
+		printf("Error\n%s (line %d)\n", error->message, error->line);
 	else
-		fprintf(stderr, "Error\n%s\n", error->message);
+		printf("Error\n%s\n", error->message);
 }
