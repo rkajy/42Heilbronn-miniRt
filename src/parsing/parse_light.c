@@ -21,8 +21,6 @@ int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 
 	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
-	if (ft_lstsize(scene->lights) != 0)
-		return (rt_error_set(error, RT_ERR_DUPLICATE_LIGHT));
 	light = malloc(sizeof(t_light));
 	if (!light)
 		return (rt_error_set(error, RT_ERR_ALLOC));

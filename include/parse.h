@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 00:19:30 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 06:25:11 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,17 @@ typedef struct s_scene
 	t_list		*cylinders;
 }				t_scene;
 
+# define MAX_LIGHTS	1024
 # define MAX_SPHERES 1024
 # define MAX_PLANES 1024
 # define MAX_CYLINDERS 1024
 
-//TODO: try to support multiple light source
-//TODO: do len lights
 typedef struct s_scene_rt
 {
 	t_ambient	ambient;
 	t_camera	camera;
-	t_light		light;
-	//TODO: t_light		lights[MAX_LIGHTS];
-	//TODO: size_t		nb_lights; default = 1
+	t_light		lights[MAX_LIGHTS];
+	size_t		nb_lights;
 	t_sphere	spheres[MAX_SPHERES];
 	size_t		nb_spheres;
 	t_plane		planes[MAX_PLANES];

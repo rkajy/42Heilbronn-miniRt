@@ -64,9 +64,9 @@ TEST_F(ParseLightFixture, NotAcceptMultipleLights)
 	};
 
 	EXPECT_DOUBLE_EQ(parse_light(light1, &this->scene, &this->error), RT_ERR_OK);
-	EXPECT_DOUBLE_EQ(parse_light(light2, &this->scene, &this->error), RT_ERR_DUPLICATE_LIGHT);
+	EXPECT_DOUBLE_EQ(parse_light(light2, &this->scene, &this->error), RT_ERR_OK);
 
-	EXPECT_EQ(ft_lstsize(this->scene.lights), 1);
+	EXPECT_EQ(ft_lstsize(this->scene.lights), 2);
 }
 
 TEST_F(ParseLightFixture, RejectWrongTokenCount)

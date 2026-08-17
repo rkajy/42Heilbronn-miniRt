@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 19:43:15 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/12 21:17:43 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 06:24:04 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,23 @@ static void	copy_cylinders(t_scene_rt *dst, t_list *lst)
 	}
 }
 
+static void	copy_lights(t_scene_rt *dst, t_list *lst)
+{
+	while (lst && dst->nb_lights < MAX_LIGHTS)
+	{
+		dst->lights[dst->nb_lights++] = *(t_light *)lst->content;
+		lst = lst->next;
+	}
+}
+
 bool	scene_rt_factory(const t_scene *src, t_scene_rt *dst)
 {
 	ft_bzero(dst, sizeof(*dst));
 	copy_spheres(dst, src->spheres);
 	copy_planes(dst, src->planes);
 	copy_cylinders(dst, src->cylinders);
+	copy_lights(dst, src->lights);
 	dst->camera = *(t_camera *)src->cameras->content;
 	dst->ambient = *(t_ambient *)src->ambients->content;
-	dst->light = *(t_light *)src->lights->content;
 	return (true);
 }
