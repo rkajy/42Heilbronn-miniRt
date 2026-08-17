@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:09:42 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 15:50:50 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/17 16:26:09 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # include <math.h>
 
-# include "parse.h"
+typedef struct s_vector
+{
+	double		x;
+	double		y;
+	double		z;
+} t_vector,	t_vec3;
 
 typedef struct s_ray
 {

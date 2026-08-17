@@ -6,18 +6,20 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 15:43:07 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 16:25:55 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
+# include <stdbool.h>
+
 # include "../lib/libft/includes/ft_printf.h"
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
 # include "error.h"
-# include <stdbool.h>
+# include "math_rt.h"
 
 /*
 ** r: red
@@ -31,16 +33,16 @@ typedef struct s_color
 	double		b;
 }				t_color;
 
+// NOTE: specular -> default = 0.5 value range = 0.0 - 1.0
+// NOTE: diffuse -> default = 1.0 value range = 0.0 - 1.0
+// NOTE: shininess -> default = 32 value range = 8 - 128
+// NOTE: reflective -> default = 0.0 value range = 0.0 - 1.0
 typedef struct s_material
 {
 	t_color		color;
-	// TODO: default = 0.5 value range = 0.0 - 1.0
 	double		specular;
-	// TODO: default = 1.0 value range = 0.0 - 1.0
 	double		diffuse;
-	// TODO: default = 32 value range = 8 - 128
 	double		shininess;
-	// TODO: default = 0.0 value range = 0.0 - 1.0
 	double		reflective;
 }				t_material;
 
@@ -49,13 +51,6 @@ typedef struct s_ambient
 	double		ratio;
 	t_material	material;
 }				t_ambient;
-
-typedef struct s_vector
-{
-	double		x;
-	double		y;
-	double		z;
-} t_vector,	t_vec3;
 
 /*
  ** orientation is a normalized vector
