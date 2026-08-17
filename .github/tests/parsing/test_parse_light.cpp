@@ -39,9 +39,9 @@ TEST_F(ParseLightFixture, AcceptValidLight)
 
     EXPECT_DOUBLE_EQ(light->brightness, 0.6);
 
-    EXPECT_EQ(light->material.color.r, 255);
-	EXPECT_EQ(light->material.color.g, 255);
-	EXPECT_EQ(light->material.color.b, 255);
+    EXPECT_EQ(light->light_color.r, 255);
+	EXPECT_EQ(light->light_color.g, 255);
+	EXPECT_EQ(light->light_color.b, 255);
 }
 
 TEST_F(ParseLightFixture, NotAcceptMultipleLights)

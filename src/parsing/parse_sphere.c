@@ -30,6 +30,10 @@ int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(sphere), error->code);
 	if (validate_positive(sphere->diameter, error) != RT_ERR_OK)
 		return (free(sphere), error->code);
+	sphere->material.specular = 0.5;
+	sphere->material.diffuse = 1;
+	sphere->material.shininess = 32;
+	sphere->material.reflective = 0;
 	if (parse_color(tokens[3], &sphere->material.color, error) != RT_ERR_OK)
 		return (free(sphere), error->code);
 	node = ft_lstnew(sphere);

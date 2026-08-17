@@ -24,13 +24,16 @@ int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 	light = malloc(sizeof(t_light));
 	if (!light)
 		return (rt_error_set(error, RT_ERR_ALLOC));
+	light->intensity = 1.0;
 	if (parse_vec3(tokens[1], &light->position, error) != RT_ERR_OK)
 		return (free(light), error->code);
 	if (parse_double(tokens[2], &light->brightness, error) != RT_ERR_OK)
 		return (free(light), error->code);
-	if (parse_color(tokens[3], &light->material.color, error) != RT_ERR_OK)
+	if (parse_color(tokens[3], &light->light_color, error) != RT_ERR_OK)
 		return (free(light), error->code);
 	if (validate_ratio(light->brightness, error) != RT_ERR_OK)
+		return (free(light), error->code);
+	if (validate_ratio(light->intensity, error) != RT_ERR_OK)
 		return (free(light), error->code);
 	node = ft_lstnew(light);
 	if (!node)
