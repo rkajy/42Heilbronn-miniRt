@@ -30,6 +30,10 @@ int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(plane), error->code);
 	if (normalize_vector(&plane->normal, error) != RT_ERR_OK)
 		return (free(plane), error->code);
+	plane->material.specular = 0.5;
+	plane->material.diffuse = 1;
+	plane->material.shininess = 32;
+	plane->material.reflective = 0;
 	if (parse_color(tokens[3], &plane->material.color, error) != RT_ERR_OK)
 		return (free(plane), error->code);
 	node = ft_lstnew(plane);

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 06:25:11 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:43:07 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ typedef struct s_color
 typedef struct s_material
 {
 	t_color		color;
-	//TODO: double	specular; default = 0.5 value range = 0.0 - 1.0
-	//TODO: double	diffuse; default = 1.0 value range = 0.0 - 1.0
-	//TODO: double	shininess; default = 32 value range = 8 - 128
-	//TODO: double	reflective; default = 0.0 value range = 0.0 - 1.0
+	// TODO: default = 0.5 value range = 0.0 - 1.0
+	double		specular;
+	// TODO: default = 1.0 value range = 0.0 - 1.0
+	double		diffuse;
+	// TODO: default = 32 value range = 8 - 128
+	double		shininess;
+	// TODO: default = 0.0 value range = 0.0 - 1.0
+	double		reflective;
 }				t_material;
 
 typedef struct s_ambient
@@ -60,10 +64,10 @@ typedef struct s_camera
 {
 	t_vec3		orientation;
 	t_vec3		position;
-	//TODO: t_vec3		right;
-	//TODO: t_vec3		up;
-	//TODO: double		vp_width;
-	//TODO: double		vp_height;
+	t_vec3		right;
+	t_vec3		up;
+	double		vp_width;
+	double		vp_height;
 	double		fov;
 }				t_camera;
 
@@ -71,11 +75,8 @@ typedef struct s_light
 {
 	t_vec3		position;
 	double		brightness;
-	//TODO: double intensity; default 1.0 value range = 0.0 - 1.0
-	//TODO: delete t_material from this struct 
-	// we dont need material characteristic on light
-	//TODO: t_color	light_color;
-	t_material	material;
+	double		intensity;
+	t_color		light_color;
 }				t_light;
 
 typedef struct s_sphere
@@ -111,7 +112,7 @@ typedef struct s_scene
 	t_list		*cylinders;
 }				t_scene;
 
-# define MAX_LIGHTS	1024
+# define MAX_LIGHTS 1024
 # define MAX_SPHERES 1024
 # define MAX_PLANES 1024
 # define MAX_CYLINDERS 1024

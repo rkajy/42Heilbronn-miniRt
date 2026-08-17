@@ -46,6 +46,10 @@ int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 		return (rt_error_set(error, RT_ERR_ALLOC));
 	if (parse_cylinder_data(tokens, cylinder, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
+	cylinder->material.specular = 0.5;
+	cylinder->material.diffuse = 1;
+	cylinder->material.shininess = 32;
+	cylinder->material.reflective = 0;
 	if (parse_color(tokens[5], &cylinder->material.color, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
 	node = ft_lstnew(cylinder);

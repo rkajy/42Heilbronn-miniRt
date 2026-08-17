@@ -29,6 +29,10 @@ int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error)
 		return (rt_error_set(error, RT_ERR_ALLOC));
 	if (parse_double(tokens[1], &ambient->ratio, error) != RT_ERR_OK)
 		return (free(ambient), error->code);
+	ambient->material.specular = 0.5;
+	ambient->material.diffuse = 1;
+	ambient->material.shininess = 32;
+	ambient->material.reflective = 0;
 	if (parse_color(tokens[2], &ambient->material.color, error) != RT_ERR_OK)
 		return (free(ambient), error->code);
 	node = ft_lstnew(ambient);
