@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_vec3_adv_ops.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 16:54:47 by asando            #+#    #+#             */
-/*   Updated: 2026/08/17 15:55:34 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/20 22:52:34 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_vec3	ft_reflection(t_vec3 ray_dir, t_vec3 v_normal)
 
 t_vec3	ft_translation(t_vec3 point, t_vec3 translate)
 {
-	retrun (ft_vadd(point, translate));
+	return (ft_vadd(point, translate));
 }
 
 static t_vec3	ft_rotate_axis(t_vec3 v, double a, t_axis axis)

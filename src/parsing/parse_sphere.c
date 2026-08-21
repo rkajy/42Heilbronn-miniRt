@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:01:45 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:47:02 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/21 16:16:14 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,25 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
+static int	parse_sphere_transform(char **tokens, t_sphere *sphere,
+		t_rt_error *error)
+{
+	t_transform	transform;
+
+	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
+		return (error->code);
+	if (transform.has_translation)
+		sphere->center = ft_translation(sphere->center,
+			transform.translation);
+	return (RT_ERR_OK);
+}
+
 int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_sphere	*sphere;
 	t_list		*node;
 
-	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
+	if (validate_min_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
@@ -35,6 +48,8 @@ int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)
 	sphere->material.shininess = 32;
 	sphere->material.reflective = 0;
 	if (parse_color(tokens[3], &sphere->material.color, error) != RT_ERR_OK)
+		return (free(sphere), error->code);
+	if (parse_sphere_transform(tokens, sphere, error) != RT_ERR_OK)
 		return (free(sphere), error->code);
 	node = ft_lstnew(sphere);
 	if (!node)

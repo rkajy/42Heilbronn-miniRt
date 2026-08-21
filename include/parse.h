@@ -6,20 +6,19 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 16:25:55 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/21 15:17:06 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include <stdbool.h>
-
 # include "../lib/libft/includes/ft_printf.h"
 # include "../lib/libft/includes/get_next_line_bonus.h"
 # include "../lib/libft/includes/libft.h"
 # include "error.h"
 # include "math_rt.h"
+# include <stdbool.h>
 
 /*
 ** r: red
@@ -97,6 +96,14 @@ typedef struct s_cylinder
 	t_material	material;
 }				t_cylinder;
 
+typedef struct s_transform
+{
+	t_vec3		translation;
+	t_vec3		rotation;
+	bool		has_translation;
+	bool		has_rotation;
+}				t_transform;
+
 typedef struct s_scene
 {
 	t_list		*ambients;
@@ -127,6 +134,8 @@ typedef struct s_scene_rt
 }				t_scene_rt;
 
 int				validate_tokens(char **tokens, int expected, t_rt_error *error);
+int				validate_min_tokens(char **tokens, int minimum,
+					t_rt_error *error);
 int				validate_ratio(double ratio, t_rt_error *error);
 int				validate_positive(double value, t_rt_error *error);
 int				validate_fov(double fov, t_rt_error *error);

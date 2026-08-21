@@ -13,13 +13,15 @@
 #include "../../include/error.h"
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
+#include "../../include/math_rt.h"
 
 int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_light	*light;
 	t_list	*node;
+	t_transform	transform;
 
-	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
+	if (validate_min_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
 	light = malloc(sizeof(t_light));
 	if (!light)
@@ -35,9 +37,13 @@ int	parse_light(char **tokens, t_scene *scene, t_rt_error *error)
 		return (free(light), error->code);
 	if (validate_ratio(light->intensity, error) != RT_ERR_OK)
 		return (free(light), error->code);
+	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
+		return (free(light), error->code);
+	if (transform.has_translation)
+		light->position = ft_translation(light->position,
+			transform.translation);
 	node = ft_lstnew(light);
 	if (!node)
 		return (free(light), rt_error_set(error, RT_ERR_ALLOC));
-	ft_lstadd_back(&scene->lights, node);
-	return (RT_ERR_OK);
+	return (ft_lstadd_back(&scene->lights, node), RT_ERR_OK);
 }

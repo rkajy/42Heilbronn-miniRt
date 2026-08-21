@@ -28,3 +28,15 @@ int	validate_tokens(char **tokens, int expected, t_rt_error *error)
 	}
 	return (RT_ERR_OK);
 }
+
+int	validate_min_tokens(char **tokens, int minimum, t_rt_error *error)
+{
+	int	i;
+
+	i = 0;
+	while (tokens && tokens[i] != NULL)
+		i++;
+	if (i < minimum)
+		return (rt_error_set(error, RT_ERR_TRAILING_DATA));
+	return (RT_ERR_OK);
+}

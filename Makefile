@@ -42,6 +42,7 @@ C_SRC := \
     src/parsing/parse_file.c \
     src/parsing/parse_line.c \
     src/parsing/parse_sphere.c \
+	src/parsing/parse_transform.c \
 	src/parsing/error.c \
 	src/parsing/error_message.c \
 	src/parsing/scene_rt_factory.c \
