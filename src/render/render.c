@@ -16,9 +16,9 @@ static void	ft_build_camera_basis(t_camera *cam)
 {
 	t_vec3	global_up;
 
-	cam->orientation = ft_vnormalize(cam->orientiation);
+	cam->orientation = ft_vnormalize(cam->orientation);
 	global_up = ft_vec3(0, 1, 0);
-	cam->right = ft_vnomalize(ft_vcross(cam->orientation, global_up));
+	cam->right = ft_vnormalize(ft_vcross(cam->orientation, global_up));
 	cam->up = ft_vcross(cam->right, cam->orientation);
 	return ;
 }
@@ -27,7 +27,7 @@ static void	ft_setup_viewport(t_scene_rt *scene, double aspect)
 {
 	double	fov_rad;
 
-	fov_rad = scene->camera * M_PI / 180.0;
+	fov_rad = scene->camera.fov * M_PI / 180.0;
 	scene->camera.vp_height = 2 * tan(fov_rad / 2);
 	scene->camera.vp_width = scene->camera.vp_height * aspect;
 	return ;
@@ -65,9 +65,10 @@ void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
 	uint32_t	x;
 	uint32_t	y;
 	t_ray		ray;
-	t_hit		hit;
 	t_vec3		color;
 
+	ft_build_camera_basis(&scene->camera);
+	ft_setup_viewport(scene, (double)WIDTH / HEIGHT);
 	x = 0;
 	y = 0;
 	while (y < HEIGHT)
@@ -75,7 +76,7 @@ void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
 		while (x < WIDTH)
 		{
 			ray = ft_generate_ray(scene, x, y);
-			color = ft_trace(scene, ray, &hit);
+						color = ft_trace(scene, ray, 0);
 			ft_putpixel(mlx_interface->img, x, y, ft_to_rgb(color));
 			x++;
 		}

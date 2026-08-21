@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_trace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 22:16:56 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:36:46 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/21 18:43:24 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@ t_vec3	ft_trace(t_scene_rt *scene, t_ray ray, int depth)
 	t_vec3		reflect_color;
 	t_hit		closest;
 
-	closest->t = 1e30;
+	closest.t = 1e30;
 	i = 0;
 	if (ft_hit_object(scene, ray, &closest) == false)
 		return (ft_vec3(0, 0, 0));
 	color = ft_shade(scene, &closest, ray);
+	(void) i;
 	if (closest.mat.reflective > 0.0 && depth < REFLECT_DEPTH)
 	{
 		reflect_ray.origin = ft_vadd(closest.point,
 				ft_vscalar(closest.normal, 1e-4));
-		reflect_ray.direction = ft_vnormalize(ft_reflect(ray.direction,
+				reflect_ray.direction = ft_vnormalize(ft_reflection(ray.direction,
 					closest.normal));
 		reflect_color = ft_trace(scene, reflect_ray, depth + 1);
 		color = ft_vadd(

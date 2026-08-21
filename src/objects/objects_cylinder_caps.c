@@ -55,7 +55,7 @@ bool	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap)
 		return (false);
 	point = ft_ray_at(ray, t);
 	vector = ft_vsub(point, center);
-	if (ft_vdot(vector, vector) > cy->radius * cy->radius)
+	if (ft_vdot(vector, vector) > (cy->diameter * cy->diameter) / 4)
 		return (false);
 	if (t < hit->t)
 	{

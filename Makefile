@@ -20,6 +20,8 @@ LIBFT_DIR := $(LIB_DIR)/libft
 LIBFT_NAME := $(LIBFT_DIR)/libft.a
 LIBFT_PRINTF_NAME := $(LIBFT_DIR)/libftprintf.a
 MLX42_DIR := $(LIB_DIR)/MLX42
+MLX42_LIB := $(MLX42_DIR)/build/libmlx42.a
+MLX42_LIBS := -ldl -lglfw -pthread -lm
 
 CPPFLAGS := -Iinclude -I$(LIBFT_DIR)/includes -I$(MLX42_DIR)/include
 ifeq ($(DEBUG),1)
@@ -57,6 +59,20 @@ C_SRC := \
 	src/parsing/parsing-utils/debug_dump_scene.c \
 	src/parsing/parsing-utils/debug_dump_shapes.c \
 	src/parsing/parsing-utils/normalize_vector.c \
+        src/math/math_ray.c \
+        src/math/math_vec3_adv_ops.c \
+        src/math/math_vec3_init.c \
+        src/math/math_vec3_ops.c \
+        src/math/math_vec3_utils.c \
+        src/objects/objects_cylinder.c \
+        src/objects/objects_cylinder_caps.c \
+        src/objects/objects_plane.c \
+        src/objects/objects_sphere.c \
+        src/render/render.c \
+        src/render/render_mlx.c \
+        src/render/render_shade.c \
+        src/render/render_shadow.c \
+        src/render/render_trace.c \
 	src/parsing/validate_scene.c \
 	src/parsing/validate_tokens.c \
 	src/parsing/validate_values.c \
@@ -78,12 +94,18 @@ ARROW := ➜
 
 # RULES
 
-all: submodules $(NAME) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
+all: submodules $(NAME) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) $(MLX42_LIB)
 	@echo "$(GREEN)$(OK) $(NAME) built successfully!$(RESET)"
 
-$(NAME): $(OBJ_DIR) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
-	@$(CC) $(CFLAGS) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) -o $(NAME)
+$(NAME): $(OBJ_DIR) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) $(MLX42_LIB)
+	@$(CC) $(CFLAGS) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) \
+		$(MLX42_LIB) $(MLX42_LIBS) -o $(NAME)
 	@echo "$(GREEN)$(OK) executable created!$(RESET)"
+
+$(MLX42_LIB):
+	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
+	@cmake --build $(MLX42_DIR)/build -j4
+	@echo "$(GREEN)$(OK) MLX42 built successfully!$(RESET)"
 
 submodules:
 	@if [ ! -f "$(LIBFT_DIR)/Makefile" ] || \

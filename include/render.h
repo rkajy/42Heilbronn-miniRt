@@ -38,6 +38,7 @@ typedef enum e_mlx_stat
 }	t_mlx_stat;
 
 t_mlx_stat	ft_init_mlx(t_mlx_interface *mi);
+t_mlx_stat	ft_mlx_image_window(t_mlx_interface *mi);
 void		ft_key_hook(mlx_key_data_t key, void *param);
 t_vec3		ft_trace(t_scene_rt *scene, t_ray ray, int depth);
 t_vec3		ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray);

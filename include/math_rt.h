@@ -49,5 +49,5 @@ t_vec3	ft_reflection(t_vec3 dir, t_vec3 normal);
 t_vec3	ft_translation(t_vec3 point, t_vec3 translate);
 t_vec3	ft_rotate(t_vec3 v, t_vec3 rotation);
 t_ray	ft_ray(t_vec3 origin, t_vec3 direction);
-t_ray	ft_ray_at(t_ray ray, double t);
+t_vec3		ft_ray_at(t_ray ray, double t);
 #endif

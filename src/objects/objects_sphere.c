@@ -12,7 +12,7 @@
 
 #include "objects.h"
 
-static void	ft_to_hit(t_constanta con, t_ray ray, t_hit *hit, t_speher *sp)
+static void	ft_to_hit(t_constanta con, t_ray ray, t_hit *hit, t_sphere *sp)
 {
 	hit->t = con.t;
 	hit->point = ft_ray_at(ray, con.t);
@@ -38,15 +38,15 @@ static double	ft_calc_t(double discriminant, double a, double b)
 	return (t);
 }
 
-static double	ft_calc_disc(t_ray ray, t_sphere *sp, t_constanta con)
+static double	ft_calc_disc(t_ray ray, t_sphere *sp, t_constanta *con)
 {
 	t_vec3	oc;
 
 	oc = ft_vsub(ray.origin, sp->center);
-	con.a = ft_vdot(ray.direction, ray.direction);
-	con.b = 2.0 * ft_vdot(oc, ray.direction);
-	con.c = ft_vdot(oc, oc) - sp->radius * sp->radius;
-	return (con.b * con.b - 4 * con.a * con.c);
+	con->a = ft_vdot(ray.direction, ray.direction);
+	con->b = 2.0 * ft_vdot(oc, ray.direction);
+	con->c = ft_vdot(oc, oc) - (sp->diameter * sp->diameter) / 4;
+	return (con->b * con->b - 4 * con->a * con->c);
 }
 
 bool	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
@@ -55,7 +55,7 @@ bool	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
 	double		discriminant;
 	t_constanta	con;
 
-	discriminant = ft_calc_disc(ray, sp, con);
+	discriminant = ft_calc_disc(ray, sp, &con);
 	if (discriminant == 0)
 		return (false);
 	t = ft_calc_t(discriminant, con.a, con.b);
