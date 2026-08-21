@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/21 21:17:48 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/21 22:02:19 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "render.h"
 #include <stdio.h>
 
-static int	ft_draw(t_mlx_interface *mi, t_scene_rt *scene_rt)
+int	ft_draw(t_mlx_interface *mi, t_scene_rt *scene_rt)
 {
 	if (ft_init_mlx(mi) != MLX_OK)
 	{
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	t_rt_error		error;
 	t_scene			scene;
 	t_scene_rt		scene_rt;
-	t_mlx_interface	mlx_interface;
+	// t_mlx_interface	mlx_interface;
 
 	// TODO: FROM HERE
 	if (!is_input_valid(argc, argv))
@@ -57,11 +57,11 @@ int	main(int argc, char **argv)
 	// TODO: TO HERE could be grupped in one helper static function
 	scene_rt_factory(&scene, &scene_rt);
 	destroy_scene(&scene);
-	if (ft_draw(&mlx_interface, &scene_rt) != 0)
-	{
-		mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
-		mlx_loop(mlx_interface.mlx);
-	}
-	mlx_terminate(mlx_interface.mlx);
+	// if (ft_draw(&mlx_interface, &scene_rt) != 0)
+	// {
+	// 	mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
+	// 	mlx_loop(mlx_interface.mlx);
+	// }
+	// mlx_terminate(mlx_interface.mlx);
 	return (0);
 }
