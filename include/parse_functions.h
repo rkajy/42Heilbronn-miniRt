@@ -21,6 +21,9 @@
  */
 int	parse_double(const char *s, double *result, t_rt_error *error);
 
+int	parse_transformations(char **tokens, int start, t_transform *transform,
+		t_rt_error *error);
+
 /*
  ** in: "255,0,128"
  ** out: {r=255, g=0, b=128}

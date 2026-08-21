@@ -38,8 +38,9 @@ int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_cylinder	*cylinder;
 	t_list		*node;
+	t_transform	transform;
 
-	if (validate_tokens(tokens, 6, error) != RT_ERR_OK)
+	if (validate_min_tokens(tokens, 6, error) != RT_ERR_OK)
 		return (error->code);
 	cylinder = malloc(sizeof(t_cylinder));
 	if (!cylinder)
@@ -52,6 +53,14 @@ int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 	cylinder->material.reflective = 0;
 	if (parse_color(tokens[5], &cylinder->material.color, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
+	if (parse_transformations(tokens, 6, &transform, error) != RT_ERR_OK)
+		return (free(cylinder), error->code);
+	if (transform.has_translation)
+		cylinder->center = ft_translation(cylinder->center,
+			transform.translation);
+	if (transform.has_rotation)
+		cylinder->axis = ft_vnormalize(ft_rotate(cylinder->axis,
+			transform.rotation));
 	node = ft_lstnew(cylinder);
 	if (!node)
 		return (free(cylinder), rt_error_set(error, RT_ERR_ALLOC));

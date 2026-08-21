@@ -18,8 +18,9 @@ int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_plane	*plane;
 	t_list	*node;
+	t_transform	transform;
 
-	if (validate_tokens((char **)tokens, 4, error) != RT_ERR_OK)
+	if (validate_min_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
@@ -36,6 +37,14 @@ int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 	plane->material.reflective = 0;
 	if (parse_color(tokens[3], &plane->material.color, error) != RT_ERR_OK)
 		return (free(plane), error->code);
+	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
+		return (free(plane), error->code);
+	if (transform.has_translation)
+		plane->point = ft_translation(plane->point,
+			transform.translation);
+	if (transform.has_rotation)
+		plane->normal = ft_vnormalize(ft_rotate(plane->normal,
+			transform.rotation));
 	node = ft_lstnew(plane);
 	if (!node)
 		return (free(plane), rt_error_set(error, RT_ERR_ALLOC));
