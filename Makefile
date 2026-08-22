@@ -1,71 +1,113 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile2                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/03/24 18:44:11 by asando            #+#    #+#              #
-#    Updated: 2026/07/12 20:18:06 by radandri         ###   ########.fr        #
+#    Created: 2026/08/15 22:09:55 by asando            #+#    #+#              #
+#    Updated: 2026/08/22 19:25:18 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := miniRT
+#==============================================================================
+# MAIN
+#==============================================================================
 CC ?= cc
 DEBUG ?= 0
 BONUS ?= 0
+CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
-LIB_DIR := ./lib
-LIBFT_DIR := $(LIB_DIR)/libft
-LIBFT_NAME := $(LIBFT_DIR)/libft.a
-LIBFT_PRINTF_NAME := $(LIBFT_DIR)/libftprintf.a
-MLX42_DIR := $(LIB_DIR)/MLX42
+#==============================================================================
+# HEADER
+#==============================================================================
+HEADER := include
+LIBFT_DIR := ./lib/libft
+LIBFT_HEADER := $(LIBFT_DIR)/includes
+MLX42_DIR := ./lib/MLX42
+MLX42_HEADER := $(MLX42_DIR)/include
+ALL_HEADER := -I$(HEADER) -I$(LIBFT_HEADER) -I$(MLX42_HEADER)
 
-CPPFLAGS := -Iinclude -I$(LIBFT_DIR)/includes -I$(MLX42_DIR)/include
-ifeq ($(DEBUG),1)
-CPPFLAGS += -DDEBUG=1
-else
-CPPFLAGS += -DDEBUG=0
-endif
-CFLAGS := -Wall -Wextra -Werror -Wunreachable-code -Ofast $(CPPFLAGS)
+#==============================================================================
+# LIB
+#==============================================================================
+LIBFT := $(LIBFT_DIR)/libft.a
+MLX42_LIB := $(MLX42_DIR)/build/libmlx42.a
+MLX42_LIBS := -ldl -lglfw -pthread -lm
 
-C_SRC := \
-	src/main.c \
-	src/parsing/parse_ambient.c \
-	src/parsing/parse_color.c \
-	src/parsing/parse_double.c \
-	src/parsing/parse_light.c \
-	src/parsing/parse_plane.c \
-	src/parsing/parse_vec3.c \
-    src/parsing/parse_camera.c \
-    src/parsing/parse_cylinder.c \
-    src/parsing/parse_file.c \
-    src/parsing/parse_line.c \
-    src/parsing/parse_sphere.c \
-	src/parsing/parse_transform.c \
-	src/parsing/error.c \
-	src/parsing/error_message.c \
-	src/parsing/scene_rt_factory.c \
-	src/parsing/parsing-utils/ft_atof.c \
-	src/parsing/parsing-utils/clean_line.c \
-	src/parsing/parsing-utils/ft_isspace.c \
-	src/parsing/parsing-utils/is_comment_or_empty.c \
-	src/parsing/parsing-utils/ft_free_split.c \
-	src/parsing/parsing-utils/is_file_extension_valid.c \
-	src/parsing/parsing-utils/is_input_valid.c \
-	src/parsing/parsing-utils/destroy_scene.c \
-	src/parsing/parsing-utils/debug_dump_scene.c \
-	src/parsing/parsing-utils/debug_dump_shapes.c \
-	src/parsing/parsing-utils/normalize_vector.c \
-	src/parsing/validate_scene.c \
-	src/parsing/validate_tokens.c \
-	src/parsing/validate_values.c \
-	
-OBJ_DIR := build/obj
+#==============================================================================
+# SOURCES
+#==============================================================================
+SRC_DIR := ./src
+SRC_PARSE_DIR := $(SRC_DIR)/parsing
+SRC_PARSE_UTILS_DIR := $(SRC_DIR)/parsing/parsing-utils
+SRC_MATH_DIR := $(SRC_DIR)/math
+SRC_OBJECTS_DIR := $(SRC_DIR)/objects
+SRC_RENDER_DIR := $(SRC_DIR)/render
 
-SRC_OBJ := $(C_SRC:src/%.c=$(OBJ_DIR)/%.o)
+FILES_PARSE := parse_ambient.c parse_color.c parse_double.c parse_light.c \
+			   parse_plane.c parse_vec3.c parse_camera.c parse_cylinder.c \
+			   parse_file.c parse_line.c parse_sphere.c error.c \
+			   error_message.c scene_rt_factory.c validate_scene.c \
+			   validate_tokens.c validate_values.c parse_transform.c
 
+FILES_PARSE_UTILS := ft_atof.c clean_line.c ft_isspace.c \
+					 is_comment_or_empty.c ft_free_split.c \
+					 is_file_extension_valid.c is_input_valid.c \
+					 destroy_scene.c debug_dump_scene.c \
+					 debug_dump_shapes.c normalize_vector.c \
+
+FILES_MATH := math_ray.c math_vec3_init.c math_vec3_adv_ops.c math_vec3_ops.c \
+			  math_vec3_utils.c
+
+FILES_OBJECTS := objects_cylinder.c objects_cylinder_caps.c objects_plane.c \
+				 objects_sphere.c
+
+FILES_RENDER := render.c render_mlx.c render_trace.c render_shadow.c \
+				render_shade.c
+
+FILES_MAIN := main.c
+
+SRC_FILE_PARSE := $(addprefix $(SRC_PARSE_DIR)/, $(FILES_PARSE))
+SRC_FILE_PARSE_UTILS := $(addprefix $(SRC_PARSE_UTILS_DIR)/, $(FILES_PARSE_UTILS))
+SRC_FILE_MATH := $(addprefix $(SRC_MATH_DIR)/, $(FILES_MATH))
+SRC_FILE_OBJECTS := $(addprefix $(SRC_OBJECTS_DIR)/, $(FILES_OBJECTS))
+SRC_FILE_RENDER := $(addprefix $(SRC_RENDER_DIR)/, $(FILES_RENDER))
+SRC_FILE_MAIN := $(addprefix $(SRC_DIR)/, $(FILES_MAIN))
+
+SRCS := $(SRC_FILE_PARSE) $(SRC_FILE_PARSE_UTILS) $(SRC_FILE_MATH) \
+		$(SRC_FILE_OBJECTS) $(SRC_FILE_RENDER) $(SRC_FILES_MAIN)
+
+#==============================================================================
+# OBJECTS
+#==============================================================================
+OBJ_DIR := ./obj
+
+OBJ_PARSE_DIR := $(OBJ_DIR)/parse_obj
+OBJ_PARSE_UTILS_DIR := $(OBJ_DIR)/parse_utils_obj
+OBJ_MATH_DIR := $(OBJ_DIR)/math_obj
+OBJ_OBJECTS_DIR := $(OBJ_DIR)/objects_obj
+OBJ_RENDER_DIR := $(OBJ_DIR)/render_obj
+OBJ_MAIN_DIR := $(OBJ_DIR)/main_obj
+
+OBJ_SUBDIR := $(OBJ_PARSE_DIR) $(OBJ_PARSE_UTILS_DIR) $(OBJ_MATH_DIR) \
+			  $(OBJ_OBJECTS_DIR) $(OBJ_RENDER_DIR) $(OBJ_MAIN_DIR)
+
+OBJ_FILE_PARSE := $(SRC_FILE_PARSE:$(SRC_PARSE_DIR)/%.c=$(OBJ_PARSE_DIR)/%.o)
+OBJ_FILE_PARSE_UTILS := \
+	$(SRC_FILE_PARSE_UTILS:$(SRC_PARSE_UTILS_DIR)/%.c=$(OBJ_PARSE_UTILS_DIR)/%.o)
+OBJ_FILE_MATH := $(SRC_FILE_MATH:$(SRC_MATH_DIR)/%.c=$(OBJ_MATH_DIR)/%.o)
+OBJ_FILE_OBJECTS := \
+	$(SRC_FILE_OBJECTS:$(SRC_OBJECTS_DIR)/%.c=$(OBJ_OBJECTS_DIR)/%.o)
+OBJ_FILE_RENDER := $(SRC_FILE_RENDER:$(SRC_RENDER_DIR)/%.c=$(OBJ_RENDER_DIR)/%.o)
+OBJ_MAIN := $(OBJ_MAIN_DIR)/main.o
+
+OBJS := $(OBJ_FILE_PARSE) $(OBJ_FILE_PARSE_UTILS) $(OBJ_FILE_MATH) \
+		$(OBJ_FILE_OBJECTS) $(OBJ_FILE_RENDER) $(OBJ_MAIN)
+
+#==============================================================================
 # COLOR AND SYMBOL
+#==============================================================================
 
 GREEN := \033[1;32m
 RED := \033[1;31m
@@ -76,53 +118,76 @@ OK := ✔
 FAIL := ✖
 ARROW := ➜
 
+#==============================================================================
 # RULES
+#==============================================================================
 
-all: submodules $(NAME) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
-	@echo "$(GREEN)$(OK) $(NAME) built successfully!$(RESET)"
+all: submodules $(NAME)
+	@echo "$(GREEN)$(OK) $(NAME) Built successfully!$(RESET)"
 
-$(NAME): $(OBJ_DIR) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME)
-	@$(CC) $(CFLAGS) $(SRC_OBJ) $(LIBFT_NAME) $(LIBFT_PRINTF_NAME) -o $(NAME)
-	@echo "$(GREEN)$(OK) executable created!$(RESET)"
+$(NAME): libmlx $(LIBFT) $(OBJS)
+	@$(CC) -o $@ $(OBJS) $(LIBFT) $(MLX42_LIB) $(MLX42_LIBS)
+	@echo "$(GREEN)$(OK) Executable created!$(RESET)"
 
 submodules:
 	@if [ ! -f "$(LIBFT_DIR)/Makefile" ] || \
 		[ ! -f "$(MLX42_DIR)/CMakeLists.txt" ]; then \
-		printf "$(ARROW) initializing submodules...\n"; \
-		printf "$(ARROW) cloning...\n"; \
+		printf "$(ARROW) Initializing submodules...\n"; \
+		printf "$(ARROW) Cloning...\n"; \
 		git submodule update --init --recursive > /dev/null 2>&1; \
-		printf "$(GREEN)$(OK) libft and MLX42 are ready\n$(RESET)"; \
+		printf "$(GREEN)$(OK) Libft and MLX42 are ready\n$(RESET)"; \
 	fi
 
-$(LIBFT_NAME):
-	@$(MAKE) -C $(LIBFT_DIR) bonus > /dev/null 2>&1
-	@echo "$(GREEN)$(OK) libft built successfully!$(RESET)"
+libmlx: $(MLX42_LIB)
 
-$(LIBFT_PRINTF_NAME):
-	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
-	@echo "$(GREEN)$(OK) libft printf built successfully!$(RESET)"
+$(MLX42_LIB):
+	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
+	@cmake --build $(MLX42_DIR)/build -j4
+	@echo "$(GREEN)$(OK)Libmlx42.a is compiled$(RESET)"
+
+$(LIBFT):
+	@$(MAKE) --no-print-directory bonus -C $(LIBFT_DIR)
+	@echo "$(GREEN)$(OK)Libft.a is compiled$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(GREEN)$(OK) Object directory created!$(RESET)"
 
-$(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
-	@mkdir -p $(dir $@)
+$(OBJ_SUBDIR): | $(OBJ_DIR)
+	@mkdir -p $@
+	@echo "$(GREEN)$(OK) Object subdirectory created!$(RESET)"
+
+$(OBJ_FILE_MAIN): $(SRC_FILE_MAIN) | $(OBJ_MAIN_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PARSE_DIR)/%.o: $(SRC_PARSE_DIR)/%.c | $(OBJ_PARSE_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_PARSE_UTILS_DIR)/%.o: $(SRC_PARSE_UTILS_DIR)/%.c | $(OBJ_PARSE_UTILS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_MATH_DIR)/%.o: $(SRC_MATH_DIR)/%.c | $(OBJ_MATH_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_RENDER_DIR)/%.o: $(SRC_RENDER_DIR)/%.c | $(OBJ_RENDER_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	
 clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN)$(OK) object files removed!$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR) clean > /dev/null 2>&1
-	@$(MAKE) -f .github/Makefile.tests clean
+	@$(MAKE) clean -C $(LIBFT_DIR) > /dev/null 2>&1
 	@printf "$(ARROW)  libft cleaned\n"
-
+	@$(MAKE) -f .github/Makefile.tests clean
 	
 fclean: clean
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean > /dev/null 2>&1
+	@printf "$(ARROW) deleting program...\n"
+	@rm -rf $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_DIR) > /dev/null 2>&1
+	@printf "$(GREEN)$(OK)success\n$(RESET)"
 
-re: fclean all
+re:
+	@$(MAKE) --no-print-directory fclean
+	@$(MAKE) --no-print-directory all
 
 test:
 	make -f .github/Makefile.tests test
@@ -130,4 +195,4 @@ test:
 test-cmake:
 	make -f .github/Makefile.tests test-cmake
 	
-.PHONY: all submodules clean fclean re
+.PHONY: all submodules libmlx clean fclean re
