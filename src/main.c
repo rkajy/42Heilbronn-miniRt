@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 13:56:42 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/21 18:07:52 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../include/error.h"
 #include "../include/parse_functions.h"
 #include "../include/utils.h"
-#include "mathrt.h"
+#include "../include/math_rt.h"
 #include "parse.h"
 #include "render.h"
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	//TODO: TO HERE could be grupped in one helper static function
 	scene_rt_factory(&scene, &scene_rt);
 	destroy_scene(&scene);
-	if (ft_draw(&mlx_interace, &scene_rt) != 0)
+	if (ft_draw(&mlx_interface, &scene_rt) != 0)
 	{
 		mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
 		mlx_loop(mlx_interface.mlx);
