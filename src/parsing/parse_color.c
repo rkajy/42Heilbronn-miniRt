@@ -12,7 +12,7 @@
 
 #include "../../include/parse_functions.h"
 #include "../../include/utils.h"
-#include "parse_functions.h"
+#include "../../include/parse_functions.h"
 
 static bool	is_digits_only(const char *s)
 {
