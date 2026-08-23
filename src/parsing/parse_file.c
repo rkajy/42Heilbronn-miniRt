@@ -15,6 +15,16 @@
 #include "../../include/utils.h"
 #include <fcntl.h>
 
+static int	parse_non_empty_line(char *line, t_scene *scene, t_rt_error *error)
+{
+	char	*clean;
+
+	clean = clean_line(line);
+	if (parse_line(clean, scene, error) != RT_ERR_OK)
+		return (error->code);
+	return (RT_ERR_OK);
+}
+
 int	parse_file(const char *filename, t_scene *scene, t_rt_error *error)
 {
 	int		fd;
@@ -29,13 +39,12 @@ int	parse_file(const char *filename, t_scene *scene, t_rt_error *error)
 	{
 		if (is_comment_or_empty(line))
 		{
-			error->line++;
 			free(line);
 			line = get_next_line(fd);
+			error->line++;
 			continue ;
 		}
-		line = clean_line(line);
-		if (parse_line(line, scene, error) != RT_ERR_OK)
+		if (parse_non_empty_line(line, scene, error) != RT_ERR_OK)
 			return (free(line), close(fd), error->code);
 		free(line);
 		line = get_next_line(fd);
