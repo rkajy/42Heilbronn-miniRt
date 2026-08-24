@@ -14,37 +14,57 @@
 #include "../../include/parse.h"
 #include "../../include/parse_functions.h"
 
+static int	parse_plane_data(char **tokens, t_plane *plane, t_rt_error *error)
+{
+	if (parse_vec3(tokens[1], &plane->point, error) != RT_ERR_OK)
+		return (error->code);
+	if (parse_vec3(tokens[2], &plane->normal, error) != RT_ERR_OK)
+		return (error->code);
+	if (normalize_vector(&plane->normal, error) != RT_ERR_OK)
+		return (error->code);
+	return (RT_ERR_OK);
+}
+
+static void	init_plane_material(t_material *material)
+{
+	material->specular = 0.5;
+	material->diffuse = 1;
+	material->shininess = 32;
+	material->reflective = 0;
+}
+
+static int	parse_plane_transform(char **tokens, t_plane *plane,
+		t_rt_error *error)
+{
+	t_transform	transform;
+
+	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
+		return (error->code);
+	if (transform.has_translation)
+		plane->point = ft_translation(plane->point, transform.translation);
+	if (transform.has_rotation)
+		plane->normal = ft_vnormalize(ft_rotate(plane->normal,
+					transform.rotation));
+	return (RT_ERR_OK);
+}
+
 int	parse_plane(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_plane	*plane;
 	t_list	*node;
-	t_transform	transform;
 
 	if (validate_min_tokens(tokens, 4, error) != RT_ERR_OK)
 		return (error->code);
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
 		return (rt_error_set(error, RT_ERR_ALLOC));
-	if (parse_vec3(tokens[1], &plane->point, error) != RT_ERR_OK)
+	if (parse_plane_data(tokens, plane, error) != RT_ERR_OK)
 		return (free(plane), error->code);
-	if (parse_vec3(tokens[2], &plane->normal, error) != RT_ERR_OK)
-		return (free(plane), error->code);
-	if (normalize_vector(&plane->normal, error) != RT_ERR_OK)
-		return (free(plane), error->code);
-	plane->material.specular = 0.5;
-	plane->material.diffuse = 1;
-	plane->material.shininess = 32;
-	plane->material.reflective = 0;
+	init_plane_material(&plane->material);
 	if (parse_color(tokens[3], &plane->material.color, error) != RT_ERR_OK)
 		return (free(plane), error->code);
-	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
+	if (parse_plane_transform(tokens, plane, error) != RT_ERR_OK)
 		return (free(plane), error->code);
-	if (transform.has_translation)
-		plane->point = ft_translation(plane->point,
-			transform.translation);
-	if (transform.has_rotation)
-		plane->normal = ft_vnormalize(ft_rotate(plane->normal,
-			transform.rotation));
 	node = ft_lstnew(plane);
 	if (!node)
 		return (free(plane), rt_error_set(error, RT_ERR_ALLOC));

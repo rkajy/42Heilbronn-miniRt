@@ -1,6 +1,7 @@
 .vscode
 subject.txt
 build
+obj
 .codex
 lib/googletest
 tests_runner

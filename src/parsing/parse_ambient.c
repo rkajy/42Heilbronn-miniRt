@@ -15,6 +15,25 @@
 #include "../../include/parse_functions.h"
 #include "../../include/utils.h"
 
+static void	init_ambient_material(t_material *material)
+{
+	material->specular = 0.5;
+	material->diffuse = 1;
+	material->shininess = 32;
+	material->reflective = 0;
+}
+
+static int	parse_ambient_data(const char **tokens, t_ambient *ambient,
+		t_rt_error *error)
+{
+	if (parse_double(tokens[1], &ambient->ratio, error) != RT_ERR_OK)
+		return (error->code);
+	init_ambient_material(&ambient->material);
+	if (parse_color(tokens[2], &ambient->material.color, error) != RT_ERR_OK)
+		return (error->code);
+	return (RT_ERR_OK);
+}
+
 int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_ambient	*ambient;
@@ -27,13 +46,7 @@ int	parse_ambient(const char **tokens, t_scene *scene, t_rt_error *error)
 	ambient = malloc(sizeof(t_ambient));
 	if (!ambient)
 		return (rt_error_set(error, RT_ERR_ALLOC));
-	if (parse_double(tokens[1], &ambient->ratio, error) != RT_ERR_OK)
-		return (free(ambient), error->code);
-	ambient->material.specular = 0.5;
-	ambient->material.diffuse = 1;
-	ambient->material.shininess = 32;
-	ambient->material.reflective = 0;
-	if (parse_color(tokens[2], &ambient->material.color, error) != RT_ERR_OK)
+	if (parse_ambient_data(tokens, ambient, error) != RT_ERR_OK)
 		return (free(ambient), error->code);
 	node = ft_lstnew(ambient);
 	if (!node)

@@ -34,11 +34,34 @@ static int	parse_cylinder_data(char **tokens, t_cylinder *cylinder,
 	return (RT_ERR_OK);
 }
 
+static void	init_cylinder_material(t_material *material)
+{
+	material->specular = 0.5;
+	material->diffuse = 1;
+	material->shininess = 32;
+	material->reflective = 0;
+}
+
+static int	parse_cylinder_transform(char **tokens, t_cylinder *cylinder,
+		t_rt_error *error)
+{
+	t_transform	transform;
+
+	if (parse_transformations(tokens, 6, &transform, error) != RT_ERR_OK)
+		return (error->code);
+	if (transform.has_translation)
+		cylinder->center = ft_translation(cylinder->center,
+				transform.translation);
+	if (transform.has_rotation)
+		cylinder->axis = ft_vnormalize(ft_rotate(cylinder->axis,
+					transform.rotation));
+	return (RT_ERR_OK);
+}
+
 int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 {
 	t_cylinder	*cylinder;
 	t_list		*node;
-	t_transform	transform;
 
 	if (validate_min_tokens(tokens, 6, error) != RT_ERR_OK)
 		return (error->code);
@@ -47,20 +70,11 @@ int	parse_cylinder(char **tokens, t_scene *scene, t_rt_error *error)
 		return (rt_error_set(error, RT_ERR_ALLOC));
 	if (parse_cylinder_data(tokens, cylinder, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
-	cylinder->material.specular = 0.5;
-	cylinder->material.diffuse = 1;
-	cylinder->material.shininess = 32;
-	cylinder->material.reflective = 0;
+	init_cylinder_material(&cylinder->material);
 	if (parse_color(tokens[5], &cylinder->material.color, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
-	if (parse_transformations(tokens, 6, &transform, error) != RT_ERR_OK)
+	if (parse_cylinder_transform(tokens, cylinder, error) != RT_ERR_OK)
 		return (free(cylinder), error->code);
-	if (transform.has_translation)
-		cylinder->center = ft_translation(cylinder->center,
-			transform.translation);
-	if (transform.has_rotation)
-		cylinder->axis = ft_vnormalize(ft_rotate(cylinder->axis,
-			transform.rotation));
 	node = ft_lstnew(cylinder);
 	if (!node)
 		return (free(cylinder), rt_error_set(error, RT_ERR_ALLOC));

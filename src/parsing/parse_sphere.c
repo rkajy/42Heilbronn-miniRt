@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:01:45 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/21 16:16:14 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/23 04:05:46 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,28 @@ static int	parse_sphere_transform(char **tokens, t_sphere *sphere,
 	if (parse_transformations(tokens, 4, &transform, error) != RT_ERR_OK)
 		return (error->code);
 	if (transform.has_translation)
-		sphere->center = ft_translation(sphere->center,
-			transform.translation);
+		sphere->center = ft_translation(sphere->center, transform.translation);
 	return (RT_ERR_OK);
+}
+
+static int	parse_sphere_data(char **tokens, t_sphere *sphere,
+		t_rt_error *error)
+{
+	if (parse_vec3(tokens[1], &sphere->center, error) != RT_ERR_OK)
+		return (error->code);
+	if (parse_double(tokens[2], &sphere->diameter, error) != RT_ERR_OK)
+		return (error->code);
+	if (validate_positive(sphere->diameter, error) != RT_ERR_OK)
+		return (error->code);
+	return (RT_ERR_OK);
+}
+
+static void	init_sphere_material(t_material *material)
+{
+	material->specular = 0.5;
+	material->diffuse = 1;
+	material->shininess = 32;
+	material->reflective = 0;
 }
 
 int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)
@@ -37,16 +56,9 @@ int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 		return (rt_error_set(error, RT_ERR_ALLOC));
-	if (parse_vec3(tokens[1], &sphere->center, error) != RT_ERR_OK)
+	if (parse_sphere_data(tokens, sphere, error) != RT_ERR_OK)
 		return (free(sphere), error->code);
-	if (parse_double(tokens[2], &sphere->diameter, error) != RT_ERR_OK)
-		return (free(sphere), error->code);
-	if (validate_positive(sphere->diameter, error) != RT_ERR_OK)
-		return (free(sphere), error->code);
-	sphere->material.specular = 0.5;
-	sphere->material.diffuse = 1;
-	sphere->material.shininess = 32;
-	sphere->material.reflective = 0;
+	init_sphere_material(&sphere->material);
 	if (parse_color(tokens[3], &sphere->material.color, error) != RT_ERR_OK)
 		return (free(sphere), error->code);
 	if (parse_sphere_transform(tokens, sphere, error) != RT_ERR_OK)
