@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:22:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 13:53:52 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/25 00:20:58 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //TODO: error handling togather with error from parsing
 static void	ft_error_mlx(const char *msg)
 {
-	printf("Error: %s", msg);
+	printf("Error: %s: %s\n", msg, mlx_strerror(mlx_get_errno()));
 	return ;
 }
 
@@ -33,6 +33,7 @@ t_mlx_stat	ft_init_mlx(t_mlx_interface *mlx_interface)
 	{
 		ft_error_mlx("mlx_new_image failed");
 		mlx_terminate(mlx_interface->mlx);
+		mlx_interface->mlx = NULL;
 		return (MLX_ERR);
 	}
 	return (MLX_OK);
@@ -45,6 +46,8 @@ t_mlx_stat	ft_mlx_image_window(t_mlx_interface *mi)
 		ft_error_mlx("mlx_image_to_window failed");
 		mlx_delete_image(mi->mlx, mi->img);
 		mlx_terminate(mi->mlx);
+	mi->img = NULL;
+	mi->mlx = NULL;
 		return (MLX_ERR);
 	}
 	return (MLX_OK);

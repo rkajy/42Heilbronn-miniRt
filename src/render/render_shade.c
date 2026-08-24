@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_shade.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 23:39:36 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/25 00:21:01 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_vec3	ft_color_to_vec(t_color c)
 {
-	return (ft_vec3(c.r, c.g, c.b));
+	return (ft_vec3(c.r / 255.0, c.g / 255.0, c.b / 255.0));
 }
 
 static double	ft_specular_calc(t_hit *hit, t_ray ray, t_light *light)
