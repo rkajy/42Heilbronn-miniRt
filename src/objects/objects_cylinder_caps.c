@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:59:48 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:31:29 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 20:48:34 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	ft_hit_cap(t_ray ray, t_cylinder *cy, t_hit *hit, t_caps cap)
 		return (false);
 	point = ft_ray_at(ray, t);
 	vector = ft_vsub(point, center);
-	if (ft_vdot(vector, vector) > cy->radius * cy->radius)
+	if (ft_vdot(vector, vector) > cy->diameter * cy->diameter * 0.25)
 		return (false);
 	if (t < hit->t)
 	{

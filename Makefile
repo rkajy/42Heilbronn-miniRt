@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 22:09:55 by asando            #+#    #+#              #
-#    Updated: 2026/08/22 21:56:43 by radandri         ###   ########.fr        #
+#    Updated: 2026/08/24 20:29:49 by asando           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,22 +160,22 @@ $(OBJ_SUBDIR): | $(OBJ_DIR)
 	@echo "$(GREEN)$(OK) Object subdirectory created!$(RESET)"
 
 $(OBJ_MAIN): $(SRC_FILE_MAIN) | $(OBJ_MAIN_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 
 $(OBJ_PARSE_DIR)/%.o: $(SRC_PARSE_DIR)/%.c | $(OBJ_PARSE_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 
 $(OBJ_PARSE_UTILS_DIR)/%.o: $(SRC_PARSE_UTILS_DIR)/%.c | $(OBJ_PARSE_UTILS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 
 $(OBJ_MATH_DIR)/%.o: $(SRC_MATH_DIR)/%.c | $(OBJ_MATH_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 
 $(OBJ_OBJECTS_DIR)/%.o: $(SRC_OBJECTS_DIR)/%.c | $(OBJ_OBJECTS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 
 $(OBJ_RENDER_DIR)/%.o: $(SRC_RENDER_DIR)/%.c | $(OBJ_RENDER_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(ALL_HEADER) -c $< -o $@
 	
 clean:
 	@rm -rf $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/21 18:07:52 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/24 22:19:32 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	main(int argc, char **argv)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
 	if (validate_scene(&scene, &error) != RT_ERR_OK)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
-	if (DEBUG)
-		debug_dump_scene(&scene);
+	//if (DEBUG)
+	//	debug_dump_scene(&scene);
 	//TODO: TO HERE could be grupped in one helper static function
 	scene_rt_factory(&scene, &scene_rt);
 	destroy_scene(&scene);
-	if (ft_draw(&mlx_interface, &scene_rt) != 0)
+	if (ft_draw(&mlx_interface, &scene_rt) == 0)
 	{
 		mlx_key_hook(mlx_interface.mlx, ft_key_hook, &mlx_interface);
 		mlx_loop(mlx_interface.mlx);

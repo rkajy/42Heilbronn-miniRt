@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 22:16:56 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:36:46 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 21:49:05 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ static bool	ft_hit_object(t_scene_rt *scene, t_ray ray, t_hit *closest)
 
 t_vec3	ft_trace(t_scene_rt *scene, t_ray ray, int depth)
 {
-	size_t		i;
 	t_vec3		color;
 	t_ray		reflect_ray;
 	t_vec3		reflect_color;
 	t_hit		closest;
 
-	closest->t = 1e30;
-	i = 0;
+	closest.t = 1e30;
 	if (ft_hit_object(scene, ray, &closest) == false)
 		return (ft_vec3(0, 0, 0));
 	color = ft_shade(scene, &closest, ray);
@@ -56,7 +54,7 @@ t_vec3	ft_trace(t_scene_rt *scene, t_ray ray, int depth)
 	{
 		reflect_ray.origin = ft_vadd(closest.point,
 				ft_vscalar(closest.normal, 1e-4));
-		reflect_ray.direction = ft_vnormalize(ft_reflect(ray.direction,
+		reflect_ray.direction = ft_vnormalize(ft_reflection(ray.direction,
 					closest.normal));
 		reflect_color = ft_trace(scene, reflect_ray, depth + 1);
 		color = ft_vadd(
