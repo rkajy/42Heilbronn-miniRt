@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 22:16:03 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 23:30:11 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "math_rt.h"
 # include "objects.h"
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 800
 # define REFLECT_DEPTH 3
 
 typedef struct s_mlx_interface

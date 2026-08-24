@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 22:13:44 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 23:39:36 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static double	ft_specular_calc(t_hit *hit, t_ray ray, t_light *light)
 	t_vec3	light_dir;
 
 	light_dir = ft_vnormalize(ft_vsub(light->position, hit->point));
-	reflect_dir = ft_reflection(light_dir, hit->normal);
+	reflect_dir = ft_vnormalize(ft_reflection(light_dir, hit->normal));
 	spec_angle = fmax(0.0, ft_vdot(reflect_dir, ft_vneg(ray.direction)));
 	spec = pow(spec_angle, hit->mat.shininess);
 	return (spec * hit->mat.specular);

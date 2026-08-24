@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:21:41 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 21:21:47 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 23:22:06 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ static double	ft_calc_t(double discriminant, double a, double b)
 	double	sqrt_d;
 	double	t1;
 	double	t2;
+	double	t;
 
 	sqrt_d = sqrt(discriminant);
 	t1 = (-b - sqrt_d) / (2 * a);
 	t2 = (-b + sqrt_d) / (2 * a);
-	if (t1 > 1e-06)
-		return (t1);
-	return (t2);
+	t = 1e30;
+	if (t1 > 1e-06 && t1 < t)
+		t = t1;
+	if (t2 > 1e-06 && t2 < t)
+		t = t2;
+	return (t);
 }
 
 static double	ft_calc_disc(t_ray ray, t_sphere *sp, t_constanta *con)
@@ -53,13 +57,13 @@ bool	ft_hit_sphere(t_ray ray, t_sphere *sp, t_hit *hit)
 	t_constanta	con;
 
 	discriminant = ft_calc_disc(ray, sp, &con);
-	if (discriminant == 0)
+	if (discriminant < 0)
 		return (false);
 	t = ft_calc_t(discriminant, con.a, con.b);
-	if (t < 1e-06)
-		return (false);
 	con.t = t;
 	if (con.t < hit->t)
 		ft_to_hit(&con, ray, hit, sp);
+	else
+		return (false);
 	return (true);
 }

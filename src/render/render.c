@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 22:25:22 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 23:48:29 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_ray	ft_generate_ray(t_scene_rt *scene, uint32_t x, uint32_t y)
 	v = (1 - 2 * ((y + 0.5) / HEIGHT)) * scene->camera.vp_height / 2;
 	dir = ft_vadd(ft_vadd(ft_vscalar(scene->camera.right, u),
 				ft_vscalar(scene->camera.up, v)), scene->camera.orientation);
-	return (ft_ray(scene->camera.position, dir));
+	return (ft_ray(scene->camera.position, ft_vnormalize(dir)));
 }
 
 static uint32_t	ft_to_rgb(t_vec3 color)

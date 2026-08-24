@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:39:27 by asando            #+#    #+#             */
-/*   Updated: 2026/08/16 12:33:00 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/24 23:37:19 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static bool	ft_hit_sphere_true(t_scene_rt *scene, t_ray shadow_ray,
 	size_t	i;
 
 	i = 0;
+	hit->t = 1e30;
 	while (i < scene->nb_spheres)
 	{
 		if (ft_hit_sphere(shadow_ray, &scene->spheres[i], hit))
@@ -36,6 +37,7 @@ static bool	ft_hit_plane_true(t_scene_rt *scene, t_ray shadow_ray,
 	size_t	i;
 
 	i = 0;
+	hit->t = 1e30;
 	while (i < scene->nb_planes)
 	{
 		if (ft_hit_plane(shadow_ray, &scene->planes[i], hit))
@@ -54,6 +56,7 @@ static bool	ft_hit_cylinder_true(t_scene_rt *scene, t_ray shadow_ray,
 	size_t	i;
 
 	i = 0;
+	hit->t = 1e30;
 	while (i < scene->nb_cylinders)
 	{
 		if (ft_hit_cylinder(shadow_ray, &scene->cylinders[i], hit))
