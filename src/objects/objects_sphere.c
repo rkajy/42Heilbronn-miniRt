@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:21:41 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 23:22:06 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/25 18:44:40 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ static double	ft_calc_t(double discriminant, double a, double b)
 static double	ft_calc_disc(t_ray ray, t_sphere *sp, t_constanta *con)
 {
 	t_vec3	oc;
+	double	radius;
 
+	radius = sp->diameter / 0.5;
 	oc = ft_vsub(ray.origin, sp->center);
 	con->a = ft_vdot(ray.direction, ray.direction);
 	con->b = 2.0 * ft_vdot(oc, ray.direction);
-	con->c = ft_vdot(oc, oc) - sp->diameter * sp->diameter * 0.25;
+	con->c = ft_vdot(oc, oc) - radius * radius;
 	return (con->b * con->b - 4 * con->a * con->c);
 }
 

@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:04:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 20:47:36 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/25 21:44:26 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ bool	ft_hit_cylinder(t_ray ray, t_cylinder *cy, t_hit *hit)
 		con.t = t;
 		if (t > 1e-06 && con.t < hit->t)
 		{
-			if (ft_to_hit(&con, ray, hit, cy) == 0)
+			if (ft_to_hit(&con, ray, hit, cy) == 1)
 				hit_any = true;
 		}
 	}

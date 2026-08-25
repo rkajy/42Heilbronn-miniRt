@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/24 23:39:36 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/25 21:07:53 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_vec3	ft_color_to_vec(t_color c)
 {
-	return (ft_vec3(c.r, c.g, c.b));
+	return (ft_vec3(c.r / 255.0, c.g / 255.0, c.b / 255.0));
 }
 
 static double	ft_specular_calc(t_hit *hit, t_ray ray, t_light *light)
@@ -25,7 +25,7 @@ static double	ft_specular_calc(t_hit *hit, t_ray ray, t_light *light)
 	t_vec3	light_dir;
 
 	light_dir = ft_vnormalize(ft_vsub(light->position, hit->point));
-	reflect_dir = ft_vnormalize(ft_reflection(light_dir, hit->normal));
+	reflect_dir = ft_vnormalize(ft_reflection(ft_vneg(light_dir), hit->normal));
 	spec_angle = fmax(0.0, ft_vdot(reflect_dir, ft_vneg(ray.direction)));
 	spec = pow(spec_angle, hit->mat.shininess);
 	return (spec * hit->mat.specular);
@@ -45,10 +45,13 @@ static t_vec3	ft_add_diff_specular(t_hit *hit, double diff,
 						double spec, t_light *light)
 {
 	t_vec3	final_vec;
+	t_vec3	diffuse;
+	t_vec3	specular;
 
-	final_vec = ft_vadd(ft_vscalar(ft_color_to_vec(hit->mat.color),
-									diff * light->brightness),
-			ft_vscalar(ft_vec3(1, 1, 1), spec * light->brightness));
+	diffuse = ft_vscalar(ft_color_to_vec(hit->mat.color),
+					  diff * light->intensity);
+	specular = ft_vscalar(ft_vec3(1, 1, 1), spec * light->intensity);
+	final_vec = ft_vadd(diffuse, specular);
 	return (final_vec);
 }
 
