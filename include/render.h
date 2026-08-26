@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/26 20:33:49 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/26 20:53:09 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define REFLECT_DEPTH 3
+# define REFLECT_DEPTH 5
 
 typedef struct s_mlx_interface
 {
