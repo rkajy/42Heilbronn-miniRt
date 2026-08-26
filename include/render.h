@@ -6,15 +6,12 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:47:36 by asando            #+#    #+#             */
-/*   Updated: 2026/08/25 21:11:47 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/26 20:33:49 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
-
-# include <stdio.h>
-# include <stdlib.h>
 
 # include "MLX42/MLX42.h"
 # include "parse.h"
