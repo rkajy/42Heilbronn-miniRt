@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 17:05:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 15:31:46 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:09:19 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
+#include "error.h"
 #include <stdio.h>
 
 void	rt_error_init(t_rt_error *error)

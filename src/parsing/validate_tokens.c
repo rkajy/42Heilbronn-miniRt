@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 03:06:47 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/07 22:38:57 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:17:40 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
+#include "error.h"
 #include <stddef.h>
 
 int	validate_tokens(char **tokens, int expected, t_rt_error *error)

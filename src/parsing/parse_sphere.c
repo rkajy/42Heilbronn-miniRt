@@ -6,13 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:01:45 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/23 04:05:46 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:15:04 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse.h"
-#include "../../include/parse_functions.h"
+#include "error.h"
+#include "parse.h"
+#include "parse_functions.h"
 
 static int	parse_sphere_transform(char **tokens, t_sphere *sphere,
 		t_rt_error *error)

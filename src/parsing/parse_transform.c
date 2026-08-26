@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 22:15:30 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/23 04:03:35 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:15:24 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse_functions.h"
-#include "../../lib/libft/includes/libft.h"
+#include "parse_functions.h"
+#include "libft.h"
 
 static void	init_transform(t_transform *transform)
 {

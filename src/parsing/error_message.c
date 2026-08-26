@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 23:54:35 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:34:10 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:10:01 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
+#include "error.h"
 #include <stddef.h>
 
 const char	*rt_error_message(t_rt_error_code code)

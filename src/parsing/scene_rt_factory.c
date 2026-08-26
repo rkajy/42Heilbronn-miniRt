@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/12 19:43:15 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 06:24:04 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:16:17 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "parse.h"
 #include <stdbool.h>
 
 static void	copy_spheres(t_scene_rt *dst, t_list *lst)

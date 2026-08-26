@@ -6,13 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:01:18 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:45:42 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:14:21 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse_functions.h"
-#include "../../lib/libft/includes/libft.h"
-#include "../../include/utils.h"
+#include "parse_functions.h"
+#include "libft.h"
+#include "utils.h"
 
 static int	parse_token(char **tokens, t_scene *scene, t_rt_error *error)
 {

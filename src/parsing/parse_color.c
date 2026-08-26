@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 00:39:34 by radandri          #+#    #+#             */
-/*   Updated: 2026/06/30 02:51:18 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:12:05 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse_functions.h"
-#include "../../include/utils.h"
+#include "parse_functions.h"
+#include "utils.h"
 
 static bool	is_digits_only(const char *s)
 {

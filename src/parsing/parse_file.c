@@ -6,13 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:00:22 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:41:23 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:13:07 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse_functions.h"
-#include "../../include/utils.h"
+#include "error.h"
+#include "parse_functions.h"
+#include "utils.h"
 #include <fcntl.h>
 
 static int	parse_non_empty_line(char *line, t_scene *scene, t_rt_error *error)

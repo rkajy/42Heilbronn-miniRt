@@ -6,13 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 00:39:56 by radandri          #+#    #+#             */
-/*   Updated: 2026/06/17 01:59:50 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:12:25 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse.h"
-#include "../../include/parse_functions.h"
+#include "error.h"
+#include "parse.h"
+#include "parse_functions.h"
 
 static int	parse_cylinder_data(char **tokens, t_cylinder *cylinder,
 		t_rt_error *error)

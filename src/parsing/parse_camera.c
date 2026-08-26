@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 00:39:02 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/23 04:05:32 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:11:44 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse_functions.h"
-#include "../../lib/libft/includes/libft.h"
+#include "parse_functions.h"
+#include "libft.h"
 
 static int	parse_camera_transform(char **tokens, t_camera *camera,
 		t_rt_error *error)

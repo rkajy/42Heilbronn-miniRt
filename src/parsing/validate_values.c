@@ -6,13 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 04:04:32 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/17 00:07:32 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:18:10 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse.h"
-#include <math.h>
+#include "error.h"
+#include "parse.h"
 #define EPSILON 1e-5
 
 int	validate_ratio(double ratio, t_rt_error *error)

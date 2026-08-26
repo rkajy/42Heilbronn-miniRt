@@ -6,14 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 00:37:51 by radandri          #+#    #+#             */
-/*   Updated: 2026/06/17 01:58:22 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:11:25 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse.h"
-#include "../../include/parse_functions.h"
-#include "../../include/utils.h"
+#include "error.h"
+#include "parse.h"
+#include "parse_functions.h"
 
 static void	init_ambient_material(t_material *material)
 {

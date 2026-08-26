@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:00:05 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:40:34 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:12:44 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse_functions.h"
-#include "../../include/utils.h"
+#include "parse_functions.h"
+#include "utils.h"
 
 int	parse_double(const char *s, double *result, t_rt_error *error)
 {

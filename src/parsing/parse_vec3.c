@@ -6,14 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:04:44 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 00:47:50 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:15:50 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/error.h"
-#include "../../include/parse_functions.h"
-#include "../../include/utils.h"
-#include "../../lib/libft/includes/libft.h"
+#include "error.h"
+#include "parse_functions.h"
+#include "utils.h"
+#include "libft.h"
 
 int	parse_vec3(const char *s, t_vec3 *out, t_rt_error *error)
 {
