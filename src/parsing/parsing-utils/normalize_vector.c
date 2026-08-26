@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 20:20:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/07/09 13:22:50 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:22:07 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parse.h"
+#include "parse.h"
 #include <math.h>
 
 #define VECTOR_EPSILON 1e-12

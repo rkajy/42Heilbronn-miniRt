@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 14:40:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/21 18:17:40 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/26 20:20:21 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parse.h"
+#include "parse.h"
 #include <stdio.h>
 
 static void	debug_dump_ambients(t_list *node)

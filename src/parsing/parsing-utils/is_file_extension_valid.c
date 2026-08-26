@@ -6,13 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 19:50:01 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/24 20:23:12 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/26 20:21:41 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/error.h"
-#include "../../../include/parse.h"
-#include "../../../lib/libft/includes/libft.h"
+#include "libft.h"
 
 int	is_file_extension_valid(const char *filename, const char *extension)
 {
