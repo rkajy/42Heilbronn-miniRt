@@ -9,3 +9,5 @@ tests_runner_cmake
 miniRT
 .idea
 reports
+/obj/
+compile_commands.json
