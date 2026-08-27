@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 20:20:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/26 20:22:07 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 17:26:54 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ static int	is_component_in_range(double value)
 	return (value >= -1 && value <= 1);
 }
 
+/*
+** Converts a vector into a unit vector while keeping its direction.
+** Example: "0,1,1" becomes "0,0.707,0.707" after normalization.
+*/
 int	normalize_vector(t_vec3 *vec, t_rt_error *error)
 {
 	double	length;

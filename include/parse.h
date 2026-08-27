@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/24 22:56:18 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 17:32:35 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_material
 typedef struct s_ambient
 {
 	double		ratio;
-	t_material	material;
+	t_color		color;
 }				t_ambient;
 
 /*
@@ -68,7 +68,6 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3		position;
-	double		brightness;
 	double		intensity;
 	t_color		light_color;
 }				t_light;
@@ -100,8 +99,10 @@ typedef struct s_transform
 {
 	t_vec3		translation;
 	t_vec3		rotation;
+	t_material	material;
 	bool		has_translation;
 	bool		has_rotation;
+	bool		has_material;
 }				t_transform;
 
 typedef struct s_scene

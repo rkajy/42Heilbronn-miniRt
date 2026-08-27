@@ -21,6 +21,8 @@
  */
 int	parse_double(const char *s, double *result, t_rt_error *error);
 
+int	parse_material(const char *s, t_material *material, t_rt_error *error);
+
 int	parse_transformations(char **tokens, int start, t_transform *transform,
 		t_rt_error *error);
 

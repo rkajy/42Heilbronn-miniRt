@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 14:40:00 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/26 20:20:21 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 17:23:06 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	debug_dump_ambients(t_list *node)
 	{
 		ambient = (t_ambient *)node->content;
 		printf("  ambient[%d]: ratio=%.6f ", i, ambient->ratio);
-		printf("color=(%.0f, %.0f, %.0f)\n", ambient->material.color.r,
-			ambient->material.color.g, ambient->material.color.b);
+		printf("color=(%.0f, %.0f, %.0f)\n", ambient->color.r,
+			ambient->color.g, ambient->color.b);
 		node = node->next;
 		i++;
 	}
@@ -60,7 +60,7 @@ static void	debug_dump_lights(t_list *node)
 		light = (t_light *)node->content;
 		printf("  light[%d]: position=(%.6f, %.6f, %.6f) ", i,
 			light->position.x, light->position.y, light->position.z);
-		printf("brightness=%.6f color=(%.0f, %.0f, %.0f)\n", light->brightness,
+		printf("brightness=%.6f color=(%.0f, %.0f, %.0f)\n", light->intensity,
 			light->light_color.r, light->light_color.g,
 			light->light_color.b);
 		node = node->next;

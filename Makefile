@@ -55,7 +55,7 @@ FILES_PARSE_UTILS := ft_atof.c clean_line.c ft_isspace.c \
 					 is_comment_or_empty.c ft_free_split.c \
 					 is_file_extension_valid.c is_input_valid.c \
 					 destroy_scene.c debug_dump_scene.c \
-					 debug_dump_shapes.c normalize_vector.c \
+						 debug_dump_shapes.c normalize_vector.c parse_material.c \
 
 FILES_MATH := math_ray.c math_vec3_init.c math_vec3_adv_ops.c math_vec3_ops.c \
 			  math_vec3_utils.c

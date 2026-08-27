@@ -14,21 +14,12 @@
 #include "parse.h"
 #include "parse_functions.h"
 
-static void	init_ambient_material(t_material *material)
-{
-	material->specular = 0.5;
-	material->diffuse = 1;
-	material->shininess = 32;
-	material->reflective = 0;
-}
-
 static int	parse_ambient_data(const char **tokens, t_ambient *ambient,
 		t_rt_error *error)
 {
 	if (parse_double(tokens[1], &ambient->ratio, error) != RT_ERR_OK)
 		return (error->code);
-	init_ambient_material(&ambient->material);
-	if (parse_color(tokens[2], &ambient->material.color, error) != RT_ERR_OK)
+	if (parse_color(tokens[2], &ambient->color, error) != RT_ERR_OK)
 		return (error->code);
 	return (RT_ERR_OK);
 }
