@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/26 22:06:22 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 19:47:49 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_render(t_mlx_interface *mlx_interface, t_scene_rt *scene)
 	y = 0;
 	depth = 0;
 	ft_build_camera_basis(&scene->camera);
-	ft_setup_viewport(scene, (double)WIDTH/HEIGHT);
+	ft_setup_viewport(scene, (double)WIDTH / HEIGHT);
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/27 17:23:22 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/27 19:48:43 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_vec3	ft_add_diff_specular(t_hit *hit, double diff,
 	t_vec3	specular;
 
 	diffuse = ft_vscalar(ft_color_to_vec(hit->mat.color),
-					  diff * light->intensity);
+			diff * light->intensity);
 	specular = ft_vscalar(ft_vec3(1, 1, 1), spec * light->intensity);
 	final_vec = ft_vadd(diffuse, specular);
 	return (final_vec);
@@ -65,7 +65,7 @@ t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
 
 	i = 0;
 	color = ft_vscalar(ft_color_to_vec(scene->ambient.color),
-						scene->ambient.ratio);
+			scene->ambient.ratio);
 	while (i < scene->nb_lights)
 	{
 		light = &scene->lights[i];
