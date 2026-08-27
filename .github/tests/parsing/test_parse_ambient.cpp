@@ -41,9 +41,9 @@ TEST_F(ParseAmbientFixture, ValidAmbient)
     parse_double(tokens[1], &ratio_expected, &error);
 
     result = (t_ambient*)scene.ambients->content;
-    EXPECT_EQ(color_expected.r, result->material.color.r);
-    EXPECT_EQ(color_expected.g, result->material.color.g);
-    EXPECT_EQ(color_expected.b, result->material.color.b);
+    EXPECT_EQ(color_expected.r, result->color.r);
+    EXPECT_EQ(color_expected.g, result->color.g);
+    EXPECT_EQ(color_expected.b, result->color.b);
     EXPECT_EQ(ratio_expected, result->ratio);
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 }
@@ -71,9 +71,9 @@ TEST_F(ParseAmbientFixture, OutOfRangePositiveRatioAmbient)
     parse_double(tokens[1], &ratio_expected, &error);
 
     result = (t_ambient*)scene.ambients->content;
-    EXPECT_EQ(color_expected.r, result->material.color.r);
-    EXPECT_EQ(color_expected.g, result->material.color.g);
-    EXPECT_EQ(color_expected.b, result->material.color.b);
+    EXPECT_EQ(color_expected.r, result->color.r);
+    EXPECT_EQ(color_expected.g, result->color.g);
+    EXPECT_EQ(color_expected.b, result->color.b);
     EXPECT_EQ(ratio_expected, result->ratio);
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 }
@@ -101,9 +101,9 @@ TEST_F(ParseAmbientFixture, OutOfRangeNegativeRatioAmbient)
     parse_double(tokens[1], &ratio_expected, &error);
 
     result = (t_ambient*)scene.ambients->content;
-    EXPECT_EQ(color_expected.r, result->material.color.r);
-    EXPECT_EQ(color_expected.g, result->material.color.g);
-    EXPECT_EQ(color_expected.b, result->material.color.b);
+    EXPECT_EQ(color_expected.r, result->color.r);
+    EXPECT_EQ(color_expected.g, result->color.g);
+    EXPECT_EQ(color_expected.b, result->color.b);
     EXPECT_EQ(ratio_expected, result->ratio);
     EXPECT_EQ(ft_lstsize(scene.ambients), 1);
 }

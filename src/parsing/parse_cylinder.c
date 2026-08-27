@@ -14,8 +14,12 @@
 #include "parse.h"
 #include "parse_functions.h"
 
+/*
+** The axis is normalized so intersection code can use unit directions.
+** Example: "0,2,0" becomes the equivalent unit axis "0,1,0".
+*/
 static int	parse_cylinder_data(char **tokens, t_cylinder *cylinder,
-		t_rt_error *error)
+			t_rt_error *error)
 {
 	if (parse_vec3(tokens[1], &cylinder->center, error) != RT_ERR_OK)
 		return (error->code);
@@ -42,8 +46,12 @@ static void	init_cylinder_material(t_material *material)
 	material->reflective = 0;
 }
 
+/*
+** Translation moves the center, while rotation changes the cylinder axis.
+** Example: "T 1,0,0 R 0,0,90" applies both transforms in one line.
+*/
 static int	parse_cylinder_transform(char **tokens, t_cylinder *cylinder,
-		t_rt_error *error)
+			t_rt_error *error)
 {
 	t_transform	transform;
 
@@ -55,6 +63,13 @@ static int	parse_cylinder_transform(char **tokens, t_cylinder *cylinder,
 	if (transform.has_rotation)
 		cylinder->axis = ft_vnormalize(ft_rotate(cylinder->axis,
 					transform.rotation));
+	if (transform.has_material)
+	{
+		cylinder->material.specular = transform.material.specular;
+		cylinder->material.diffuse = transform.material.diffuse;
+		cylinder->material.shininess = transform.material.shininess;
+		cylinder->material.reflective = transform.material.reflective;
+	}
 	return (RT_ERR_OK);
 }
 

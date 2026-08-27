@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_shade.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
+/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 21:56:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/25 21:07:53 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 17:23:22 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_vec3	ft_shade(t_scene_rt *scene, t_hit *hit, t_ray ray)
 	double	spec;
 
 	i = 0;
-	color = ft_vscalar(ft_color_to_vec(scene->ambient.material.color),
+	color = ft_vscalar(ft_color_to_vec(scene->ambient.color),
 						scene->ambient.ratio);
 	while (i < scene->nb_lights)
 	{

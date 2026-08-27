@@ -6,17 +6,17 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:32:29 by asando            #+#    #+#             */
-/*   Updated: 2026/08/26 20:08:29 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 18:16:37 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "MLX42/MLX42.h"
 #include "error.h"
-#include "parse_functions.h"
-#include "utils.h"
 #include "parse.h"
+#include "parse_functions.h"
 #include "render.h"
+#include "utils.h"
+#include <stdio.h>
 
 static int	ft_draw(t_mlx_interface *mi, t_scene_rt *scene_rt)
 {
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
 	if (validate_scene(&scene, &error) != RT_ERR_OK)
 		return (destroy_scene(&scene), rt_error_print(&error), error.code);
-	//if (DEBUG)
+	// if (DEBUG)
 	//	debug_dump_scene(&scene);
 	scene_rt_factory(&scene, &scene_rt);
 	destroy_scene(&scene);

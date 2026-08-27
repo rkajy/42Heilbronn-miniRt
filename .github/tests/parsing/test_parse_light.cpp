@@ -37,7 +37,7 @@ TEST_F(ParseLightFixture, AcceptValidLight)
     EXPECT_DOUBLE_EQ(light->position.y, 50);
     EXPECT_DOUBLE_EQ(light->position.z, 0);
 
-    EXPECT_DOUBLE_EQ(light->brightness, 0.6);
+    EXPECT_DOUBLE_EQ(light->intensity, 0.6);
 
     EXPECT_EQ(light->light_color.r, 255);
 	EXPECT_EQ(light->light_color.g, 255);
