@@ -1,0 +1,14 @@
+# Ambient light
+A 0.2 255,255,255
+
+# Camera at (0, 0, 5), looking toward the plane at z = 0
+# Orientation vector points straight down -Z
+C 0,0,5  0,0,-1  60
+
+# Light above and to the right
+L 5,5,5  0.8  255,255,255
+
+# Plane at z = 0
+# Point: 0,0,0
+# Normal: 0,0,1 (facing the camera)
+pl 0,0,0  0,0,1  200,200,200

@@ -1,0 +1,16 @@
+# Ambient light
+A 0.2 255,255,255
+
+# Camera at (0, 0, 10), looking toward the cylinder at the origin
+# Orientation vector points straight down -Z
+C 0,0,10  0,0,-1  60
+
+# Light above and to the right
+L 5,5,5  0.8  255,255,255
+
+# Cylinder at origin
+# Axis: 0,1,0 (extends along the Y-axis)
+# Diameter: 2
+# Height: 6
+# Color: greenish
+cy 0,0,0  0,1,0  2  6  80,200,80

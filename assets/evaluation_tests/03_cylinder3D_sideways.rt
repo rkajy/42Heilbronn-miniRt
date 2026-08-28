@@ -1,0 +1,16 @@
+A 0.2 255,255,255
+
+# Camera placed diagonally above the cylinder
+# Position: (5, 2, 5)
+# Orientation: looking toward origin but slightly downward and left
+C 5,2,5  -1,-0.3,-1  60
+
+# Light above and to the right
+L 5,5,5  0.8 255,255,255
+
+# Cylinder along Z-axis (lying pipe)
+# Position: 0,0,0
+# Direction: 0,0,1  (Z-axis)
+# Diameter: 2
+# Height: 6
+cy 0,0,0  0,0,1  2  6  80,200,80
