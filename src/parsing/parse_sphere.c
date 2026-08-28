@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:01:45 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/27 18:08:35 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 14:44:13 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	parse_sphere_transform(char **tokens, t_sphere *sphere,
 		sphere->material.diffuse = transform.material.diffuse;
 		sphere->material.shininess = transform.material.shininess;
 		sphere->material.reflective = transform.material.reflective;
+		sphere->material.transparency = transform.material.transparency;
+		sphere->material.ior = transform.material.ior;
 	}
 	return (RT_ERR_OK);
 }
@@ -59,6 +61,8 @@ static void	init_sphere_material(t_material *material)
 	material->diffuse = 1;
 	material->shininess = 32;
 	material->reflective = 0;
+	material->transparency = 0.0;
+	material->ior = 1.5;
 }
 
 int	parse_sphere(char **tokens, t_scene *scene, t_rt_error *error)

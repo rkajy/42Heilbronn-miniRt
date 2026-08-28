@@ -44,6 +44,8 @@ static void	init_cylinder_material(t_material *material)
 	material->diffuse = 1;
 	material->shininess = 32;
 	material->reflective = 0;
+	material->transparency = 0.0;
+	material->ior = 1.5;
 }
 
 /*
@@ -69,6 +71,8 @@ static int	parse_cylinder_transform(char **tokens, t_cylinder *cylinder,
 		cylinder->material.diffuse = transform.material.diffuse;
 		cylinder->material.shininess = transform.material.shininess;
 		cylinder->material.reflective = transform.material.reflective;
+		cylinder->material.transparency = transform.material.transparency;
+		cylinder->material.ior = transform.material.ior;
 	}
 	return (RT_ERR_OK);
 }

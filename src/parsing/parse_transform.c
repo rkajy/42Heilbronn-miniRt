@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 22:15:30 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/27 18:07:24 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 14:33:45 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	init_transform(t_transform *transform)
 	material.diffuse = 1.0;
 	material.shininess = 32;
 	material.reflective = 0.0;
+	material.transparency = 0.0;
+	material.ior = 1.5;
 	transform->translation = ft_vec3(0, 0, 0);
 	transform->rotation = ft_vec3(0, 0, 0);
 	transform->material = material;
