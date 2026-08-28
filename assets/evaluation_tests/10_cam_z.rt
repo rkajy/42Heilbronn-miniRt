@@ -1,0 +1,15 @@
+A 0.2 255,255,255
+
+# Camera aligned exactly along the X-axis
+# Position: (10, 0, 0)
+# Orientation: pointing straight toward origin along -X
+C 0,0,10  0,0,-1  60
+
+# Light above and to the right
+L 5,5,5  0.8 255,255,255
+
+# Sphere at origin
+sp 0,0,0  2  200,80,80
+
+# Cylinder along Z-axis
+cy 0,0,0  0,0,1  1.5  8  80,200,80

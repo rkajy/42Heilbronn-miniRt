@@ -1,0 +1,18 @@
+A 0.2 255,255,255
+
+# Camera placed diagonally above the objects
+# Position: (6, 3, 6)
+# Orientation: looking toward origin
+C 6,3,6  -1,-0.4,-1  60
+
+# Light above and to the right
+L 5,5,5  0.8 255,255,255
+
+# Sphere at origin
+# Radius: 2
+sp 0,0,0  2  200,80,80
+
+# Cylinder passing through the sphere along Z-axis
+# Diameter: 1.5
+# Height: 8
+cy 0,0,0  0,0,1  1.5  8  80,200,80
