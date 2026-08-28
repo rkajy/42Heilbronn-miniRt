@@ -114,7 +114,7 @@ Object lines may optionally be followed by transformations and material
 properties:
 
 ```text
-sp 0,0,0 8 255,0,0 [T 3,0,0] [R 0,1,0] [M 0.5,1,32,0]
+sp 0,0,0 8 255,0,0 [T 3,0,0] [R 0,1,0] [M 0.5,1,32,0,0.0,1.5]
 ```
 
 - Colors use integer RGB components from `0` to `255`.
@@ -122,7 +122,7 @@ sp 0,0,0 8 255,0,0 [T 3,0,0] [R 0,1,0] [M 0.5,1,32,0]
 - The camera FOV is in the range `0` to `180` degrees.
 - `T x,y,z` applies a translation.
 - `R x,y,z` applies a rotation.
-- `M specular,diffuse,shininess,reflective` overrides an object's material.
+- `M specular,diffuse,shininess,reflective,transparency,ior` overrides an object's material.
 - Material shininess is in the range `8` to `128`.
 
 
