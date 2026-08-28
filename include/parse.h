@@ -6,16 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/27 17:32:35 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/28 12:55:44 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "../lib/libft/includes/ft_printf.h"
-# include "../lib/libft/includes/get_next_line_bonus.h"
-# include "../lib/libft/includes/libft.h"
+# include "libft.h"
 # include "error.h"
 # include "math_rt.h"
 # include <stdbool.h>
@@ -36,6 +34,8 @@ typedef struct s_color
 // NOTE: diffuse -> default = 1.0 value range = 0.0 - 1.0
 // NOTE: shininess -> default = 32 value range = 8 - 128
 // NOTE: reflective -> default = 0.0 value range = 0.0 - 1.0
+// NOTE: transparency -> default = 0.0 value range = 0.0 - 1.0
+// NOTE: ior -> default = 1.5 value range = 1.0 - 3.0
 typedef struct s_material
 {
 	t_color		color;
@@ -43,6 +43,8 @@ typedef struct s_material
 	double		diffuse;
 	double		shininess;
 	double		reflective;
+	//double		transparency;
+	//double		ior;
 }				t_material;
 
 typedef struct s_ambient

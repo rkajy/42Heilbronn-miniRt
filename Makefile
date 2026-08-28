@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 22:09:55 by asando            #+#    #+#              #
-#    Updated: 2026/08/24 20:29:49 by asando           ###   ########.fr        #
+#    Updated: 2026/08/28 12:59:14 by asando           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ FILES_PARSE_UTILS := ft_atof.c clean_line.c ft_isspace.c \
 						 debug_dump_shapes.c normalize_vector.c parse_material.c \
 
 FILES_MATH := math_ray.c math_vec3_init.c math_vec3_adv_ops.c math_vec3_ops.c \
-			  math_vec3_utils.c
+			  math_vec3_utils.c math_refraction.c
 
 FILES_OBJECTS := objects_cylinder.c objects_cylinder_caps.c objects_plane.c \
 				 objects_sphere.c

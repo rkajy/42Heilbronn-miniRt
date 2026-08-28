@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 18:05:40 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/27 18:05:44 by radandri         ###   ########.fr       */
+/*   Updated: 2026/08/27 21:21:53 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	parse_material_values(char **values, t_material *material,
 		return (error->code);
 	if (parse_double(values[2], &material->shininess, error) != RT_ERR_OK)
 		return (error->code);
-	if (material->shininess < 8 || material->shininess > 128)
+	if (material->shininess < 8 || material->shininess > 1000)
 		return (rt_error_set(error, RT_ERR_OUT_OF_RANGE));
 	if (parse_double(values[3], &material->reflective, error) != RT_ERR_OK
 		|| validate_ratio(material->reflective, error) != RT_ERR_OK)

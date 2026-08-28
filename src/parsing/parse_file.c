@@ -6,12 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:00:22 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/26 20:13:07 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/27 19:57:14 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "parse_functions.h"
+#include "get_next_line_bonus.h"
 #include "utils.h"
 #include <fcntl.h>
 
