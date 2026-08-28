@@ -1,7 +1,6 @@
 A 0.2 255,255,255
 
 # Camera aligned exactly along the X-axis
-# Position: (10, 0, 0)
 # Orientation: pointing straight toward origin along -X
 C 0,10,0  0,-1,0  60
 

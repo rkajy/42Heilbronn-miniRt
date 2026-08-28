@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:04:02 by asando            #+#    #+#             */
-/*   Updated: 2026/08/25 21:44:26 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 15:23:26 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_to_hit(t_constanta *con, t_ray ray, t_hit *hit, t_cylinder *cy)
 
 	p = ft_ray_at(ray, con->t);
 	h = ft_vdot(ft_vsub(p, cy->center), cy->axis);
-	if (h < 0 || h > cy->height)
+	if (h < -cy->height * 0.5 || h > cy->height * 0.5)
 		return (0);
 	hit->t = con->t;
 	hit->point = p;

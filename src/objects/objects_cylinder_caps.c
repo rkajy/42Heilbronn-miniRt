@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:59:48 by asando            #+#    #+#             */
-/*   Updated: 2026/08/26 21:43:26 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 15:25:37 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ static void	ft_calc_center_normal(t_cylinder *cy, t_vec3 *center,
 {
 	if (cap == C_TOP)
 	{
-		*center = ft_vadd(cy->center, ft_vscalar(cy->axis, cy->height));
+		*center = ft_vadd(cy->center,
+				ft_vscalar(cy->axis, cy->height * 0.5));
 		*normal = cy->axis;
 	}
 	else
 	{
-		*center = cy->center;
+		*center = ft_vadd(cy->center,
+				ft_vscalar(cy->axis, cy->height * 0.5));
 		*normal = ft_vneg(cy->axis);
 	}
 }

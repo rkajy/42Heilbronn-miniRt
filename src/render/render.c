@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:01:39 by asando            #+#    #+#             */
-/*   Updated: 2026/08/27 19:47:49 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 15:50:37 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	ft_build_camera_basis(t_camera *cam)
 
 	cam->orientation = ft_vnormalize(cam->orientation);
 	global_up = ft_vec3(0, 1, 0);
+	if (fabs(ft_vdot(cam->orientation, global_up)) > 0.999)
+		global_up = ft_vec3(0 , 0, 1);
 	cam->right = ft_vnormalize(ft_vcross(cam->orientation, global_up));
 	cam->up = ft_vcross(cam->right, cam->orientation);
 	return ;
