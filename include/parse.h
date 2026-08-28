@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 02:18:33 by radandri          #+#    #+#             */
-/*   Updated: 2026/08/28 12:55:44 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 14:32:08 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_material
 	double		diffuse;
 	double		shininess;
 	double		reflective;
-	//double		transparency;
-	//double		ior;
+	double		transparency;
+	double		ior;
 }				t_material;
 
 typedef struct s_ambient

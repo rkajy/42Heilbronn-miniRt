@@ -35,6 +35,8 @@ static void	init_plane_material(t_material *material)
 	material->diffuse = 1;
 	material->shininess = 32;
 	material->reflective = 0;
+	material->transparency = 0.0;
+	material->ior = 1.5;
 }
 
 /*
@@ -59,6 +61,8 @@ static int	parse_plane_transform(char **tokens, t_plane *plane,
 		plane->material.diffuse = transform.material.diffuse;
 		plane->material.shininess = transform.material.shininess;
 		plane->material.reflective = transform.material.reflective;
+		plane->material.transparency = transform.material.transparency;
+		plane->material.ior = transform.material.ior;
 	}
 	return (RT_ERR_OK);
 }
