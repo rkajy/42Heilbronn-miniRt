@@ -1,0 +1,18 @@
+A 0.2 255,255,255
+
+# Camera from the front, slightly above
+# Position: (0, 4, 10)
+# Orientation: looking straight toward the sphere, slightly downward
+C 0,4,10  0,-0.3,-1  60
+
+# Light 1 — front-right
+L 4,2,6  0.8  255,255,255
+
+# Light 2 — front-left
+L -4,2,6  0.8  255,255,255
+
+# Big sphere above the plane
+sp 0,0,0  3  200,80,80
+
+# Plane below the sphere
+pl 0,-3,0  0,1,0  200,200,200
