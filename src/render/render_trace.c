@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 22:16:56 by asando            #+#    #+#             */
-/*   Updated: 2026/08/28 12:52:28 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 15:09:27 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,6 @@ static	t_vec3	ft_reflection_color(t_scene_rt *scene, t_ray ray,
 		reflect_ray.direction = ft_vnormalize(ft_reflection(ray.direction,
 					closest.normal));
 		reflect_color = ft_trace(scene, reflect_ray, depth + 1);
-		color = ft_vadd(
-				ft_vscalar(color, 1.0 - closest.mat.reflective),
-				ft_vscalar(reflect_color, closest.mat.reflective)
-				);
 	}
 	return (reflect_color);
 }
@@ -108,6 +104,8 @@ t_vec3	ft_trace(t_scene_rt *scene, t_ray ray, int depth)
 	color = ft_shade(scene, &closest, ray);
 	reflect_color = ft_reflection_color(scene, ray, closest, depth);
 	refract_color = ft_refraction_color(scene, ray, closest, depth);
+	fresnel_color = ft_combine_color(ray, closest,
+			reflect_color, refract_color);
 	return (ft_vadd(ft_vscalar(color, 1.0 - closest.mat.transparency),
 			ft_vscalar(fresnel_color, closest.mat.transparency)));
 }

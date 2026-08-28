@@ -6,7 +6,7 @@
 /*   By: asando <asando@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 22:25:53 by asando            #+#    #+#             */
-/*   Updated: 2026/08/28 12:59:16 by asando           ###   ########.fr       */
+/*   Updated: 2026/08/28 14:51:08 by asando           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static double	ft_eta_calc(double ior, int num)
 	return (etai / etat);
 }
 
-t_vec3	ft_refract(t_vec3 ray, t_vec3 normal, double ior)
+t_vec3	ft_refraction(t_vec3 ray, t_vec3 normal, double ior)
 {
 	double	cosi;
 	double	eta;
